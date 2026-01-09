@@ -23,6 +23,32 @@ import {
   FormMessage
 } from "@/components/ui/form"
 
+useHead({
+  title: 'Amaury Mulcey | Développeur Freelance Web & Étudiant',
+  meta: [
+    {
+      name: 'description',
+      content: 'Amaury Mulcey, développeur web freelance et étudiant. Découvrez mon portfolio, mes projets et mes compétences en développement web.'
+    },
+
+    { property: 'og:title', content: 'Amaury Mulcey | Développeur Freelance Web' },
+    { property: 'og:description', content: 'Amaury Mulcey, développeur web freelance et étudiant. Découvrez mon portfolio, mes projets et mes compétences en développement web.' },
+    { property: 'og:url', content: 'https://www.amaurymulcey.fr' },
+    { property: 'og:image', content: 'https://www.amaurymulcey.fr/web-app-manifest-512x512.png' },
+
+    { name: 'twitter:title', content: 'Amaury Mulcey | Développeur Freelance Web' },
+    { name: 'twitter:description', content: 'Amaury Mulcey, développeur web freelance et étudiant. Découvrez mon portfolio, mes projets et mes compétences en développement web.' },
+    { name: 'twitter:image', content: 'https://www.amaurymulcey.fr/web-app-manifest-512x512.png' },
+    { name: 'twitter:card', content: 'summary_large_image' },
+    { name: 'theme-color', content: '#00FF7F' },
+
+    { name: 'robots', content: 'index, follow' },
+  ],
+  link: [
+    { rel: 'canonical', href: 'https://www.amaurymulcey.fr' }
+  ]
+})
+
 const items = ref([
   {
     label: "Combien de temps faut-il pour créer un site vitrine ?",
@@ -139,7 +165,7 @@ onMounted(async () => {
 
 <template>
   <main class="bg-[#070A13] text-[#F3F7FB] pt-20 mx-auto max-w-6xl px-4 md:px-6 lg:px-8">
-    <section id="home" class="flex flex-col gap-16 mt-24 mb-32 scroll-mt-64">
+    <section id="home" class="flex flex-col gap-16 sm:mt-24 mb-32 scroll-mt-64">
       <div class="flex flex-col items-center gap-4">
         <NuxtPicture
             src="images/pdp.jpeg"
@@ -158,24 +184,37 @@ onMounted(async () => {
           </div>
 
           <div class="flex flex-col sm:flex-row justify-center gap-6">
-            <a
-                href="#services"
+            <NuxtLink
+                to="#services"
                 class="text-[#171717] font-bold inline-flex items-center justify-center px-10 py-2 bg-[#00FF7F] rounded-xl
                      transition duration-200 ease-out
                      hover:drop-shadow-[0_0_16px_rgba(0,255,127,0.5)]"
             >
               Mes Services
-            </a>
-
-            <a
-                href="https://api.amaurymulcey.fr/"
+            </NuxtLink>
+<!--
+            <NuxtLink
+                to="https://api.amaurymulcey.fr"
                 target="_blank"
                 class="gap-2 text-[#00FF7F] font-bold inline-flex items-center justify-center px-10 py-2 border-2 border-[#00FF7F] rounded-xl
                      transition-colors duration-200 ease-out
                      hover:bg-[#00FF7F] hover:text-[#171717]"
             >
-              Mes APIs <Icon name="mdi:external-link" />
-            </a>
+              Discover my api's
+              <Icon name="mdi:external-link" />
+            </NuxtLink>
+-->
+            <NuxtLink
+                href="https://buymeacoffee.com/amaurizz"
+                target="_blank"
+                class="gap-2 text-[#FFFF00] font-bold inline-flex items-center justify-center px-10 py-2 border-2 border-[#FFFF00] rounded-xl
+                     transition-colors duration-200 ease-out
+                     hover:bg-[#FFFF00] hover:text-[#171717]"
+            >
+              <Icon name="simple-icons:buymeacoffee" />
+              Me soutenir
+              <Icon name="mdi:external-link" />
+            </NuxtLink>
           </div>
         </div>
       </div>
@@ -184,7 +223,7 @@ onMounted(async () => {
     <section id="projects" class="flex flex-col gap-16 mb-32 scroll-mt-28">
       <div class="flex flex-col text-center gap-2">
         <h2 class="font-bold text-5xl">Découvrez mes <span class="text-[#00FF7F]">Projets</span></h2>
-        <p class="text-[#8DA0BA] text-lg">Mes réalisations favorites après 5 ans d'expérience en développement</p>
+        <p class="text-[#8DA0BA] text-lg">Mes réalisations favorites après 5 ans d'expérience en développement.</p>
       </div>
 
       <div class="bg-linear-to-br from-[#111727] to-[#0A0F1C] border border-slate-800 rounded-xl px-6 py-2">
@@ -195,7 +234,7 @@ onMounted(async () => {
     <section id="about" class="flex flex-col gap-16 mb-32 scroll-mt-28">
       <div class="flex flex-col text-center gap-2">
         <h2 class="font-bold text-5xl">Plus <span class="text-[#00FF7F]">À propos</span></h2>
-        <p class="text-[#8DA0BA] text-lg">Passionné par le développement depuis plus de 5 ans</p>
+        <p class="text-[#8DA0BA] text-lg">Passionné par le développement depuis plus de 5 ans.</p>
       </div>
 
       <div class="flex flex-col gap-8 sm:grid sm:grid-cols-2 sm:gap-12">
@@ -208,20 +247,72 @@ onMounted(async () => {
             </p>
           </article>
 
-          <article class="flex flex-col gap-8 justify-between bg-linear-to-br from-[#111727] to-[#0A0F1C] border border-slate-800 rounded-xl px-6 py-2">
-            <h3 class="font-bold">Outils & Technologies</h3>
+          <h3 class="font-bold text-xl">Mes stacks de développement</h3>
 
-            <div>
-              <p class="text-center font-bold">Prochainement disponible !</p>
-            </div>
+          <article>
+            <NuxtLink to="https://symfony.com/">
+              <Icon name="mdi:symfony" class="text-4xl sm:text-6xl"/>
+            </NuxtLink>
+            <NuxtLink to="https://vuejs.org/">
+              <Icon name="material-icon-theme:vue" class="text-4xl sm:text-6xl"/>
+            </NuxtLink>
+            <NuxtLink to="https://nuxt.com/">
+              <Icon name="material-icon-theme:nuxt" class="text-4xl sm:text-6xl"/>
+            </NuxtLink>
+            <NuxtLink to="https://nextjs.org/">
+              <Icon name="devicon:nextjs" class="text-4xl sm:text-6xl"/>
+            </NuxtLink>
+            <NuxtLink to="https://tailwindcss.com/">
+              <Icon name="devicon:tailwindcss" class="text-4xl sm:text-6xl"/>
+            </NuxtLink>
+            <NuxtLink to="https://www.prisma.io/">
+              <Icon name="file-icons:prisma" class="text-4xl sm:text-6xl"/>
+            </NuxtLink>
+            <NuxtLink to="https://nodejs.org/fr">
+              <Icon name="devicon:nodejs" class="text-4xl sm:text-6xl"/>
+            </NuxtLink>
+            <NuxtLink to="https://expressjs.com/">
+              <Icon name="simple-icons:express" class="text-4xl sm:text-6xl"/>
+            </NuxtLink>
+            <NuxtLink to="https://nestjs.com/">
+              <Icon name="material-icon-theme:nest" class="text-4xl sm:text-6xl"/>
+            </NuxtLink>
+            <NuxtLink to="https://www.postgresql.org/">
+              <Icon name="devicon:postgresql" class="text-4xl sm:text-6xl"/>
+            </NuxtLink>
+            <NuxtLink to="https://www.mysql.com/">
+              <Icon name="devicon:mysql" class="text-4xl sm:text-6xl"/>
+            </NuxtLink>
+            <NuxtLink to="https://git-scm.com/">
+              <Icon name="material-icon-theme:git" class="text-4xl sm:text-6xl"/>
+            </NuxtLink>
+            <NuxtLink to="https://www.docker.com/">
+              <Icon name="material-icon-theme:docker" class="text-4xl sm:text-6xl"/>
+            </NuxtLink>
+            <NuxtLink to="https://code.visualstudio.com/">
+              <Icon name="devicon:vscode" class="text-4xl sm:text-6xl"/>
+            </NuxtLink>
+            <NuxtLink to="https://www.jetbrains.com/">
+              <Icon name="devicon:jetbrains" class="text-4xl sm:text-6xl"/>
+            </NuxtLink>
           </article>
+
+          <NuxtLink
+              to="/cv.pdf"
+              target="_blank"
+              class="gap-2 text-[#00FF7F] font-bold inline-flex items-center justify-center px-10 py-2 border-2 border-[#00FF7F] rounded-xl
+                     transition-colors duration-200 ease-out
+                     hover:bg-[#00FF7F] hover:text-[#171717]"
+          >
+            Visualiser mon CV
+            <Icon name="mdi:external-link" />
+          </NuxtLink>
         </div>
 
-        <article class="flex flex-col gap-8 justify-between bg-linear-to-br from-[#111727] to-[#0A0F1C] border border-slate-800 rounded-xl px-6 py-2">
-          <h3 class="font-bold">Compétences Techniques</h3>
+        <article class="flex flex-col gap-8 bg-linear-to-br from-[#111727] to-[#0A0F1C] border border-slate-800 rounded-xl px-6 py-2">
+          <h3 class="font-bold text-xl">Compétences Techniques</h3>
 
           <div>
-            <p class="text-center font-bold">Prochainement disponible !</p>
           </div>
         </article>
       </div>
@@ -230,7 +321,7 @@ onMounted(async () => {
     <section id="services" class="flex flex-col gap-16 mb-32 scroll-mt-28">
       <div class="flex flex-col text-center gap-2">
         <h2 class="font-bold text-5xl">Mes <span class="text-[#00FF7F]">Services</span></h2>
-        <p class="text-[#8DA0BA] text-lg">Des offres adaptés à tous les budgets et tous les projets</p>
+        <p class="text-[#8DA0BA] text-lg">Des offres adaptées à tous les budgets et tous les projets.</p>
       </div>
 
       <div class="flex flex-col gap-8 sm:gap-12">
@@ -243,22 +334,22 @@ onMounted(async () => {
             <span
                 class="absolute -top-3 left-10 z-10 flex items-center gap-1 rounded-lg bg-[#00FF7F] px-3 py-1 text-xs font-bold uppercase text-[#171717] shadow-md"
             >
-              <Icon name="material-symbols:star" class="text-[#171717]" />
+              <Icon name="material-symbols:star" class="text-[#171717]"/>
               Populaire
             </span>
 
             <div class="flex flex-col gap-4">
               <div class="flex flex-col gap-1">
                 <h3 class="font-bold text-3xl">Site Vitrine</h3>
-                <p class="text-[#8DA0BA]">La solution clé en main idéale pour présenter votre activité sur le web</p>
+                <p class="text-[#8DA0BA]">La solution clé en main idéale pour présenter votre activité sur le web.</p>
               </div>
 
-              <h4 class="font-bold text-3xl text-[#00FF7F]">349 €</h4>
+              <h4 class="font-bold text-3xl">349 €</h4>
 
               <ul class="text-[#8DA0BA] space-y-3">
                 <li class="flex items-center gap-2">
                   <Icon name="gg:check-o" class="text-[#00FF7F]" />
-                  Design moderne et responsive
+                  Design moderne et responsive.
                 </li>
                 <li class="flex items-center gap-2">
                   <Icon name="gg:check-o" class="text-[#00FF7F]" />
@@ -266,31 +357,23 @@ onMounted(async () => {
                 </li>
                 <li class="flex items-center gap-2">
                   <Icon name="gg:check-o" class="text-[#00FF7F]" />
-                  Formulaire de contact
+                  Formulaire de contact.
                 </li>
                 <li class="flex items-center gap-2">
                   <Icon name="gg:check-o" class="text-[#00FF7F]" />
-                  Optimisation SEO
-                </li>
-                <li class="flex items-center gap-2">
-                  <Icon name="gg:check-o" class="text-[#00FF7F]" />
-                  Intégration réseaux sociaux
-                </li>
-                <li class="flex items-center gap-2">
-                  <Icon name="gg:check-o" class="text-[#00FF7F]" />
-                  Formation incluse
+                  Optimisation du référencement.
                 </li>
               </ul>
             </div>
 
-            <a
-                href="#contact"
+            <NuxtLink
+                to="#contact"
                 class="text-[#171717] font-bold inline-flex items-center justify-center px-10 py-2 bg-[#00FF7F] rounded-xl
                      transition duration-200 ease-out
                      hover:drop-shadow-[0_0_16px_rgba(0,255,127,0.5)]"
             >
               Prendre rendez-vous
-            </a>
+            </NuxtLink>
           </article>
 
           <article
@@ -301,74 +384,101 @@ onMounted(async () => {
             <div class="flex flex-col gap-4">
               <div class="flex flex-col gap-1">
                 <h3 class="font-bold text-3xl">Projet Sur-Mesure</h3>
-                <p class="text-[#8DA0BA]">Un projet unique qui nécessite des fonctionnalités avancées</p>
+                <p class="text-[#8DA0BA]">Un projet unique qui nécessite des fonctionnalités avancées.</p>
               </div>
 
-              <h4 class="font-bold text-3xl text-[#00FF7F]">Sur devis</h4>
+              <h4 class="font-bold text-3xl">Sur devis</h4>
 
               <ul class="text-[#8DA0BA] space-y-3">
                 <li class="flex items-center gap-2">
                   <Icon name="gg:check-o" class="text-[#00FF7F]" />
-                  Analyse poussée de vos besoins
+                  Analyse poussée de vos besoins.
                 </li>
                 <li class="flex items-center gap-2">
                   <Icon name="gg:check-o" class="text-[#00FF7F]" />
-                  Fonctionnalités avancées
+                  Fonctionnalités avancées.
                 </li>
                 <li class="flex items-center gap-2">
                   <Icon name="gg:check-o" class="text-[#00FF7F]" />
-                  Base de données
+                  Base de données.
                 </li>
                 <li class="flex items-center gap-2">
                   <Icon name="gg:check-o" class="text-[#00FF7F]" />
-                  API et intégrations
-                </li>
-                <li class="flex items-center gap-2">
-                  <Icon name="gg:check-o" class="text-[#00FF7F]" />
-                  Support inclus
-                </li>
-                <li class="flex items-center gap-2">
-                  <Icon name="gg:check-o" class="text-[#00FF7F]" />
-                  Formation incluse
+                  API et intégrations.
                 </li>
               </ul>
             </div>
 
-            <a
-                href="#contact"
+            <NuxtLink
+                to="#contact"
                 class="text-[#00FF7F] font-bold inline-flex items-center justify-center px-10 py-2 border-2 border-[#00FF7F] rounded-xl
                      transition-colors duration-200 ease-out
                      hover:bg-[#00FF7F] hover:text-[#171717]"
             >
               Faire un devis
-            </a>
+            </NuxtLink>
+          </article>
+
+          <article
+              class="sm:hidden flex flex-col justify-between gap-8 bg-linear-to-br from-[#111727] to-[#0A0F1C] border border-slate-800 rounded-xl px-6 py-6
+                   transition-all duration-200 ease-out
+                   hover:border-[#00FF7F] hover:shadow-[0_0_28px_rgba(0,255,127,0.25)]"
+          >
+            <div class="flex flex-col gap-4">
+              <div class="flex flex-col gap-1">
+                <h3 class="font-bold text-3xl">Maintenance</h3>
+                <p class="text-[#8DA0BA]">Bénéficiez d'un support et gardez votre projet à jour et hébergé sur un serveur sécurisé.</p>
+              </div>
+
+              <h4 class="font-bold text-3xl">45 €/mois</h4>
+
+              <ul class="text-[#8DA0BA] space-y-3">
+                <li class="flex items-center gap-2">
+                  <Icon name="gg:check-o" class="text-[#00FF7F]" />
+                  Mise en production de votre application.
+                </li>
+                <li class="flex items-center gap-2">
+                  <Icon name="gg:check-o" class="text-[#00FF7F]" />
+                  Sécurisation du serveur.
+                </li>
+              </ul>
+            </div>
+
+            <NuxtLink
+                to="#contact"
+                class="text-[#00FF7F] font-bold inline-flex items-center justify-center px-10 py-2 border-2 border-[#00FF7F] rounded-xl
+                     transition-colors duration-200 ease-out
+                     hover:bg-[#00FF7F] hover:text-[#171717]"
+            >
+              En savoir plus
+            </NuxtLink>
           </article>
         </div>
 
         <article
-            class="flex flex-col justify-between gap-8 sm:flex-row bg-linear-to-br from-[#111727] to-[#0A0F1C] border border-slate-800 rounded-xl px-6 py-6
-                 transition-all duration-200 ease-out
-                 hover:border-[#00FF7F] hover:shadow-[0_0_28px_rgba(0,255,127,0.25)]"
+            class="hidden sm:flex justify-between gap-8 bg-linear-to-br from-[#111727] to-[#0A0F1C] border border-slate-800 rounded-xl px-6 py-6
+                   transition-all duration-200 ease-out
+                   hover:border-[#00FF7F] hover:shadow-[0_0_28px_rgba(0,255,127,0.25)]"
         >
-          <div class="flex justify-between">
+          <div>
             <div>
               <h3 class="font-bold text-3xl">Maintenance</h3>
               <p class="text-[#8DA0BA]">
-                Bénéficiez d'un support et gardez votre projet à jour et hébérgé sur un serveur sécurisé !
+                Bénéficiez d'un support et gardez votre projet à jour et hébérgé sur un serveur sécurisé.
               </p>
             </div>
           </div>
 
           <div class="sm:flex sm:flex-col sm:gap-2">
             <h4 class="font-bold text-xl">45 €/mois</h4>
-            <a
-                href="#contact"
+            <NuxtLink
+                to="#contact"
                 class="text-[#00FF7F] font-bold inline-flex items-center justify-center px-10 py-2 border-2 border-[#00FF7F] rounded-xl
                      transition-colors duration-200 ease-out
                      hover:bg-[#00FF7F] hover:text-[#171717]"
             >
               En savoir plus
-            </a>
+            </NuxtLink>
           </div>
         </article>
       </div>
@@ -429,12 +539,12 @@ onMounted(async () => {
               </div>
               <div class="text-center sm:text-left">
                 <h4 class="text-[#8DA0BA]">Email</h4>
-                <a
-                    href="mailto:contact@amaurymulcey.fr"
+                <NuxtLink
+                    to="mailto:contact@amaurymulcey.fr"
                     class="font-bold underline transition-colors duration-200 ease-out hover:text-[#00FF7F]"
                 >
                   contact@amaurymulcey.fr
-                </a>
+                </NuxtLink>
               </div>
             </article>
 
@@ -453,19 +563,26 @@ onMounted(async () => {
             <h3 class="font-bold text-xl">Retrouvez-moi sur</h3>
 
             <div class="flex gap-4">
-              <a
-                  href="https://github.com/AmauRizz"
+              <NuxtLink
+                  to="https://github.com/AmauRizz"
                   class="flex justify-center items-center bg-linear-to-br from-[#111727] to-[#0A0F1C] rounded-xl px-1 py-1"
               >
-                <Icon name="mdi:github" size="2em" class="text-[#8DA0BA] transition-colors duration-200 ease-out hover:text-[#00FF7F]" />
-              </a>
+                <Icon name="mdi:github" size="2em" class="text-[#8DA0BA] transition-colors duration-200 ease-out hover:text-[#ffffff]" />
+              </NuxtLink>
 
-              <a
-                  href="https://www.linkedin.com/in/amaury-mulcey-pro/"
+              <NuxtLink
+                  to="https://www.linkedin.com/in/amaury-mulcey-pro/"
                   class="flex justify-center items-center bg-linear-to-br from-[#111727] to-[#0A0F1C] rounded-xl px-1 py-1"
               >
-                <Icon name="mdi:linkedin" size="2em" class="text-[#8DA0BA] transition-colors duration-200 ease-out hover:text-[#00FF7F]" />
-              </a>
+                <Icon name="mdi:linkedin" size="2em" class="text-[#8DA0BA] transition-colors duration-200 ease-out hover:text-[#0e76a8]" />
+              </NuxtLink>
+
+              <NuxtLink
+                  to="https://buymeacoffee.com/amaurizz"
+                  class="flex justify-center items-center bg-linear-to-br from-[#111727] to-[#0A0F1C] rounded-xl px-1 py-1"
+              >
+                <Icon name="simple-icons:buymeacoffee" size="2em" class="text-[#8DA0BA] transition-colors duration-200 ease-out hover:text-[#FFFF00]" />
+              </NuxtLink>
             </div>
           </article>
         </div>
@@ -484,7 +601,7 @@ onMounted(async () => {
                 <FormControl>
                   <Input
                       v-bind="componentField"
-                      placeholder="Votre nom"
+                      placeholder="Votre nom."
                       class="bg-[#070A13] border-slate-800 text-slate-100"
                   />
                 </FormControl>
@@ -499,7 +616,7 @@ onMounted(async () => {
                   <Input
                       v-bind="componentField"
                       type="email"
-                      placeholder="vous@exemple.com"
+                      placeholder="vous@exemple.com."
                       class="bg-[#070A13] border-slate-800 text-slate-100"
                   />
                 </FormControl>

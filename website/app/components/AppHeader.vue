@@ -2,11 +2,11 @@
 import type { DropdownMenuItem } from '@nuxt/ui'
 
 const links = [
-    { label: 'Projets', href: '#projects' },
-    { label: 'À propos', href: '#about' },
-    { label: 'Services', href: '#services' },
-    { label: 'FAQ', href: '#faq' },
-    { label: 'Contact', href: '#contact' },
+    { label: 'Projets', href: '/#projects' },
+    { label: 'À propos', href: '/#about' },
+    { label: 'Services', href: '/#services' },
+    { label: 'FAQ', href: '/#faq' },
+    { label: 'Contact', href: '/#contact' },
 ]
 
 const isOpen = ref(false)
@@ -32,14 +32,14 @@ const closeMenu = () => {
 
       <!-- Liens desktop -->
       <div class="hidden items-center gap-8 text-sm font-medium lg:flex">
-        <a
+        <NuxtLink
             v-for="link in links"
             :key="link.href"
-            :href="link.href"
+            :to="link.href"
             class="text-slate-300 transition duration-200 ease-out hover:text-[#00FF7F]"
         >
           {{ link.label }}
-        </a>
+        </NuxtLink>
       </div>
 
       <!-- Burger -->
@@ -53,12 +53,12 @@ const closeMenu = () => {
         <Icon v-else name="i-heroicons-x-mark" class="h-6 w-6" />
       </button>
 
-      <a
-          href="#contact"
+      <NuxtLink
+          to="/#contact"
           class="hidden lg:inline-flex text-[#171717] font-bold items-center justify-center px-10 py-2 bg-[#00FF7F] rounded-xl transition-colors duration-200 ease-out hover:drop-shadow-[0_0_12px_#00FF7F]"
       >
         Me Contacter
-      </a>
+      </NuxtLink>
     </nav>
 
     <!-- Menu mobile (overlay, ne pousse pas le contenu) -->
@@ -67,23 +67,23 @@ const closeMenu = () => {
         class="absolute left-0 right-0 top-full mt-2 lg:hidden rounded-2xl border border-slate-800/80 bg-[#050816] shadow-lg overflow-hidden"
     >
       <nav class="px-4 py-4 space-y-1">
-        <a
+        <NuxtLink
             v-for="link in links"
             :key="link.href"
-            :href="link.href"
+            :to="link.href"
             class="block rounded-xl px-3 py-2 text-sm font-medium text-slate-100 transition-colors duration-200 ease-out hover:bg-slate-900 hover:text-[#00FF7F]"
             @click="closeMenu"
         >
           {{ link.label }}
-        </a>
+        </NuxtLink>
 
-        <a
-            href="#contact"
+        <NuxtLink
+            to="/#contact"
             class="mt-2 w-full text-[#171717] font-bold inline-flex items-center justify-center px-10 py-2 bg-[#00FF7F] rounded-xl transition duration-200 ease-out hover:drop-shadow-[0_0_12px_#00FF7F]"
             @click="closeMenu"
         >
           Me Contacter
-        </a>
+        </NuxtLink>
       </nav>
     </div>
   </header>
