@@ -22,7 +22,12 @@ const emit = defineEmits<{
 
 <template>
   <Dialog :open="open" @update:open="emit('update:open', $event)">
-    <DialogContent class="text-[#F3F7FB] flex flex-col gap-8 bg-linear-to-br from-[#111727] to-[#0A0F1C] border-2 border-slate-800 rounded-xl px-6 py-6 hover:border-[#00FF7F] hover:shadow-[0_0_28px_rgba(0,255,127,0.25)]">
+    <DialogContent
+        class="text-[#F3F7FB] flex flex-col gap-8 px-6 py-6
+        bg-linear-to-br from-[#111727] to-[#0A0F1C] border-2 border-slate-800 rounded-xl
+        transition-all duration-200 ease-out
+      hover:border-[#00FF7F] hover:scale-102"
+    >
       <DialogHeader class="flex flex-col gap-2">
         <h3 class="font-bold inline-flex items-center gap-2 text-2xl"><Icon :name="skill.icon" class="text-4xl"/>{{ skill.name }}</h3>
         <p class="text-[#8DA0BA]">{{ skill.description }}</p>
@@ -53,21 +58,19 @@ const emit = defineEmits<{
       <NuxtLink
           :to="skill.link"
           target="_blank"
-          class="gap-2 text-[#00FF7F] font-bold inline-flex items-center justify-center px-10 py-2 border-2 border-[#00FF7F] rounded-xl
-                     transition-colors duration-200 ease-out
-                     hover:bg-[#00FF7F] hover:text-[#171717] focus-visible:bg-[#00FF7F] focus-visible:text-[#171717]"
+          class="gap-2 text-[#00FF7F] font-bold inline-flex items-center justify-center px-10 py-3
+                border-2 border-[#00FF7F] rounded-xl
+                transition-all duration-300 ease-in-out
+                hover:scale-105 hover:bg-[#00FF7F] hover:text-[#171717]
+                focus-visible::scale-105 focus-visible:bg-[#00FF7F] focus-visible:text-[#171717]
+                active:scale-95"
       >
-        <Icon name="solar:book-linear" />
-        Site Internet
-        <Icon name="mdi:external-link" />
+        <span>Site Internet</span>
+        <span class="inline-flex items-center">
+          <Icon name="mdi:external-link" class="inline-flex items-center" />
+        </span>
       </NuxtLink>
 
     </DialogContent>
   </Dialog>
 </template>
-
-<style scoped>
-[data-radix-dialog-close]:hover {
-  color: #00FF7F;      /* couleur au survol */
-}
-</style>

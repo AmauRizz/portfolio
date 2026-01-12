@@ -7,9 +7,5 @@ export interface Skill {
 
     skills: string[]
 
-    projects: string[]
-
-    ecosystem: string[]
-
     link: string
 }

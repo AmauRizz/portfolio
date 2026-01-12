@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { ref, computed } from 'vue'
 import { z } from "zod"
 import { useForm } from "vee-validate"
 import { toTypedSchema } from "@vee-validate/zod"
@@ -110,6 +111,20 @@ const openModal = (skill: Skill) => {
   isSkillModalOpen.value = true
 }
 
+const age = computed(() => {
+  const today = new Date()
+  let birthDate = new Date('2004-10-03')
+  let years = today.getFullYear() - birthDate.getFullYear()
+
+  const monthDiff = today.getMonth() - birthDate.getMonth()
+  const dayDiff = today.getDate() - birthDate.getDate()
+  if (monthDiff < 0 || (monthDiff === 0 && dayDiff < 0)) {
+    years--
+  }
+
+  return years
+})
+
 onMounted(async () => {
   const result = await $fetch('/api/mailer', {
     method: 'GET',
@@ -154,34 +169,48 @@ onMounted(async () => {
           <div class="flex flex-col sm:flex-row justify-center gap-6">
             <NuxtLink
                 to="#services"
-                class="text-[#171717] font-bold inline-flex items-center justify-center px-10 py-2 bg-[#00FF7F] rounded-xl
-                     transition duration-200 ease-out
-                     hover:drop-shadow-[0_0_16px_rgba(0,255,127,0.5)] focus-visible:drop-shadow-[0_0_16px_rgba(0,255,127,0.5)]"
+                class="inline-flex items-center justify-center px-10 py-3 font-bold text-[#171717]
+                 bg-gradient-to-r from-[#00FF7F] to-[#00CC99] rounded-xl
+                 transition-all duration-300 ease-in-out
+                 hover:scale-105 focus-visible:scale-105 active:scale-95"
             >
-              Mes Services
+              <span>Mes Services</span>
             </NuxtLink>
+
 <!--
             <NuxtLink
                 to="https://api.amaurymulcey.fr"
                 target="_blank"
-                class="gap-2 text-[#00FF7F] font-bold inline-flex items-center justify-center px-10 py-2 border-2 border-[#00FF7F] rounded-xl
-                     transition-colors duration-200 ease-out
-                     hover:bg-[#00FF7F] hover:text-[#171717] focus-visible:bg-[#00FF7F] focus-visible:text-[#171717]"
+                class="gap-2 text-[#00FF7F] font-bold inline-flex items-center justify-center px-10 py-3
+                      border-2 border-[#00FF7F] rounded-xl
+                      transition-all duration-300 ease-in-out
+                      hover:scale-105 hover:bg-[#00FF7F] hover:text-[#171717]
+                      focus-visible::scale-105 focus-visible:bg-[#00FF7F] focus-visible:text-[#171717]
+                      active:scale-95"
             >
-              Discover my api's
-              <Icon name="mdi:external-link" />
+              <span>Discover my api's</span>
+              <span class="inline-flex items-center">
+                <Icon name="mdi:external-link" />
+              </span>
             </NuxtLink>
 -->
             <NuxtLink
                 href="https://buymeacoffee.com/amaurizz"
                 target="_blank"
-                class="gap-2 text-[#FFFF00] font-bold inline-flex items-center justify-center px-10 py-2 border-2 border-[#FFFF00] rounded-xl
-                     transition-colors duration-200 ease-out
-                     hover:bg-[#FFFF00] hover:text-[#171717] focus-visible:bg-[#FFFF00] focus-visible:text-[#171717]"
+                class="gap-2 text-[#FFFF00] font-bold inline-flex items-center justify-center px-10 py-3
+                border-2 border-[#FFFF00] rounded-xl
+                transition-all duration-300 ease-in-out
+                hover:scale-105 hover:bg-[#FFFF00] hover:text-[#171717]
+                focus-visible:scale-105 focus-visible:bg-[#FFFF00] focus-visible:text-[#171717]
+                active:scale-95"
             >
-              <Icon name="simple-icons:buymeacoffee" />
-              Me soutenir
-              <Icon name="mdi:external-link" />
+              <span class="inline-flex items-center">
+                <Icon name="simple-icons:buymeacoffee" />
+              </span>
+              <span>Me Soutenir</span>
+              <span class="inline-flex items-center">
+                <Icon name="mdi:external-link" />
+              </span>
             </NuxtLink>
           </div>
         </div>
@@ -208,39 +237,60 @@ onMounted(async () => {
       <div class="flex flex-col gap-8 sm:grid sm:grid-cols-2 sm:gap-12">
         <div>
           <article class="flex flex-col gap-8 bg-linear-to-br from-[#111727] to-[#0A0F1C] border-2 border-slate-800 rounded-xl px-6 py-6">
-            <div class="flex flex-col gap-1">
+            <div class="flex flex-col gap-4">
               <h3 class="font-bold text-xl">Qui suis-je ?</h3>
-              <p class="text-[#8DA0BA]">
-                Développeur web freelance passionné, je me spécialise dans la création de sites vitrines modernes
-                et performants. Mon objectif est de transformer vos idées en expériences digitales uniques.
-              </p>
+              <div class="flex flex-col gap-2 text-[#8DA0BA]">
+                <p>
+                  Je m'appelle <strong>Amaury Mulcey</strong> et je suis étudiant en informatique ainsi que développeur freelance de <strong>{{ age }} ans</strong>.
+                  Je suis passionné par l'informatique, notamment par la création de projets variés, qu’il s’agisse de sites vitrines, d’applications plus complexes ou même de jeux.
+                  <strong>Ma seule limite est mon imagination !</strong>
+                </p>
+
+                <p>
+                  En bref, j’adore transformer des idées en projets concrets et apprendre en expérimentant de nouvelles technologies.
+                </p>
+              </div>
             </div>
 
-            <!--
-            <div class="flex flex-col gap-1">
-              <h3 class="font-bold text-xl">Parcours professionnel</h3>
-
+            <div class="flex flex-col gap-4">
+              <div class="flex flex-col gap-2 text-[#8DA0BA]">
+                <SchoolCard name="La Rochelle Université"
+                            icon="https://www.univ-larochelle.fr/wp-content/uploads/png/logo-universite-de-la-rochelle-2X.png"
+                            description="Licence d'informatique"
+                            :entry-year="new Date('2023-09-01')"
+                            :exit-year="new Date()"
+                />
+                <SchoolCard name="Université de Galway"
+                            icon="https://ih1.redbubble.net/image.5764242744.2288/bg,f8f8f8-flat,750x,075,f-pad,750x1000,f8f8f8.jpg"
+                            description="Erasmus d'un semestre à Galway en Irlande"
+                            :entry-year="new Date('2025-09-01')"
+                            :exit-year="new Date('2026-01-01')"
+                />
+              </div>
             </div>
-            -->
 
             <div class="text-center">
               <NuxtLink
                   to="/cv.pdf"
                   target="_blank"
-                  class="gap-2 text-[#00FF7F] font-bold inline-flex items-center justify-center px-10 py-2 border-2 border-[#00FF7F] rounded-xl
-                     transition-colors duration-200 ease-out
-                     hover:bg-[#00FF7F] hover:text-[#171717] focus-visible:bg-[#00FF7F] focus-visible:text-[#171717]"
+                  class="gap-2 text-[#00FF7F] font-bold inline-flex items-center justify-center px-10 py-3
+                      border-2 border-[#00FF7F] rounded-xl
+                      transition-all duration-300 ease-in-out
+                      hover:scale-105 hover:bg-[#00FF7F] hover:text-[#171717]
+                      focus-visible::scale-105 focus-visible:bg-[#00FF7F] focus-visible:text-[#171717]
+                      active:scale-95"
               >
-                <Icon name="pepicons-pop:cv" />
-                Visualiser mon CV
-                <Icon name="mdi:external-link" />
+                <span>Visualiser mon CV</span>
+                <span class="inline-flex items-center">
+                  <Icon name="mdi:external-link" />
+                </span>
               </NuxtLink>
             </div>
           </article>
         </div>
 
         <div class="flex flex-col gap-8 sm:gap-4">
-          <h3 class="font-bold text-xl text-center sm:text-left">Mes outils de développement</h3>
+          <h3 class="font-bold text-xl text-center sm:text-left">Ma stack de développement</h3>
 
           <article class="flex flex-wrap gap-3 justify-center sm:justify-start">
             <SkillBadge v-for="(skill, index) in skillItems"
@@ -269,14 +319,18 @@ onMounted(async () => {
         <div class="flex flex-col gap-8 sm:grid sm:grid-cols-2 sm:gap-12">
           <article
               class="relative flex flex-col justify-between gap-8 bg-linear-to-br from-[#111727] to-[#0A0F1C] border-2 border-[#00FF7F] rounded-xl px-6 py-6
-                   transition-shadow duration-200 ease-out
+                   transition-all duration-200 ease-out
                    hover:shadow-[0_0_28px_rgba(0,255,127,0.25)]"
           >
             <span
                 class="absolute -top-3 left-10 z-10 flex items-center gap-1 rounded-lg bg-[#00FF7F] px-3 py-1 text-xs font-bold uppercase text-[#171717] shadow-md"
             >
-              <Icon name="material-symbols:star" class="text-[#171717]"/>
-              Populaire
+              <span class="inline-flex items-center">
+                <Icon name="material-symbols:star" class="text-[#171717]"/>
+              </span>
+              <span>
+                Populaire
+              </span>
             </span>
 
             <div class="flex flex-col gap-4">
@@ -309,11 +363,12 @@ onMounted(async () => {
 
             <NuxtLink
                 to="#contact"
-                class="text-[#171717] font-bold inline-flex items-center justify-center px-10 py-2 bg-[#00FF7F] rounded-xl
-                     transition duration-200 ease-out
-                     hover:drop-shadow-[0_0_16px_rgba(0,255,127,0.5)] focus-visible:drop-shadow-[0_0_16px_rgba(0,255,127,0.5)]"
+                class="inline-flex items-center justify-center px-10 py-3 font-bold text-[#171717]
+                bg-gradient-to-r from-[#00FF7F] to-[#00CC99] rounded-xl
+                transition-all duration-300 ease-in-out
+                hover:scale-105 focus-visible:scale-105 active:scale-95"
             >
-              Prendre rendez-vous
+              Prendre Rendez-Vous
             </NuxtLink>
           </article>
 
@@ -352,11 +407,14 @@ onMounted(async () => {
 
             <NuxtLink
                 to="#contact"
-                class="text-[#00FF7F] font-bold inline-flex items-center justify-center px-10 py-2 border-2 border-[#00FF7F] rounded-xl
-                     transition-colors duration-200 ease-out
-                     hover:bg-[#00FF7F] hover:text-[#171717] focus-visible:bg-[#00FF7F] focus-visible:text-[#171717]"
+                class="gap-2 text-[#00FF7F] font-bold inline-flex items-center justify-center px-10 py-3
+                      border-2 border-[#00FF7F] rounded-xl
+                      transition-all duration-300 ease-in-out
+                      hover:scale-105 hover:bg-[#00FF7F] hover:text-[#171717]
+                      focus-visible::scale-105 focus-visible:bg-[#00FF7F] focus-visible:text-[#171717]
+                      active:scale-95"
             >
-              Faire un devis
+              Faire Un Devis
             </NuxtLink>
           </article>
 
@@ -387,11 +445,14 @@ onMounted(async () => {
 
             <NuxtLink
                 to="#contact"
-                class="text-[#00FF7F] font-bold inline-flex items-center justify-center px-10 py-2 border-2 border-[#00FF7F] rounded-xl
-                     transition-colors duration-200 ease-out
-                     hover:bg-[#00FF7F] hover:text-[#171717] focus-visible:bg-[#00FF7F] focus-visible:text-[#171717]"
+                class="gap-2 text-[#00FF7F] font-bold inline-flex items-center justify-center px-10 py-3
+                      border-2 border-[#00FF7F] rounded-xl
+                      transition-all duration-300 ease-in-out
+                      hover:scale-105 hover:bg-[#00FF7F] hover:text-[#171717]
+                      focus-visible::scale-105 focus-visible:bg-[#00FF7F] focus-visible:text-[#171717]
+                      active:scale-95"
             >
-              En savoir plus
+              En Savoir Plus
             </NuxtLink>
           </article>
         </div>
@@ -414,11 +475,14 @@ onMounted(async () => {
             <h4 class="font-bold text-xl">45 €/mois</h4>
             <NuxtLink
                 to="#contact"
-                class="text-[#00FF7F] font-bold inline-flex items-center justify-center px-10 py-2 border-2 border-[#00FF7F] rounded-xl
-                     transition-colors duration-200 ease-out
-                     hover:bg-[#00FF7F] hover:text-[#171717] focus-visible:bg-[#00FF7F] focus-visible:text-[#171717]"
+                class="gap-2 text-[#00FF7F] font-bold inline-flex items-center justify-center px-10 py-3
+                      border-2 border-[#00FF7F] rounded-xl
+                      transition-all duration-300 ease-in-out
+                      hover:scale-105 hover:bg-[#00FF7F] hover:text-[#171717]
+                      focus-visible::scale-105 focus-visible:bg-[#00FF7F] focus-visible:text-[#171717]
+                      active:scale-95"
             >
-              En savoir plus
+              En Savoir Plus
             </NuxtLink>
           </div>
         </article>
@@ -444,7 +508,7 @@ onMounted(async () => {
                [&>svg]:text-slate-300 [&>svg]:transition-all [&>svg]:duration-200
                data-[state=open]:[&>svg]:rotate-180"
           >
-            <span class="transition-colors duration-200 ease-out group-hover:text-[#00FF7F]">
+            <span class="transition-all duration-200 ease-out group-hover:text-[#00FF7F]">
               {{ question.label }}
             </span>
           </AccordionTrigger>
@@ -481,7 +545,7 @@ onMounted(async () => {
                 <h4 class="text-[#8DA0BA]">Email</h4>
                 <NuxtLink
                     to="mailto:contact@amaurymulcey.fr"
-                    class="font-bold underline transition-colors duration-200 ease-out hover:text-[#00FF7F] focus-visible:text-[#00FF7F]"
+                    class="font-bold underline transition-all duration-200 ease-out hover:text-[#00FF7F] focus-visible:text-[#00FF7F]"
                 >
                   contact@amaurymulcey.fr
                 </NuxtLink>
@@ -507,21 +571,21 @@ onMounted(async () => {
                   to="https://github.com/AmauRizz"
                   class="group flex justify-center items-center bg-linear-to-br from-[#111727] to-[#0A0F1C] rounded-xl px-1 py-1"
               >
-                <Icon name="mdi:github" size="2em" class="text-[#8DA0BA] transition-colors duration-200 ease-out group-hover:text-[#ffffff]" />
+                <Icon name="mdi:github" size="2em" class="text-[#8DA0BA] transition-all duration-200 ease-out group-hover:text-[#ffffff]" />
               </NuxtLink>
 
               <NuxtLink
                   to="https://www.linkedin.com/in/amaury-mulcey-pro/"
                   class="group flex justify-center items-center bg-linear-to-br from-[#111727] to-[#0A0F1C] rounded-xl px-1 py-1"
               >
-                <Icon name="mdi:linkedin" size="2em" class="text-[#8DA0BA] transition-colors duration-200 ease-out group-hover:text-[#0e76a8]" />
+                <Icon name="mdi:linkedin" size="2em" class="text-[#8DA0BA] transition-all duration-200 ease-out group-hover:text-[#0e76a8]" />
               </NuxtLink>
 
               <NuxtLink
                   to="https://buymeacoffee.com/amaurizz"
                   class="group flex justify-center items-center bg-linear-to-br from-[#111727] to-[#0A0F1C] rounded-xl px-1 py-1"
               >
-                <Icon name="simple-icons:buymeacoffee" size="2em" class="text-[#8DA0BA] transition-colors duration-200 ease-out group-hover:text-[#FFFF00]" />
+                <Icon name="simple-icons:buymeacoffee" size="2em" class="text-[#8DA0BA] transition-all duration-200 ease-out group-hover:text-[#FFFF00]" />
               </NuxtLink>
             </div>
           </article>
@@ -541,7 +605,7 @@ onMounted(async () => {
                 <FormControl>
                   <Input
                       v-bind="componentField"
-                      placeholder="Votre nom."
+                      placeholder="Votre nom"
                       class="bg-[#070A13] border-slate-800 text-slate-100"
                   />
                 </FormControl>
@@ -556,7 +620,7 @@ onMounted(async () => {
                   <Input
                       v-bind="componentField"
                       type="email"
-                      placeholder="vous@exemple.com."
+                      placeholder="vous@exemple.com"
                       class="bg-[#070A13] border-slate-800 text-slate-100"
                   />
                 </FormControl>
@@ -570,7 +634,7 @@ onMounted(async () => {
                 <FormControl>
             <Textarea
                 v-bind="componentField"
-                placeholder="Décrivez votre besoin, le délai, le budget, etc."
+                placeholder="Décrivez votre question ou un besoin, le délai, le budget, etc"
                 rows="6"
                 class="bg-[#070A13] border-slate-800 text-slate-100 resize-none"
             />
@@ -585,20 +649,20 @@ onMounted(async () => {
             <Button
                 type="submit"
                 :disabled="isLoading"
-                class="w-full text-[#00FF7F] bg-[#FFFFFF]/0 font-bold inline-flex items-center justify-center px-10 py-2 border-2 border-[#00FF7F] rounded-xl
-                     transition-colors duration-200 ease-out
-                     hover:bg-[#00FF7F] hover:text-[#171717] focus-visible:bg-[#00FF7F] focus-visible:text-[#171717]
-                     cursor-pointer"
+                class="w-full cursor-pointer text-[#171717] font-bold inline-flex items-center justify-center px-10 py-3 rounded-xl
+                      bg-gradient-to-r from-[#00FF7F] to-[#00CC99]
+                      transition-all duration-300 ease-in-out
+                      hover:scale-105 focus-visible:scale-105 active:scale-95"
 
             >
               <span v-if="isDisabled" class="inline-flex items-center gap-2">Indisponible <Icon name="mdi:clock-outline" class="text-xl" /></span>
-              <span v-else-if="isLoading">Traitement en cours <Spinner /></span>
-              <span v-else class="flex items-center gap-2">Envoyer</span>
+              <span v-else-if="isLoading" class="inline-flex items-center gap-2">Traitement en cours <Spinner /></span>
+              <span v-else class="inline-flex items-center gap-2">Envoyer</span>
             </Button>
           </form>
 
           <p class="text-xs text-[#8DA0BA] mt-4">
-            En envoyant ce message, vous acceptez nos <NuxtLink to="/privacy" class="underline transition-colors duration-200 ease-out hover:text-[#00FF7F] focus-visible:text-[#00FF7F]">politique de confidentialité</NuxtLink>.
+            En envoyant ce message, vous acceptez nos <NuxtLink to="/privacy" class="underline transition-all duration-200 ease-out hover:text-[#00FF7F] focus-visible:text-[#00FF7F]">politique de confidentialité</NuxtLink>.
           </p>
         </div>
       </div>
