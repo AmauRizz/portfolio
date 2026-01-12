@@ -3,13 +3,6 @@ import { z } from "zod"
 import { useForm } from "vee-validate"
 import { toTypedSchema } from "@vee-validate/zod"
 
-import {
-  Accordion,
-  AccordionContent,
-  AccordionItem,
-  AccordionTrigger
-} from "@/components/ui/accordion"
-
 import { toast } from "vue-sonner"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
@@ -22,21 +15,30 @@ import {
   FormLabel,
   FormMessage
 } from "@/components/ui/form"
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger
+} from "@/components/ui/accordion"
+import {Spinner} from "~/components/ui/spinner";
+
+import { faqItems } from '@/data/faq'
+import { skillItems } from '@/data/skills'
+import type { IpRecord } from '@/types/mailer'
+import type { Skill } from '@/types/skills'
 
 useHead({
-  title: 'Amaury Mulcey | Développeur Freelance Web & Étudiant',
+  title: 'Amaury Mulcey • Développeur Freelance Web & Étudiant',
   meta: [
-    {
-      name: 'description',
-      content: 'Amaury Mulcey, développeur web freelance et étudiant. Découvrez mon portfolio, mes projets et mes compétences en développement web.'
-    },
+    { name: 'description', content: 'Amaury Mulcey, développeur web freelance et étudiant. Découvrez mon portfolio, mes projets et mes compétences en développement web.' },
 
-    { property: 'og:title', content: 'Amaury Mulcey | Développeur Freelance Web' },
+    { property: 'og:title', content: 'Amaury Mulcey • Développeur Freelance Web' },
     { property: 'og:description', content: 'Amaury Mulcey, développeur web freelance et étudiant. Découvrez mon portfolio, mes projets et mes compétences en développement web.' },
     { property: 'og:url', content: 'https://www.amaurymulcey.fr' },
     { property: 'og:image', content: 'https://www.amaurymulcey.fr/web-app-manifest-512x512.png' },
 
-    { name: 'twitter:title', content: 'Amaury Mulcey | Développeur Freelance Web' },
+    { name: 'twitter:title', content: 'Amaury Mulcey • Développeur Freelance Web' },
     { name: 'twitter:description', content: 'Amaury Mulcey, développeur web freelance et étudiant. Découvrez mon portfolio, mes projets et mes compétences en développement web.' },
     { name: 'twitter:image', content: 'https://www.amaurymulcey.fr/web-app-manifest-512x512.png' },
     { name: 'twitter:card', content: 'summary_large_image' },
@@ -49,53 +51,6 @@ useHead({
   ]
 })
 
-const items = ref([
-  {
-    label: "Combien de temps faut-il pour créer un site vitrine ?",
-    content:
-        "En général, un site vitrine standard est réalisé en 1 à 3 semaines. Ce délai peut varier selon la complexité du projet et la rapidité des échanges."
-  },
-  {
-    label: "Le site sera-t-il optimisé pour les appareils mobiles ?",
-    content:
-        "Oui, le site est entièrement responsive (mobile, tablette et ordinateur) et optimisé pour les performances ainsi que l’accessibilité."
-  },
-  {
-    label: "Que comprend l’offre de maintenance ?",
-    content:
-        "L’offre de maintenance inclut les mises à jour, la correction de bugs, de petites modifications et un suivi régulier afin de garantir la stabilité et la sécurité du site."
-  },
-  {
-    label: "Comment se déroule le paiement ?",
-    content:
-        "Un acompte est demandé au démarrage du projet, puis le solde est réglé à la livraison. Les modalités peuvent être adaptées selon vos besoins."
-  },
-  {
-    label: "Puis-je annuler le contrat ou demander un remboursement ?",
-    content:
-        "Oui. En cas d’annulation avant le démarrage du projet, l’acompte est intégralement remboursé. Une fois le projet lancé, les conditions peuvent varier."
-  }
-])
-
-const sections = [
-  { id: "hero", hash: "#home" },
-  { id: "projects", hash: "#projects" },
-  { id: "about", hash: "#about" },
-  { id: "services", hash: "#services" },
-  { id: "contact", hash: "#contact" }
-]
-
-interface IpRecordActive {
-  isTimeout: boolean;
-  timeoutUntil: number;
-}
-
-interface IpRecordNotActive {
-  isTimeout: boolean;
-}
-
-type IpRecord = IpRecordActive | IpRecordNotActive;
-
 const schema = z.object({
   name: z.string().min(2, "Veuillez entrer votre nom."),
   email: z.string().email("L'email n'est pas valide."),
@@ -107,7 +62,10 @@ type Schema = z.infer<typeof schema>
 const isLoading = ref(false)
 const isDisabled = ref(false)
 
-const formSchema = useForm<Schema>({
+const isSkillModalOpen = ref(false)
+const selectedSkill = ref<Skill | null>(null)
+
+const { handleSubmit, errors, resetForm } = useForm<Schema>({
   validationSchema: toTypedSchema(schema),
   initialValues: {
     name: "",
@@ -116,45 +74,52 @@ const formSchema = useForm<Schema>({
   }
 })
 
-const { handleSubmit } = useForm({
-  validationSchema: formSchema,
-})
-
 const onSubmit = handleSubmit(async (values) => {
   isLoading.value = true
 
   try {
-    await $fetch('/api/mailer', {
-      method: 'POST',
-      body: values
-    })
-
+    await $fetch('/api/mailer', { method: 'POST', body: values })
     toast.success("Formulaire envoyé !", {
       description: "Votre demande de contact a bien été prise en compte."
     })
+    resetForm()
   } catch (err) {
     toast.error("Uh Oh! Erreur lors de l'envoi du formulaire", {
-      description: `Une erreur est survenue lors de l'envoi de votre demande de contact. Error: ${ err.statusCode || "Inconnue" }`
+      description: "Une erreur est survenue lors de l'envoi de votre demande de contact."
     })
-  }
+  } finally {
+    isLoading.value = false
 
-  isLoading.value = false
+    const result = await $fetch('/api/mailer', {
+      method: 'GET',
+    })
+    const data = result.data.content as { isTimeout: boolean; timeoutUntil?: number }
 
-  const result = await $fetch('/api/mailer', {
-    method: 'GET',
-  })
-  const timeout: IpRecord = result.data.content
+    const timeout: IpRecord = data.isTimeout
+        ? { isTimeout: true, timeoutUntil: data.timeoutUntil! }
+        : { isTimeout: false }
 
-  if (timeout && timeout.isTimeout) {
-    isDisabled.value = true
+    if (timeout && timeout.isTimeout) {
+      isDisabled.value = true
+    }
   }
 })
+
+const openModal = (skill: Skill) => {
+  selectedSkill.value = skill
+  isSkillModalOpen.value = true
+}
 
 onMounted(async () => {
   const result = await $fetch('/api/mailer', {
     method: 'GET',
   })
-  const timeout: IpRecord = result.data.content
+
+  const data = result.data.content as { isTimeout: boolean; timeoutUntil?: number }
+
+  const timeout: IpRecord = data.isTimeout
+      ? { isTimeout: true, timeoutUntil: data.timeoutUntil! }
+      : { isTimeout: false }
 
   if (timeout && timeout.isTimeout) {
     isDisabled.value = true
@@ -170,6 +135,9 @@ onMounted(async () => {
         <NuxtPicture
             src="images/pdp.jpeg"
             class="rounded-full overflow-hidden border-4 border-[#00FF7F] drop-shadow-[0_0_12px_#00FF7F] w-32 h-32 object-cover"
+            :imgAttrs="{
+              alt: 'Image de profil',
+            }"
         />
         <div class="flex flex-col gap-8">
           <div class="flex flex-col">
@@ -188,7 +156,7 @@ onMounted(async () => {
                 to="#services"
                 class="text-[#171717] font-bold inline-flex items-center justify-center px-10 py-2 bg-[#00FF7F] rounded-xl
                      transition duration-200 ease-out
-                     hover:drop-shadow-[0_0_16px_rgba(0,255,127,0.5)]"
+                     hover:drop-shadow-[0_0_16px_rgba(0,255,127,0.5)] focus-visible:drop-shadow-[0_0_16px_rgba(0,255,127,0.5)]"
             >
               Mes Services
             </NuxtLink>
@@ -198,7 +166,7 @@ onMounted(async () => {
                 target="_blank"
                 class="gap-2 text-[#00FF7F] font-bold inline-flex items-center justify-center px-10 py-2 border-2 border-[#00FF7F] rounded-xl
                      transition-colors duration-200 ease-out
-                     hover:bg-[#00FF7F] hover:text-[#171717]"
+                     hover:bg-[#00FF7F] hover:text-[#171717] focus-visible:bg-[#00FF7F] focus-visible:text-[#171717]"
             >
               Discover my api's
               <Icon name="mdi:external-link" />
@@ -209,7 +177,7 @@ onMounted(async () => {
                 target="_blank"
                 class="gap-2 text-[#FFFF00] font-bold inline-flex items-center justify-center px-10 py-2 border-2 border-[#FFFF00] rounded-xl
                      transition-colors duration-200 ease-out
-                     hover:bg-[#FFFF00] hover:text-[#171717]"
+                     hover:bg-[#FFFF00] hover:text-[#171717] focus-visible:bg-[#FFFF00] focus-visible:text-[#171717]"
             >
               <Icon name="simple-icons:buymeacoffee" />
               Me soutenir
@@ -226,7 +194,7 @@ onMounted(async () => {
         <p class="text-[#8DA0BA] text-lg">Mes réalisations favorites après 5 ans d'expérience en développement.</p>
       </div>
 
-      <div class="bg-linear-to-br from-[#111727] to-[#0A0F1C] border border-slate-800 rounded-xl px-6 py-2">
+      <div class="bg-linear-to-br from-[#111727] to-[#0A0F1C] border-2 border-slate-800 rounded-xl px-6 py-2">
         <p class="text-center font-bold">Prochainement disponible !</p>
       </div>
     </section>
@@ -238,83 +206,56 @@ onMounted(async () => {
       </div>
 
       <div class="flex flex-col gap-8 sm:grid sm:grid-cols-2 sm:gap-12">
-        <div class="flex flex-col gap-8">
-          <article class="flex flex-col gap-1">
-            <h3 class="font-bold text-xl">Qui suis-je ?</h3>
-            <p class="text-[#8DA0BA]">
-              Développeur web freelance passionné, je me spécialise dans la création de sites vitrines modernes
-              et performants. Mon objectif est de transformer vos idées en expériences digitales uniques.
-            </p>
-          </article>
+        <div>
+          <article class="flex flex-col gap-8 bg-linear-to-br from-[#111727] to-[#0A0F1C] border-2 border-slate-800 rounded-xl px-6 py-6">
+            <div class="flex flex-col gap-1">
+              <h3 class="font-bold text-xl">Qui suis-je ?</h3>
+              <p class="text-[#8DA0BA]">
+                Développeur web freelance passionné, je me spécialise dans la création de sites vitrines modernes
+                et performants. Mon objectif est de transformer vos idées en expériences digitales uniques.
+              </p>
+            </div>
 
-          <h3 class="font-bold text-xl">Mes stacks de développement</h3>
+            <!--
+            <div class="flex flex-col gap-1">
+              <h3 class="font-bold text-xl">Parcours professionnel</h3>
 
-          <article>
-            <NuxtLink to="https://symfony.com/">
-              <Icon name="mdi:symfony" class="text-4xl sm:text-6xl"/>
-            </NuxtLink>
-            <NuxtLink to="https://vuejs.org/">
-              <Icon name="material-icon-theme:vue" class="text-4xl sm:text-6xl"/>
-            </NuxtLink>
-            <NuxtLink to="https://nuxt.com/">
-              <Icon name="material-icon-theme:nuxt" class="text-4xl sm:text-6xl"/>
-            </NuxtLink>
-            <NuxtLink to="https://nextjs.org/">
-              <Icon name="devicon:nextjs" class="text-4xl sm:text-6xl"/>
-            </NuxtLink>
-            <NuxtLink to="https://tailwindcss.com/">
-              <Icon name="devicon:tailwindcss" class="text-4xl sm:text-6xl"/>
-            </NuxtLink>
-            <NuxtLink to="https://www.prisma.io/">
-              <Icon name="file-icons:prisma" class="text-4xl sm:text-6xl"/>
-            </NuxtLink>
-            <NuxtLink to="https://nodejs.org/fr">
-              <Icon name="devicon:nodejs" class="text-4xl sm:text-6xl"/>
-            </NuxtLink>
-            <NuxtLink to="https://expressjs.com/">
-              <Icon name="simple-icons:express" class="text-4xl sm:text-6xl"/>
-            </NuxtLink>
-            <NuxtLink to="https://nestjs.com/">
-              <Icon name="material-icon-theme:nest" class="text-4xl sm:text-6xl"/>
-            </NuxtLink>
-            <NuxtLink to="https://www.postgresql.org/">
-              <Icon name="devicon:postgresql" class="text-4xl sm:text-6xl"/>
-            </NuxtLink>
-            <NuxtLink to="https://www.mysql.com/">
-              <Icon name="devicon:mysql" class="text-4xl sm:text-6xl"/>
-            </NuxtLink>
-            <NuxtLink to="https://git-scm.com/">
-              <Icon name="material-icon-theme:git" class="text-4xl sm:text-6xl"/>
-            </NuxtLink>
-            <NuxtLink to="https://www.docker.com/">
-              <Icon name="material-icon-theme:docker" class="text-4xl sm:text-6xl"/>
-            </NuxtLink>
-            <NuxtLink to="https://code.visualstudio.com/">
-              <Icon name="devicon:vscode" class="text-4xl sm:text-6xl"/>
-            </NuxtLink>
-            <NuxtLink to="https://www.jetbrains.com/">
-              <Icon name="devicon:jetbrains" class="text-4xl sm:text-6xl"/>
-            </NuxtLink>
-          </article>
+            </div>
+            -->
 
-          <NuxtLink
-              to="/cv.pdf"
-              target="_blank"
-              class="gap-2 text-[#00FF7F] font-bold inline-flex items-center justify-center px-10 py-2 border-2 border-[#00FF7F] rounded-xl
+            <div class="text-center">
+              <NuxtLink
+                  to="/cv.pdf"
+                  target="_blank"
+                  class="gap-2 text-[#00FF7F] font-bold inline-flex items-center justify-center px-10 py-2 border-2 border-[#00FF7F] rounded-xl
                      transition-colors duration-200 ease-out
-                     hover:bg-[#00FF7F] hover:text-[#171717]"
-          >
-            Visualiser mon CV
-            <Icon name="mdi:external-link" />
-          </NuxtLink>
+                     hover:bg-[#00FF7F] hover:text-[#171717] focus-visible:bg-[#00FF7F] focus-visible:text-[#171717]"
+              >
+                <Icon name="pepicons-pop:cv" />
+                Visualiser mon CV
+                <Icon name="mdi:external-link" />
+              </NuxtLink>
+            </div>
+          </article>
         </div>
 
-        <article class="flex flex-col gap-8 bg-linear-to-br from-[#111727] to-[#0A0F1C] border border-slate-800 rounded-xl px-6 py-2">
-          <h3 class="font-bold text-xl">Compétences Techniques</h3>
+        <div class="flex flex-col gap-8 sm:gap-4">
+          <h3 class="font-bold text-xl text-center sm:text-left">Mes outils de développement</h3>
 
-          <div>
-          </div>
-        </article>
+          <article class="flex flex-wrap gap-3 justify-center sm:justify-start">
+            <SkillBadge v-for="(skill, index) in skillItems"
+                        :key="index"
+                        :skill-icon="skill.icon" :skill-name="skill.name" @click="openModal(skill)"
+            />
+
+            <SkillModal
+                v-if="selectedSkill"
+                :open="isSkillModalOpen"
+                :skill="selectedSkill"
+                @update:open="isSkillModalOpen = $event"
+            />
+          </article>
+        </div>
       </div>
     </section>
 
@@ -370,14 +311,14 @@ onMounted(async () => {
                 to="#contact"
                 class="text-[#171717] font-bold inline-flex items-center justify-center px-10 py-2 bg-[#00FF7F] rounded-xl
                      transition duration-200 ease-out
-                     hover:drop-shadow-[0_0_16px_rgba(0,255,127,0.5)]"
+                     hover:drop-shadow-[0_0_16px_rgba(0,255,127,0.5)] focus-visible:drop-shadow-[0_0_16px_rgba(0,255,127,0.5)]"
             >
               Prendre rendez-vous
             </NuxtLink>
           </article>
 
           <article
-              class="flex flex-col justify-between gap-8 bg-linear-to-br from-[#111727] to-[#0A0F1C] border border-slate-800 rounded-xl px-6 py-6
+              class="flex flex-col justify-between gap-8 bg-linear-to-br from-[#111727] to-[#0A0F1C] border-2 border-slate-800 rounded-xl px-6 py-6
                    transition-all duration-200 ease-out
                    hover:border-[#00FF7F] hover:shadow-[0_0_28px_rgba(0,255,127,0.25)]"
           >
@@ -413,14 +354,14 @@ onMounted(async () => {
                 to="#contact"
                 class="text-[#00FF7F] font-bold inline-flex items-center justify-center px-10 py-2 border-2 border-[#00FF7F] rounded-xl
                      transition-colors duration-200 ease-out
-                     hover:bg-[#00FF7F] hover:text-[#171717]"
+                     hover:bg-[#00FF7F] hover:text-[#171717] focus-visible:bg-[#00FF7F] focus-visible:text-[#171717]"
             >
               Faire un devis
             </NuxtLink>
           </article>
 
           <article
-              class="sm:hidden flex flex-col justify-between gap-8 bg-linear-to-br from-[#111727] to-[#0A0F1C] border border-slate-800 rounded-xl px-6 py-6
+              class="sm:hidden flex flex-col justify-between gap-8 bg-linear-to-br from-[#111727] to-[#0A0F1C] border-2 border-slate-800 rounded-xl px-6 py-6
                    transition-all duration-200 ease-out
                    hover:border-[#00FF7F] hover:shadow-[0_0_28px_rgba(0,255,127,0.25)]"
           >
@@ -448,7 +389,7 @@ onMounted(async () => {
                 to="#contact"
                 class="text-[#00FF7F] font-bold inline-flex items-center justify-center px-10 py-2 border-2 border-[#00FF7F] rounded-xl
                      transition-colors duration-200 ease-out
-                     hover:bg-[#00FF7F] hover:text-[#171717]"
+                     hover:bg-[#00FF7F] hover:text-[#171717] focus-visible:bg-[#00FF7F] focus-visible:text-[#171717]"
             >
               En savoir plus
             </NuxtLink>
@@ -456,7 +397,7 @@ onMounted(async () => {
         </div>
 
         <article
-            class="hidden sm:flex justify-between gap-8 bg-linear-to-br from-[#111727] to-[#0A0F1C] border border-slate-800 rounded-xl px-6 py-6
+            class="hidden sm:flex justify-between gap-8 bg-linear-to-br from-[#111727] to-[#0A0F1C] border-2 border-slate-800 rounded-xl px-6 py-6
                    transition-all duration-200 ease-out
                    hover:border-[#00FF7F] hover:shadow-[0_0_28px_rgba(0,255,127,0.25)]"
         >
@@ -475,7 +416,7 @@ onMounted(async () => {
                 to="#contact"
                 class="text-[#00FF7F] font-bold inline-flex items-center justify-center px-10 py-2 border-2 border-[#00FF7F] rounded-xl
                      transition-colors duration-200 ease-out
-                     hover:bg-[#00FF7F] hover:text-[#171717]"
+                     hover:bg-[#00FF7F] hover:text-[#171717] focus-visible:bg-[#00FF7F] focus-visible:text-[#171717]"
             >
               En savoir plus
             </NuxtLink>
@@ -491,26 +432,25 @@ onMounted(async () => {
 
       <Accordion type="single" collapsible class="space-y-4">
         <AccordionItem
-            v-for="(item, idx) in items"
-            :key="idx"
-            :value="String(idx)"
-            class="group relative rounded-2xl bg-gradient-to-br from-[#111727] to-[#0A0F1C] border border-slate-800
+            v-for="(question, index) in faqItems"
+            :key="index"
+            :value="String(index)"
+            class="group relative rounded-2xl bg-gradient-to-br from-[#111727] to-[#0A0F1C] border-2 border-slate-800
              data-[state=open]:border-[#00FF7F]"
         >
           <AccordionTrigger
               class="w-full px-6 py-5 flex items-center justify-between gap-4 text-left
-               text-slate-100 font-semibold text-base md:text-lg
-               hover:no-underline cursor-pointer
+               text-slate-100 font-semibold text-base md:text-lg hover:no-underline cursor-pointer
                [&>svg]:text-slate-300 [&>svg]:transition-all [&>svg]:duration-200
                data-[state=open]:[&>svg]:rotate-180"
           >
-        <span class="transition-colors duration-200 ease-out group-hover:text-[#00FF7F]">
-          {{ item.label }}
-        </span>
+            <span class="transition-colors duration-200 ease-out group-hover:text-[#00FF7F]">
+              {{ question.label }}
+            </span>
           </AccordionTrigger>
 
           <AccordionContent class="px-6 pb-5 pt-0 text-[#8DA0BA] text-sm md:text-base leading-relaxed">
-            {{ item.content }}
+            {{ question.content }}
           </AccordionContent>
         </AccordionItem>
       </Accordion>
@@ -541,7 +481,7 @@ onMounted(async () => {
                 <h4 class="text-[#8DA0BA]">Email</h4>
                 <NuxtLink
                     to="mailto:contact@amaurymulcey.fr"
-                    class="font-bold underline transition-colors duration-200 ease-out hover:text-[#00FF7F]"
+                    class="font-bold underline transition-colors duration-200 ease-out hover:text-[#00FF7F] focus-visible:text-[#00FF7F]"
                 >
                   contact@amaurymulcey.fr
                 </NuxtLink>
@@ -565,32 +505,32 @@ onMounted(async () => {
             <div class="flex gap-4">
               <NuxtLink
                   to="https://github.com/AmauRizz"
-                  class="flex justify-center items-center bg-linear-to-br from-[#111727] to-[#0A0F1C] rounded-xl px-1 py-1"
+                  class="group flex justify-center items-center bg-linear-to-br from-[#111727] to-[#0A0F1C] rounded-xl px-1 py-1"
               >
-                <Icon name="mdi:github" size="2em" class="text-[#8DA0BA] transition-colors duration-200 ease-out hover:text-[#ffffff]" />
+                <Icon name="mdi:github" size="2em" class="text-[#8DA0BA] transition-colors duration-200 ease-out group-hover:text-[#ffffff]" />
               </NuxtLink>
 
               <NuxtLink
                   to="https://www.linkedin.com/in/amaury-mulcey-pro/"
-                  class="flex justify-center items-center bg-linear-to-br from-[#111727] to-[#0A0F1C] rounded-xl px-1 py-1"
+                  class="group flex justify-center items-center bg-linear-to-br from-[#111727] to-[#0A0F1C] rounded-xl px-1 py-1"
               >
-                <Icon name="mdi:linkedin" size="2em" class="text-[#8DA0BA] transition-colors duration-200 ease-out hover:text-[#0e76a8]" />
+                <Icon name="mdi:linkedin" size="2em" class="text-[#8DA0BA] transition-colors duration-200 ease-out group-hover:text-[#0e76a8]" />
               </NuxtLink>
 
               <NuxtLink
                   to="https://buymeacoffee.com/amaurizz"
-                  class="flex justify-center items-center bg-linear-to-br from-[#111727] to-[#0A0F1C] rounded-xl px-1 py-1"
+                  class="group flex justify-center items-center bg-linear-to-br from-[#111727] to-[#0A0F1C] rounded-xl px-1 py-1"
               >
-                <Icon name="simple-icons:buymeacoffee" size="2em" class="text-[#8DA0BA] transition-colors duration-200 ease-out hover:text-[#FFFF00]" />
+                <Icon name="simple-icons:buymeacoffee" size="2em" class="text-[#8DA0BA] transition-colors duration-200 ease-out group-hover:text-[#FFFF00]" />
               </NuxtLink>
             </div>
           </article>
         </div>
 
         <div
-            class="bg-linear-to-br from-[#111727] to-[#0A0F1C] border border-slate-800 rounded-xl px-6 py-6
+            class="bg-linear-to-br from-[#111727] to-[#0A0F1C] border-2 border-slate-800 rounded-xl px-6 py-6
            transition-all duration-200 ease-out
-           hover:border-[#00FF7F] hover:shadow-[0_0_28px_rgba(0,255,127,0.15)]"
+           hover:border-[#00FF7F] hover:shadow-[0_0_28px_rgba(0,255,127,0.15)] focus-visible:border-[#00FF7F] focus-visible:shadow-[0_0_28px_rgba(0,255,127,0.15)]"
         >
           <h3 class="font-bold text-xl mb-6">Envoyez-moi un message</h3>
 
@@ -645,17 +585,20 @@ onMounted(async () => {
             <Button
                 type="submit"
                 :disabled="isLoading"
-                class="w-full text-[#171717] font-bold inline-flex items-center justify-center px-10 py-2 bg-[#00FF7F] rounded-xl
-                     transition duration-200 ease-out
-                     hover:drop-shadow-[0_0_16px_rgba(0,255,127,0.5)] hover:bg-[#00FF7F] cursor-pointer"
+                class="w-full text-[#00FF7F] bg-[#FFFFFF]/0 font-bold inline-flex items-center justify-center px-10 py-2 border-2 border-[#00FF7F] rounded-xl
+                     transition-colors duration-200 ease-out
+                     hover:bg-[#00FF7F] hover:text-[#171717] focus-visible:bg-[#00FF7F] focus-visible:text-[#171717]
+                     cursor-pointer"
+
             >
-              <span v-if="!isLoading">Envoyer</span>
-              <span v-else>Envoi...</span>
+              <span v-if="isDisabled" class="inline-flex items-center gap-2">Indisponible <Icon name="mdi:clock-outline" class="text-xl" /></span>
+              <span v-else-if="isLoading">Traitement en cours <Spinner /></span>
+              <span v-else class="flex items-center gap-2">Envoyer</span>
             </Button>
           </form>
 
           <p class="text-xs text-[#8DA0BA] mt-4">
-            En envoyant ce message, vous acceptez nos <NuxtLink to="/privacy" class="underline transition-colors duration-200 ease-out hover:text-[#00FF7F]">politique de confidentialité</NuxtLink>.
+            En envoyant ce message, vous acceptez nos <NuxtLink to="/privacy" class="underline transition-colors duration-200 ease-out hover:text-[#00FF7F] focus-visible:text-[#00FF7F]">politique de confidentialité</NuxtLink>.
           </p>
         </div>
       </div>

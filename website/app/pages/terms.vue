@@ -1,15 +1,15 @@
 <script setup lang="ts">
 useHead({
-  title: 'Amaury Mulcey | Mentions Légales',
+  title: 'Amaury Mulcey • Mentions Légales',
   meta: [
     { name: 'description', content: 'Mentions légales du site Amaury Mulcey. Informations sur l’éditeur du site, l’hébergement, la responsabilité et les conditions d’utilisation.' },
 
-    { property: 'og:title', content: 'Amaury Mulcey | Portfolio - Mentions Légales' },
+    { property: 'og:title', content: 'Amaury Mulcey • Portfolio - Mentions Légales' },
     { property: 'og:description', content: 'Mentions légales du site Amaury Mulcey. Informations sur l’éditeur du site, l’hébergement, la responsabilité et les conditions d’utilisation.' },
     { property: 'og:url', content: 'https://www.amaurymulcey.fr/terms' },
     { property: 'og:image', content: 'https://www.amaurymulcey.fr/web-app-manifest-512x512.png' },
 
-    { name: 'twitter:title', content: 'Amaury Mulcey | Portfolio - Mentions Légales' },
+    { name: 'twitter:title', content: 'Amaury Mulcey • Portfolio - Mentions Légales' },
     { name: 'twitter:description', content: 'Mentions légales du site Amaury Mulcey. Informations sur l’éditeur du site, l’hébergement, la responsabilité et les conditions d’utilisation.' },
     { name: 'twitter:image', content: 'https://www.amaurymulcey.fr/web-app-manifest-512x512.png' },
     { name: 'twitter:card', content: 'summary_large_image' },
@@ -25,7 +25,7 @@ useHead({
 
 <template>
   <main class="bg-[#070A13] text-[#F3F7FB] flex flex-col gap-6 pt-20 pb-20 mx-auto max-w-6xl px-4 md:px-6 lg:px-8">
-    <NuxtLink to="/" class="inline-flex items-center gap-2 underline transition-colors duration-200 ease-out hover:text-[#00FF7F]"> <Icon name="ep:back" /> Retour a la Page d'accueil</NuxtLink>
+    <NuxtLink to="/" class="inline-flex items-center gap-2 underline transition-colors duration-200 ease-out hover:text-[#00FF7F] focus-visible:text-[#00FF7F]"> <Icon name="ep:back" /> Retour a la Page d'accueil</NuxtLink>
     <div>
       <h1 class="font-bold text-3xl sm:text-4xl">Mentions Légales</h1>
       <p class="text-sm sm:text-base">Dernière mise à jour le 09/01/2026</p>
@@ -40,7 +40,7 @@ useHead({
         <li>Statut juridique : Entrepreneur individuel</li>
         <li>
           Contact :
-          <NuxtLink to="mailto:amaury.mulcey.pro@gmail.com" class="underline transition-colors duration-200 ease-out hover:text-[#00FF7F]">amaury.mulcey.pro@gmail.com</NuxtLink>
+          <NuxtLink to="mailto:amaury.mulcey.pro@gmail.com" class="underline transition-colors duration-200 ease-out hover:text-[#00FF7F] focus-visible:text-[#00FF7F]">amaury.mulcey.pro@gmail.com</NuxtLink>
         </li>
         <li>SIRET : 94030008000014</li>
         <li>Directeur de la publication : Amaury Mulcey</li>
@@ -54,9 +54,9 @@ useHead({
         <li>Adresse : 2 rue Kellermann, 59100 Roubaix, France</li>
         <li>
           Contact :
-          <NuxtLink to="mailto:Support@ovh.com" class="underline transition-colors duration-200 ease-out hover:text-[#00FF7F]">Support@ovh.com</NuxtLink>
+          <NuxtLink to="mailto:Support@ovh.com" class="underline transition-colors duration-200 ease-out hover:text-[#00FF7F] focus-visible:text-[#00FF7F]">Support@ovh.com</NuxtLink>
           /
-          <NuxtLink to="tel:+33972101007" class="underline transition-colors duration-200 ease-out hover:text-[#00FF7F]">+33 9 72 10 10 07</NuxtLink>
+          <NuxtLink to="tel:+33972101007" class="underline transition-colors duration-200 ease-out hover:text-[#00FF7F] focus-visible:text-[#00FF7F]">+33 9 72 10 10 07</NuxtLink>
         </li>
       </ul>
     </article>

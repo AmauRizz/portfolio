@@ -1,15 +1,15 @@
 <script setup lang="ts">
 useHead({
-  title: 'Amaury Mulcey | Politique de confidentialité',
+  title: 'Amaury Mulcey • Politique de confidentialité',
   meta: [
     { name: 'description', content: 'Politique de confidentialité du site Amaury Mulcey. Détails sur la collecte des données, les cookies, le RGPD et les droits des utilisateurs.' },
 
-    { property: 'og:title', content: 'Amaury Mulcey | Portfolio - Politique de confidentialité' },
+    { property: 'og:title', content: 'Amaury Mulcey • Portfolio - Politique de confidentialité' },
     { property: 'og:description', content: 'Politique de confidentialité du site Amaury Mulcey. Détails sur la collecte des données, les cookies, le RGPD et les droits des utilisateurs.' },
     { property: 'og:url', content: 'https://www.amaurymulcey.fr/privacy' },
     { property: 'og:image', content: 'https://www.amaurymulcey.fr/web-app-manifest-512x512.png' },
 
-    { name: 'twitter:title', content: 'Amaury Mulcey | Portfolio - Politique de confidentialité' },
+    { name: 'twitter:title', content: 'Amaury Mulcey • Portfolio - Politique de confidentialité' },
     { name: 'twitter:description', content: 'Politique de confidentialité du site Amaury Mulcey. Détails sur la collecte des données, les cookies, le RGPD et les droits des utilisateurs.' },
     { name: 'twitter:image', content: 'https://www.amaurymulcey.fr/web-app-manifest-512x512.png' },
     { name: 'twitter:card', content: 'summary_large_image' },
@@ -25,7 +25,7 @@ useHead({
 
 <template>
   <main class="bg-[#070A13] text-[#F3F7FB] flex flex-col gap-6 pt-20 pb-20 mx-auto max-w-6xl px-4 md:px-6 lg:px-8">
-    <NuxtLink to="/" class="inline-flex items-center gap-2 underline transition-colors duration-200 ease-out hover:text-[#00FF7F]"> <Icon name="ep:back" /> Retour a la Page d'accueil</NuxtLink>
+    <NuxtLink to="/" class="inline-flex items-center gap-2 underline transition-colors duration-200 ease-out hover:text-[#00FF7F] focus-visible:text-[#00FF7F]"> <Icon name="ep:back" /> Retour a la Page d'accueil</NuxtLink>
     <div>
       <h1 class="font-bold text-3xl sm:text-4xl">Politique de Confidentialité</h1>
       <p class="text-sm sm:text-base">Dernière mise à jour le 09/01/2026</p>
@@ -35,7 +35,7 @@ useHead({
       <h2 class="font-bold text-lg sm:text-xl">Introduction</h2>
       <p class="text-sm sm:text-base">
         La présente politique de confidentialité a pour objectif de vous informer sur la manière dont nous collectons, utilisons, traitons et protégeons vos données personnelles lorsque vous utilisez le site web Amaury Mulcey (le « Site »), accessible à l'adresse
-        <NuxtLink to="/" class="underline transition-colors duration-200 ease-out hover:text-[#00FF7F]">https://amaurymulcey.fr</NuxtLink>.
+        <NuxtLink to="/" class="underline transition-colors duration-200 ease-out hover:text-[#00FF7F] focus-visible:text-[#00FF7F]">https://amaurymulcey.fr</NuxtLink>.
       </p>
       <p class="text-sm sm:text-base">
         Nous nous engageons à respecter la confidentialité de vos données personnelles et à respecter la législation en vigueur en matière de protection des données, notamment le Règlement Général sur la Protection des Données (RGPD).
@@ -69,7 +69,7 @@ useHead({
       </ul>
       <p class="text-sm sm:text-base">
         Pour exercer ces droits, vous pouvez nous contacter à l’adresse suivante :
-        <NuxtLink to="mailto:amaurymulcey.pro@gmail.com" class="underline transition-colors duration-200 ease-out hover:text-[#00FF7F]">amaurymulcey.pro@gmail.com</NuxtLink>
+        <NuxtLink to="mailto:amaurymulcey.pro@gmail.com" class="underline transition-colors duration-200 ease-out hover:text-[#00FF7F] focus-visible:text-[#00FF7F]">amaurymulcey.pro@gmail.com</NuxtLink>
       </p>
     </article>
 
