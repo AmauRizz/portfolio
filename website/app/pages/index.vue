@@ -24,10 +24,11 @@ import {
 } from "@/components/ui/accordion"
 import {Spinner} from "~/components/ui/spinner";
 
-import { faqItems } from '@/data/faq'
+import { questionItems } from '@/data/questions'
 import { skillItems } from '@/data/skills'
+import { primaryServicesItems, secondaryServicesItems } from '@/data/services'
 import type { IpRecord } from '@/types/mailer'
-import type { Skill } from '@/types/skills'
+import type { Skill } from '@/types/skill'
 
 useHead({
   title: 'Amaury Mulcey • Développeur Freelance Web & Étudiant',
@@ -60,8 +61,8 @@ const schema = z.object({
 
 type Schema = z.infer<typeof schema>
 
-const isLoading = ref(false)
-const isDisabled = ref(false)
+const isFormLoading = ref(false)
+const isFormDisabled = ref(false)
 
 const isSkillModalOpen = ref(false)
 const selectedSkill = ref<Skill | null>(null)
@@ -76,7 +77,7 @@ const { handleSubmit, errors, resetForm } = useForm<Schema>({
 })
 
 const onSubmit = handleSubmit(async (values) => {
-  isLoading.value = true
+  isFormLoading.value = true
 
   try {
     await $fetch('/api/mailer', { method: 'POST', body: values })
@@ -89,7 +90,7 @@ const onSubmit = handleSubmit(async (values) => {
       description: "Une erreur est survenue lors de l'envoi de votre demande de contact."
     })
   } finally {
-    isLoading.value = false
+    isFormLoading.value = false
 
     const result = await $fetch('/api/mailer', {
       method: 'GET',
@@ -101,7 +102,7 @@ const onSubmit = handleSubmit(async (values) => {
         : { isTimeout: false }
 
     if (timeout && timeout.isTimeout) {
-      isDisabled.value = true
+      isFormDisabled.value = true
     }
   }
 })
@@ -137,7 +138,7 @@ onMounted(async () => {
       : { isTimeout: false }
 
   if (timeout && timeout.isTimeout) {
-    isDisabled.value = true
+    isFormDisabled.value = true
   }
 })
 </script>
@@ -170,7 +171,7 @@ onMounted(async () => {
             <NuxtLink
                 to="#services"
                 class="inline-flex items-center justify-center px-10 py-3 font-bold text-[#171717]
-                 bg-gradient-to-r from-[#00FF7F] to-[#00CC99] rounded-xl
+                 bg-linear-to-r from-[#00FF7F] to-[#00CC99] rounded-xl
                  transition-all duration-300 ease-in-out
                  hover:scale-105 focus-visible:scale-105 active:scale-95"
             >
@@ -236,7 +237,10 @@ onMounted(async () => {
 
       <div class="flex flex-col gap-8 sm:grid sm:grid-cols-2 sm:gap-12">
         <div>
-          <article class="flex flex-col gap-8 bg-linear-to-br from-[#111727] to-[#0A0F1C] border-2 border-slate-800 rounded-xl px-6 py-6">
+          <article
+              class="flex flex-col gap-8 border-2 border-slate-800 rounded-xl px-6 py-6
+              bg-linear-to-br from-[#111727] to-[#0A0F1C]"
+          >
             <div class="flex flex-col gap-4">
               <h3 class="font-bold text-xl">Qui suis-je ?</h3>
               <div class="flex flex-col gap-2 text-[#8DA0BA]">
@@ -315,178 +319,24 @@ onMounted(async () => {
         <p class="text-[#8DA0BA] text-lg">Des offres adaptées à tous les budgets et tous les projets.</p>
       </div>
 
-      <div class="flex flex-col gap-8 sm:gap-12">
-        <div class="flex flex-col gap-8 sm:grid sm:grid-cols-2 sm:gap-12">
-          <article
-              class="relative flex flex-col justify-between gap-8 bg-linear-to-br from-[#111727] to-[#0A0F1C] border-2 border-[#00FF7F] rounded-xl px-6 py-6
-                   transition-all duration-200 ease-out
-                   hover:shadow-[0_0_28px_rgba(0,255,127,0.25)]"
-          >
-            <span
-                class="absolute -top-3 left-10 z-10 flex items-center gap-1 rounded-lg bg-[#00FF7F] px-3 py-1 text-xs font-bold uppercase text-[#171717] shadow-md"
-            >
-              <span class="inline-flex items-center">
-                <Icon name="material-symbols:star" class="text-[#171717]"/>
-              </span>
-              <span>
-                Populaire
-              </span>
-            </span>
-
-            <div class="flex flex-col gap-4">
-              <div class="flex flex-col gap-1">
-                <h3 class="font-bold text-3xl">Site Vitrine</h3>
-                <p class="text-[#8DA0BA]">La solution clé en main idéale pour présenter votre activité sur le web.</p>
-              </div>
-
-              <h4 class="font-bold text-3xl">349 €</h4>
-
-              <ul class="text-[#8DA0BA] space-y-3">
-                <li class="flex items-center gap-2">
-                  <Icon name="gg:check-o" class="text-[#00FF7F]" />
-                  Design moderne et responsive.
-                </li>
-                <li class="flex items-center gap-2">
-                  <Icon name="gg:check-o" class="text-[#00FF7F]" />
-                  Jusqu’à 5 pages
-                </li>
-                <li class="flex items-center gap-2">
-                  <Icon name="gg:check-o" class="text-[#00FF7F]" />
-                  Formulaire de contact.
-                </li>
-                <li class="flex items-center gap-2">
-                  <Icon name="gg:check-o" class="text-[#00FF7F]" />
-                  Optimisation du référencement.
-                </li>
-              </ul>
-            </div>
-
-            <NuxtLink
-                to="#contact"
-                class="inline-flex items-center justify-center px-10 py-3 font-bold text-[#171717]
-                bg-gradient-to-r from-[#00FF7F] to-[#00CC99] rounded-xl
-                transition-all duration-300 ease-in-out
-                hover:scale-105 focus-visible:scale-105 active:scale-95"
-            >
-              Prendre Rendez-Vous
-            </NuxtLink>
-          </article>
-
-          <article
-              class="flex flex-col justify-between gap-8 bg-linear-to-br from-[#111727] to-[#0A0F1C] border-2 border-slate-800 rounded-xl px-6 py-6
-                   transition-all duration-200 ease-out
-                   hover:border-[#00FF7F] hover:shadow-[0_0_28px_rgba(0,255,127,0.25)]"
-          >
-            <div class="flex flex-col gap-4">
-              <div class="flex flex-col gap-1">
-                <h3 class="font-bold text-3xl">Projet Sur-Mesure</h3>
-                <p class="text-[#8DA0BA]">Un projet unique qui nécessite des fonctionnalités avancées.</p>
-              </div>
-
-              <h4 class="font-bold text-3xl">Sur devis</h4>
-
-              <ul class="text-[#8DA0BA] space-y-3">
-                <li class="flex items-center gap-2">
-                  <Icon name="gg:check-o" class="text-[#00FF7F]" />
-                  Analyse poussée de vos besoins.
-                </li>
-                <li class="flex items-center gap-2">
-                  <Icon name="gg:check-o" class="text-[#00FF7F]" />
-                  Fonctionnalités avancées.
-                </li>
-                <li class="flex items-center gap-2">
-                  <Icon name="gg:check-o" class="text-[#00FF7F]" />
-                  Base de données.
-                </li>
-                <li class="flex items-center gap-2">
-                  <Icon name="gg:check-o" class="text-[#00FF7F]" />
-                  API et intégrations.
-                </li>
-              </ul>
-            </div>
-
-            <NuxtLink
-                to="#contact"
-                class="gap-2 text-[#00FF7F] font-bold inline-flex items-center justify-center px-10 py-3
-                      border-2 border-[#00FF7F] rounded-xl
-                      transition-all duration-300 ease-in-out
-                      hover:scale-105 hover:bg-[#00FF7F] hover:text-[#171717]
-                      focus-visible::scale-105 focus-visible:bg-[#00FF7F] focus-visible:text-[#171717]
-                      active:scale-95"
-            >
-              Faire Un Devis
-            </NuxtLink>
-          </article>
-
-          <article
-              class="sm:hidden flex flex-col justify-between gap-8 bg-linear-to-br from-[#111727] to-[#0A0F1C] border-2 border-slate-800 rounded-xl px-6 py-6
-                   transition-all duration-200 ease-out
-                   hover:border-[#00FF7F] hover:shadow-[0_0_28px_rgba(0,255,127,0.25)]"
-          >
-            <div class="flex flex-col gap-4">
-              <div class="flex flex-col gap-1">
-                <h3 class="font-bold text-3xl">Maintenance</h3>
-                <p class="text-[#8DA0BA]">Bénéficiez d'un support et gardez votre projet à jour et hébergé sur un serveur sécurisé.</p>
-              </div>
-
-              <h4 class="font-bold text-3xl">45 €/mois</h4>
-
-              <ul class="text-[#8DA0BA] space-y-3">
-                <li class="flex items-center gap-2">
-                  <Icon name="gg:check-o" class="text-[#00FF7F]" />
-                  Mise en production de votre application.
-                </li>
-                <li class="flex items-center gap-2">
-                  <Icon name="gg:check-o" class="text-[#00FF7F]" />
-                  Sécurisation du serveur.
-                </li>
-              </ul>
-            </div>
-
-            <NuxtLink
-                to="#contact"
-                class="gap-2 text-[#00FF7F] font-bold inline-flex items-center justify-center px-10 py-3
-                      border-2 border-[#00FF7F] rounded-xl
-                      transition-all duration-300 ease-in-out
-                      hover:scale-105 hover:bg-[#00FF7F] hover:text-[#171717]
-                      focus-visible::scale-105 focus-visible:bg-[#00FF7F] focus-visible:text-[#171717]
-                      active:scale-95"
-            >
-              En Savoir Plus
-            </NuxtLink>
-          </article>
+      <div class="grid grid-cols-1 lg:grid-cols-[3fr_1.2fr] gap-6 items-start">
+        <div class="grid gap-4">
+          <ServiceBigCard
+              v-for="(service, index) in primaryServicesItems"
+              :key="index"
+              :service="service"
+          />
         </div>
 
-        <article
-            class="hidden sm:flex justify-between gap-8 bg-linear-to-br from-[#111727] to-[#0A0F1C] border-2 border-slate-800 rounded-xl px-6 py-6
-                   transition-all duration-200 ease-out
-                   hover:border-[#00FF7F] hover:shadow-[0_0_28px_rgba(0,255,127,0.25)]"
-        >
-          <div>
-            <div>
-              <h3 class="font-bold text-3xl">Maintenance</h3>
-              <p class="text-[#8DA0BA]">
-                Bénéficiez d'un support et gardez votre projet à jour et hébérgé sur un serveur sécurisé.
-              </p>
-            </div>
-          </div>
-
-          <div class="sm:flex sm:flex-col sm:gap-2">
-            <h4 class="font-bold text-xl">45 €/mois</h4>
-            <NuxtLink
-                to="#contact"
-                class="gap-2 text-[#00FF7F] font-bold inline-flex items-center justify-center px-10 py-3
-                      border-2 border-[#00FF7F] rounded-xl
-                      transition-all duration-300 ease-in-out
-                      hover:scale-105 hover:bg-[#00FF7F] hover:text-[#171717]
-                      focus-visible::scale-105 focus-visible:bg-[#00FF7F] focus-visible:text-[#171717]
-                      active:scale-95"
-            >
-              En Savoir Plus
-            </NuxtLink>
-          </div>
-        </article>
+        <div class="flex flex-col sm:grid-cols-2 lg:flex lg:flex-col gap-6">
+          <ServiceSmallCard
+              v-for="(service, index) in secondaryServicesItems"
+              :key="index"
+              :service="service"
+          />
+        </div>
       </div>
+
     </section>
 
     <section id="faq" class="flex flex-col gap-16 mb-32 scroll-mt-28">
@@ -496,10 +346,10 @@ onMounted(async () => {
 
       <Accordion type="single" collapsible class="space-y-4">
         <AccordionItem
-            v-for="(question, index) in faqItems"
+            v-for="(question, index) in questionItems"
             :key="index"
             :value="String(index)"
-            class="group relative rounded-2xl bg-gradient-to-br from-[#111727] to-[#0A0F1C] border-2 border-slate-800
+            class="group relative rounded-2xl bg-linear-to-br from-[#111727] to-[#0A0F1C] border-2 border-slate-800
              data-[state=open]:border-[#00FF7F]"
         >
           <AccordionTrigger
@@ -646,19 +496,24 @@ onMounted(async () => {
               </FormItem>
             </FormField>
 
-            <Button
-                type="submit"
-                :disabled="isLoading"
-                class="w-full cursor-pointer text-[#171717] font-bold inline-flex items-center justify-center px-10 py-3 rounded-xl
-                      bg-gradient-to-r from-[#00FF7F] to-[#00CC99]
-                      transition-all duration-300 ease-in-out
-                      hover:scale-105 focus-visible:scale-105 active:scale-95"
-
+            <div
+                class="w-full"
+                :class="{ 'cursor-not-allowed': isFormDisabled || isFormLoading }"
             >
-              <span v-if="isDisabled" class="inline-flex items-center gap-2">Indisponible <Icon name="mdi:clock-outline" class="text-xl" /></span>
-              <span v-else-if="isLoading" class="inline-flex items-center gap-2">Traitement en cours <Spinner /></span>
-              <span v-else class="inline-flex items-center gap-2">Envoyer</span>
-            </Button>
+              <Button
+                  type="submit"
+                  :disabled="isFormDisabled || isFormLoading"
+                  class="w-full text-[#171717] font-bold inline-flex items-center justify-center
+                       px-10 py-3 rounded-xl cursor-pointer
+                       bg-linear-to-r from-[#00FF7F] to-[#00CC99]
+                       transition-all duration-300 ease-in-out
+                       hover:scale-105 focus-visible:scle-105 active:scale-95"
+              >
+                <span v-if="isFormDisabled" class="inline-flex items-center gap-2">Indisponible <Icon name="mdi:clock-outline" class="text-xl" /></span>
+                <span v-else-if="isFormLoading" class="inline-flex items-center gap-2">Traitement en cours <Spinner /></span>
+                <span v-else class="inline-flex items-center gap-2">Envoyer</span>
+              </Button>
+            </div>
           </form>
 
           <p class="text-xs text-[#8DA0BA] mt-4">

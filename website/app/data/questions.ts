@@ -1,4 +1,6 @@
-export const faqItems = [
+import type { Question } from '@/types/question'
+
+export const questionItems: Question[] = [
     {
         label: "Combien de temps faut-il pour créer un site vitrine ?",
         content:
