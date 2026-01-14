@@ -5,7 +5,7 @@ export const skillItems: Skill[] = [
         icon: "mdi:symfony",
         name: "Symfony",
         description: "Framework PHP pour créer des applications web robustes et modulaires.",
-        usage: "Utilisé pour des backends, API sécurisées et projets orientés métier.",
+        usage: "Utilisé pour des backends, des API sécurisées et des projets orientés métier.",
         skills: [
             "Doctrine ORM",
             "Sécurité",
@@ -17,7 +17,7 @@ export const skillItems: Skill[] = [
         icon: "material-icon-theme:vue",
         name: "Vue.js",
         description: "Framework JavaScript progressif pour construire des interfaces utilisateur réactives.",
-        usage: "Création de SPA et interfaces réactives pour applications web.",
+        usage: "Création de SPA et d'interfaces réactives pour applications web.",
         skills: [
             "Composition API",
             "Directives",
@@ -28,7 +28,7 @@ export const skillItems: Skill[] = [
     {
         icon: "material-icon-theme:nuxt",
         name: "Nuxt.js",
-        description: "Framework basé sur Vue.js pour le SSR, SSG et le développement full-stack.",
+        description: "Framework basé sur Vue.js pour le SSR, le SSG et le développement full-stack.",
         usage: "Développement full-stack avec rendu côté serveur et génération statique.",
         skills: [
             "SSR & SSG",
@@ -64,7 +64,7 @@ export const skillItems: Skill[] = [
     {
         icon: "file-icons:prisma",
         name: "Prisma",
-        description: "ORM moderne pour TypeScript et Node.js, simplifie la gestion de la base de données.",
+        description: "ORM moderne pour TypeScript et Node.js, simplifiant la gestion de la base de données.",
         usage: "Gestion de la base de données avec typage fort et migrations automatisées.",
         skills: [
             "Modélisation de données",
@@ -89,7 +89,7 @@ export const skillItems: Skill[] = [
         icon: "simple-icons:express",
         name: "Express.js",
         description: "Framework minimaliste Node.js pour créer des API et des serveurs web.",
-        usage: "Création rapide d'API REST et de middleware serveur.",
+        usage: "Création rapide d'API REST et de middlewares serveur.",
         skills: [
             "Routing",
             "Middleware",
@@ -124,7 +124,7 @@ export const skillItems: Skill[] = [
     {
         icon: "devicon:mysql",
         name: "MySQL",
-        description: "Base de données relationnelle populaire et performante pour applications web.",
+        description: "Base de données relationnelle populaire et performante pour les applications web.",
         usage: "Applications web nécessitant une base de données relationnelle stable.",
         skills: [
             "SQL standard",
@@ -161,7 +161,7 @@ export const skillItems: Skill[] = [
         icon: "devicon:vscode",
         name: "VS Code",
         description: "Éditeur de code léger et extensible pour développer efficacement.",
-        usage: "Édition de code, debugging et intégration avec extensions.",
+        usage: "Édition de code, débogage et intégration avec extensions.",
         skills: [
             "Extensions et plugins",
             "Debugging",
@@ -177,7 +177,7 @@ export const skillItems: Skill[] = [
         skills: [
             "IntelliJ IDEA",
             "WebStorm",
-            "Refactoring et debugging"
+            "Refactoring et débogage"
         ],
         link: "https://www.jetbrains.com/"
     },

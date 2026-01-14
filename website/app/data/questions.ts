@@ -9,7 +9,7 @@ export const questionItems: Question[] = [
     {
         label: "Le site sera-t-il optimisé pour les appareils mobiles ?",
         content:
-            "Oui, le site est entièrement responsive (mobile, tablette et ordinateur) et optimisé pour les performances ainsi que l’accessibilité."
+            "Oui, le site est entièrement responsive (mobile, tablette et ordinateur) et optimisé pour les performances ainsi que pour l’accessibilité."
     },
     {
         label: "Que comprend l’offre de maintenance ?",

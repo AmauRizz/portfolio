@@ -7,7 +7,7 @@ export const primaryServicesItems: Service[] = [
         icon: "mdi:art",
         label: "Site Vitrine",
         description: "Une présence en ligne professionnelle",
-        priceText: "A partir de 350€ TTC",
+        priceText: "À partir de 350€ TTC",
 
         features: [
             {
@@ -17,24 +17,14 @@ export const primaryServicesItems: Service[] = [
                 label: "Mobile first."
             },
             {
-                label: "Réferencement optimisé."
+                label: "Référencement optimisé."
             },
             {
                 label: "Livraison rapide."
             }
         ],
-        
+
         projects: [
-            {
-                label: "Reprosport17",
-                image: "reprosport17.png",
-                url: "reprosport17.fr"
-            },
-            {
-                label: "Reprosport17",
-                image: "reprosport17.png",
-                url: "reprosport17.fr"
-            },
             {
                 label: "Reprosport17",
                 image: "reprosport17.png",
@@ -86,8 +76,8 @@ export const secondaryServicesItems: Service[] = [
         type: ServiceType.SECONDARY,
         icon: "heroicons:wrench-16-solid",
         label: "Maintenance",
-        description: "Gardez votre site performant et sécurisé",
-        priceText: "50/mois TTC",
+        description: "Gardez votre application web à jour et sécurisée",
+        priceText: "50€/mois TTC",
 
         features: [
             {
@@ -97,7 +87,7 @@ export const secondaryServicesItems: Service[] = [
                 label: "Sécurisation du serveur."
             },
             {
-                label: "Modification visuel du projet."
+                label: "Modification visuelle du projet."
             }
         ],
 

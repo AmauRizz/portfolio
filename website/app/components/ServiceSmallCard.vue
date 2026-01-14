@@ -69,9 +69,24 @@ const isFeaturesOpen = ref(false)
     <Separator orientation="horizontal" class="bg-[#8DA0BA]" />
 
     <div class="flex justify-between items-center">
-      <h3>{{ service.priceText }}</h3>
+      <h3 class="font-bold text-[#00FF7F]">{{ service.priceText }}</h3>
 
       <NuxtLink
+          v-if="service.cta.type === CallToActionType.SECONDARY"
+          to="https://api.amaurymulcey.fr"
+          target="_blank"
+          class="gap-2 text-[#00FF7F] font-bold inline-flex items-center justify-center px-4 py-3
+                      border-2 border-[#00FF7F] rounded-xl
+                      transition-all duration-300 ease-in-out
+                      hover:scale-105 hover:bg-[#00FF7F] hover:text-[#171717]
+                      focus-visible::scale-105 focus-visible:bg-[#00FF7F] focus-visible:text-[#171717]
+                      active:scale-95"
+      >
+        <span>{{ service.cta.label }}</span>
+      </NuxtLink>
+
+      <NuxtLink
+          v-if="service.cta.type === CallToActionType.FALLBACK"
           to="#contact"
           class="inline-flex items-center gap-1 underline-offset-4 transition-all duration-200 ease-out hover:underline hover:text-[#00FF7F]"
       >
