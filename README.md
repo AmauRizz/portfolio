@@ -3,8 +3,6 @@
 Welcome to my portfolio!  
 I am **Amaury Mulcey**, a student and freelance **Web Developer**, passionate about building modern websites.
 
----
-
 ## 🌐 Overview
 
 Check out the portfolio online here: [https://www.amaurymulcey.fr](https://www.amaurymulcey.fr)  
@@ -17,8 +15,6 @@ The site includes:
 - A **Question & Answer** section  
 - A **Contact form**  
 - **Automatic translation**: text is in English by default and can be switched to French via the navbar  
-
----
 
 ## ⚡ Technologies Used
 
@@ -38,8 +34,6 @@ The site includes:
 - PHPStorm  
 - NPM  
 
----
-
 ## 🛠 Features
 
 **Frontend Portfolio**  
@@ -53,8 +47,6 @@ The site includes:
 - Secure email sending  
 - User confirmation messages  
 - Rate limiting by IP  
-
----
 
 ## 🚀 Installation & Development
 
@@ -96,3 +88,4 @@ Deploy using any reverse proxy (e.g., Nginx, Caddy) to forward requests to the l
 
 ## 📝 License
 This project is licensed under the ```Apache 2.0``` License. See LICENSE for details.
+
