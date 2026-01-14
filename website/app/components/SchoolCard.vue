@@ -32,7 +32,7 @@ const exitDisplay = computed(() => {
 </script>
 
 <template>
-  <div class="rounded-xl border-2 border-slate-800 bg-[#050816]  p-4 text-center sm:text-left transition-all duration-200 ease-out hover:border-[#00FF7F] hover:scale-102">
+  <div class="rounded-xl border-2 border-slate-800 bg-[#050816]  p-4 text-center sm:text-left transition-all duration-200 ease-out hover:scale-102">
     <div class="flex flex-col items-center sm:items-start sm:flex-row gap-4">
       <NuxtImg :src="icon" class="w-12 h-12 object-cover rounded-full" />
 

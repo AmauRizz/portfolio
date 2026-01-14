@@ -1,4 +1,6 @@
-export const skillItems = [
+import type { Skill } from '@/types/skill'
+
+export const skillItems: Skill[] = [
     {
         icon: "mdi:symfony",
         name: "Symfony",
