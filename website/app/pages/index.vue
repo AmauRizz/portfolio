@@ -29,6 +29,7 @@ import { skillItems } from '@/data/skills'
 import { primaryServicesItems, secondaryServicesItems } from '@/data/services'
 import type { IpRecord } from '@/types/mailer'
 import type { Skill } from '@/types/skill'
+import {getProjectsByIsFeatured} from "~/utils/projectUtils";
 
 useHead({
   title: 'Amaury Mulcey • Développeur Freelance Web & Étudiant',
@@ -224,8 +225,32 @@ onMounted(async () => {
         <p class="text-[#8DA0BA] text-lg">Mes réalisations favorites après 5 ans d'expérience en développement.</p>
       </div>
 
-      <div class="bg-linear-to-br from-[#111727] to-[#0A0F1C] border-2 border-slate-800 rounded-xl px-6 py-2">
-        <p class="text-center font-bold">Prochainement disponible !</p>
+      <div class="flex flex-col gap-4">
+        <ProjectBigCard
+            v-for="(project, index) in getProjectsByIsFeatured(true)"
+            :key="index"
+            :project="project"
+        />
+
+        <div class="grid grid-cols-2 gap-4">
+          <ProjectSmallCard
+            v-for="(project, index) in getProjectsByIsFeatured(false).slice(0,4)"
+            :key="index"
+            :project="project"
+          />
+        </div>
+      </div>
+
+      <div class="flex flex-col items-center">
+        <NuxtLink
+            to="projects"
+            class="inline-flex items-center justify-center px-10 py-3 font-bold text-[#171717]
+                 bg-linear-to-r from-[#00FF7F] to-[#00CC99] rounded-xl
+                 transition-all duration-300 ease-in-out
+                 hover:scale-105 focus-visible:scale-105 active:scale-95"
+        >
+          <span>Voir tous mes projets</span>
+        </NuxtLink>
       </div>
     </section>
 

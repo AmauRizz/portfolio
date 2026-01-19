@@ -1,14 +1,14 @@
 <script setup lang="ts">
 import { ref, onMounted } from 'vue'
 
-import type { CarouselApi } from '@/components/ui/carousel'
+import type { CarouselApi } from '~/components/ui/carousel'
 import {
   Carousel,
   CarouselContent,
   CarouselItem,
   CarouselNext,
   CarouselPrevious,
-} from '@/components/ui/carousel'
+} from '~/components/ui/carousel'
 import {Separator} from "~/components/ui/separator";
 
 import { ServiceType, type Service } from '~/types/service'

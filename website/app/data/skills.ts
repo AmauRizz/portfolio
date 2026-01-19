@@ -110,6 +110,30 @@ export const skillItems: Skill[] = [
         link: "https://nestjs.com/"
     },
     {
+        icon: "material-icon-theme:minecraft-fabric",
+        name: "Fabric",
+        description: "Framework modding léger pour Minecraft, permettant de créer et gérer des mods personnalisés.",
+        usage: "Développement de mods Minecraft avec intégration facile et compatibilité étendue.",
+        skills: [
+            "Création de mods",
+            "API Fabric",
+            "Gestion des versions Minecraft"
+        ],
+        link: "https://fabricmc.net/"
+    },
+    {
+        icon: "devicon:java",
+        name: "JavaFX",
+        description: "Framework Java pour créer des interfaces graphiques riches et interactives sur desktop.",
+        usage: "Développement d'applications desktop avec interfaces graphiques avancées et animations.",
+        skills: [
+            "Création d'interfaces GUI",
+            "Gestion des événements",
+            "Layouts et composants JavaFX"
+        ],
+        link: "https://openjfx.io/"
+    },
+    {
         icon: "devicon:postgresql",
         name: "PostgreSQL",
         description: "Système de gestion de base de données relationnelle puissant et fiable.",
@@ -132,6 +156,18 @@ export const skillItems: Skill[] = [
             "Optimisation des requêtes"
         ],
         link: "https://www.mysql.com/"
+    },
+    {
+        icon: "devicon:sqlite",
+        name: "SQLite",
+        description: "Système de gestion de base de données relationnelle léger et embarqué, idéal pour les applications locales ou mobiles.",
+        usage: "Stockage local de données, bases légères pour applications desktop, mobiles ou prototypes.",
+        skills: [
+            "SQL standard",
+            "Bases embarquées",
+            "Optimisation pour petites bases"
+        ],
+        link: "https://sqlite.org/"
     },
     {
         icon: "material-icon-theme:git",

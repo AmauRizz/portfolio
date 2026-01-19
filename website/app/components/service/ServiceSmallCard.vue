@@ -1,8 +1,8 @@
 <script setup lang="ts">
 import {Separator} from "~/components/ui/separator";
 
-import {CallToActionType, ServiceType} from "@/types/service"
-import type { Service } from "@/types/service";
+import {CallToActionType, ServiceType} from "~/types/service"
+import type { Service } from "~/types/service";
 
 defineProps<{
   service: Service
