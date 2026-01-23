@@ -51,31 +51,38 @@ The site includes:
 ## 🚀 Installation & Development
 
 ### Installation
+
+Clone the repository
 ```bash
-# Clone the repository
 git clone https://github.com/your-username/portfolio.git
 cd portfolio
+```
 
-# Install dependencies
+Install dependencies
+```bash
 npm install
+```
 
-# Start development server
+Start development server
+```bash
 npm run dev
 ```
+
 The project will be available at [http://localhost:3000/](http://localhost:3000/)
 
 ## 🖥 Deployment
 
 ### Production build
+
+Create build files
 ```bash
-# Create build files
 npm run build
 ```
 
 Optimized files will be in the ```.output``` folder.
 
+Launch the server
 ```bash
-# Launch the server
 node .output/server/index.mjs
 ```
 
@@ -89,5 +96,6 @@ Deploy using any reverse proxy (e.g., Nginx, Caddy) to forward requests to the l
 
 ## 📝 License
 This project is licensed under the ```Apache 2.0``` License. See LICENSE for details.
+
 
 
