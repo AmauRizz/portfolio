@@ -82,10 +82,12 @@ node .output/server/index.mjs
 Deploy using any reverse proxy (e.g., Nginx, Caddy) to forward requests to the local server.
 
 ## 📫 Contact
+- Portfolio: [Freelance web developer](https://www.amaurymulcey.fr/)
 - Email: amaury.mulcey.pro@gmail.com
 - GitHub: [AmauRizz](https://github.com/AmauRizz)
 - LinkedIn: [Amaury Mulcey](https://www.linkedin.com/in/amaurymulcey/)
 
 ## 📝 License
 This project is licensed under the ```Apache 2.0``` License. See LICENSE for details.
+
 
