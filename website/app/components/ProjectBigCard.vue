@@ -1,17 +1,8 @@
 <script setup lang="ts">
-import type { Project } from "@/types/project"
-import type { Skill } from "~/types/skill"
-
-type ModalType = 'skill' | 'project'
-
-type ModalCallback = (
-    type: ModalType,
-    item: Skill | Project | null
-) => void
+import type { Project } from "~/types/project"
 
 defineProps<{
   project: Project
-  modalCallback: ModalCallback
 }>()
 </script>
 
@@ -60,7 +51,7 @@ defineProps<{
 
     <div
         class="relative w-3/5
-             bg-[#0A0F1C]/95 border-l-6 border-[#00FF7F]"
+             bg-[#0A0F1C]/95 border-l-6 rounded-l-2xl border-[#00FF7F]"
     >
       <div
           class="h-full p-8 pl-10
@@ -72,17 +63,14 @@ defineProps<{
                 v-for="(skill, index) in project.stack"
                 :key="index"
                 :skill="skill"
-                :modal-callback="modalCallback"
             />
           </div>
 
-          <!-- Description -->
           <p class="text-sm text-[#8DA0BA] leading-relaxed max-w-xl">
             {{ project.longDescription }}
           </p>
         </div>
 
-        <!-- Bottom actions -->
         <div class="flex items-center justify-between pt-6">
           <div class="flex gap-3">
             <NuxtLink
@@ -111,17 +99,6 @@ defineProps<{
               GitHub
             </NuxtLink>
           </div>
-
-          <button
-              class="inline-flex items-center gap-1
-                   underline-offset-4
-                   transition-all duration-200
-                   hover:underline hover:text-[#00FF7F]"
-              @click="modalCallback('project', project)"
-          >
-            <span>En savoir plus</span>
-            <Icon name="tabler:arrow-right" />
-          </button>
         </div>
       </div>
     </div>

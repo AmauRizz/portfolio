@@ -1,19 +1,8 @@
 <script setup lang="ts">
-import type { Project } from "@/types/project"
-import {Button} from "~/components/ui/button";
-import {CallToActionType} from "~/types/service";
-import type { Skill } from "~/types/skill";
-
-type ModalType = 'skill' | 'project'
-
-type ModalCallback = (
-    type: ModalType,
-    item: Skill | Project | null
-) => void
+import type { Project } from "~/types/project"
 
 defineProps<{
   project: Project
-  modalCallback: ModalCallback
 }>()
 </script>
 
@@ -49,7 +38,7 @@ defineProps<{
           <SkillBadge
               v-for="(skill, index) in project.stack"
               :key="index"
-              :skill="skill" :modal-callback="modalCallback"
+              :skill="skill"
           />
         </div>
       </div>
@@ -129,17 +118,8 @@ defineProps<{
               {{ project.longDescription }}
             </p>
           </div>
-
-          <button
-              class="inline-flex items-center gap-1 underline-offset-4 transition-all duration-200 ease-out hover:cursor-pointer hover:underline hover:text-[#00FF7F]"
-              @click="modalCallback('project', project)"
-          >
-            <span>En savoir plus</span>
-            <Icon name="tabler:arrow-right" />
-          </button>
         </div>
       </div>
     </div>
   </article>
-
 </template>

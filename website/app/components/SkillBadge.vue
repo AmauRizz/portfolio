@@ -1,18 +1,15 @@
 <script setup lang="ts">
 import type { Skill } from "~/types/skill";
-import type {Project} from "~/types/project";
-
-type ModalType = 'skill' | 'project'
-
-type ModalCallback = (
-    type: ModalType,
-    item: Skill | Project | null
-) => void
 
 defineProps<{
   skill: Skill
-  modalCallback: ModalCallback
 }>()
+
+const {
+  activeModal,
+  selectedSkill,
+  toggleModal
+} = useModal()
 </script>
 
 <template>
@@ -24,7 +21,7 @@ defineProps<{
            transition-all duration-200 ease-out
            hover:border-[#00FF7F] hover:scale-105 focus-visible:border-[#00FF7F] focus-visible:scale-105"
       aria-haspopup="dialog"
-      @click="modalCallback('skill', skill)"
+      @click="toggleModal('skill', skill)"
   >
     <icon :name="skill.icon" :class="'text-2xl'" />
     <span>{{ skill.name }}</span>

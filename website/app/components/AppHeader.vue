@@ -23,7 +23,7 @@ const closeMenu = () => {
       class="sticky top-4 z-50 mx-auto w-[95%] max-w-6xl rounded-2xl border-2 border-slate-800 bg-[#050816]/80 backdrop-blur shadow-lg"
   >
     <nav class="flex items-center justify-between px-4 py-3 lg:px-6">
-      <NuxtLink to="/#home"
+      <NuxtLink to="/website/public#home"
                 class="text-lg font-semibold text-white
                 transition-all duration-300 ease-out
                 hover:drop-shadow-[0_0_16px_rgba(0,255,127,0.5)] focus-visible:drop-shadow-[0_0_16px_rgba(0,255,127,0.5)]"
@@ -55,7 +55,7 @@ const closeMenu = () => {
       </button>
 
       <NuxtLink
-          to="/#contact"
+          to="/website/public#contact"
           class="hidden lg:inline-flex items-center justify-center px-10 py-3 font-bold text-[#171717]
           bg-gradient-to-r from-[#00FF7F] to-[#00CC99] rounded-xl
           transition-all duration-300 ease-in-out
@@ -84,7 +84,7 @@ const closeMenu = () => {
       </nav>
 
       <NuxtLink
-          to="/#contact"
+          to="/website/public#contact"
           class="w-full inline-flex items-center justify-center px-10 py-3 font-bold text-[#171717]
                 bg-gradient-to-r from-[#00FF7F] to-[#00CC99] rounded-xl
                 transition-all duration-300 ease-in-out
