@@ -24,12 +24,14 @@ import {
 } from "@/components/ui/accordion"
 import {Spinner} from "~/components/ui/spinner";
 
-import { questionItems } from '@/data/questions'
-import { skillItems } from '@/data/skills'
-import { primaryServicesItems, secondaryServicesItems } from '@/data/services'
+import { questionItems } from '~/contents/questions'
+import { skillItems } from '~/contents/skills'
+import { primaryServicesItems, secondaryServicesItems } from '~/contents/services'
 import type { IpRecord } from '@/types/mailer'
 import type { Skill } from '@/types/skill'
 import {getProjectsByIsFeatured} from "~/utils/projectUtils";
+import {CallToActionType} from "~/types/service";
+import type {Project} from "~/types/project";
 
 useHead({
   title: 'Amaury Mulcey • Développeur Freelance Web & Étudiant',
@@ -54,19 +56,22 @@ useHead({
   ]
 })
 
+type Schema = z.infer<typeof schema>
+type ModalType = 'skill' | 'project'
+
 const schema = z.object({
   name: z.string().min(2, "Veuillez entrer votre nom."),
   email: z.string().email("L'email n'est pas valide."),
   message: z.string().min(10, "Décrivez un peu votre projet (10 caractères min).")
 })
 
-type Schema = z.infer<typeof schema>
-
 const isFormLoading = ref(false)
 const isFormDisabled = ref(false)
 
-const isSkillModalOpen = ref(false)
+const activeModal = ref<ModalType | null>(null)
+
 const selectedSkill = ref<Skill | null>(null)
+const selectedProject = ref<Project | null>(null)
 
 const { handleSubmit, errors, resetForm } = useForm<Schema>({
   validationSchema: toTypedSchema(schema),
@@ -108,10 +113,39 @@ const onSubmit = handleSubmit(async (values) => {
   }
 })
 
-const openModal = (skill: Skill) => {
-  selectedSkill.value = skill
-  isSkillModalOpen.value = true
+const toggleModal = <T extends Skill | Project>(
+    type: ModalType,
+    item: T | null
+) => {
+  if (!item) {
+    activeModal.value = null
+    selectedSkill.value = null
+    selectedProject.value = null
+    return
+  }
+
+  if (
+      activeModal.value === type &&
+      ((type === 'skill' && selectedSkill.value?.name === item.name) ||
+          (type === 'project' && selectedProject.value?.name === item.name))
+  ) {
+    activeModal.value = null
+    selectedSkill.value = null
+    selectedProject.value = null
+    return
+  }
+
+  activeModal.value = type
+
+  if (type === 'skill') {
+    selectedSkill.value = item as Skill
+    selectedProject.value = null
+  } else {
+    selectedProject.value = item as Project
+    selectedSkill.value = null
+  }
 }
+
 
 const age = computed(() => {
   const today = new Date()
@@ -225,31 +259,36 @@ onMounted(async () => {
         <p class="text-[#8DA0BA] text-lg">Mes réalisations favorites après 5 ans d'expérience en développement.</p>
       </div>
 
-      <div class="flex flex-col gap-4">
+      <div class="flex flex-col gap-8">
         <ProjectBigCard
             v-for="(project, index) in getProjectsByIsFeatured(true)"
             :key="index"
-            :project="project"
+            :project="project" :modal-callback="toggleModal"
         />
 
-        <div class="grid grid-cols-2 gap-4">
+        <div class="grid grid-cols-2 gap-8">
           <ProjectSmallCard
-            v-for="(project, index) in getProjectsByIsFeatured(false).slice(0,4)"
+            v-for="(project, index) in getProjectsByIsFeatured(false).slice(0,2)"
             :key="index"
-            :project="project"
+            :project="project" :modal-callback="toggleModal"
           />
         </div>
+
+        <ProjectModal
+            v-if="activeModal === 'project' && selectedProject"
+            :open="true"
+            :project="selectedProject"
+            @update:open="() => toggleModal('project', null)"
+        />
       </div>
 
       <div class="flex flex-col items-center">
         <NuxtLink
-            to="projects"
-            class="inline-flex items-center justify-center px-10 py-3 font-bold text-[#171717]
-                 bg-linear-to-r from-[#00FF7F] to-[#00CC99] rounded-xl
-                 transition-all duration-300 ease-in-out
-                 hover:scale-105 focus-visible:scale-105 active:scale-95"
+            to="#contact"
+            class="inline-flex items-center gap-1 underline-offset-4 transition-all duration-200 ease-out hover:underline hover:text-[#00FF7F]"
         >
           <span>Voir tous mes projets</span>
+          <Icon name="tabler:arrow-right" />
         </NuxtLink>
       </div>
     </section>
@@ -324,14 +363,14 @@ onMounted(async () => {
           <article class="flex flex-wrap gap-3 justify-center sm:justify-start">
             <SkillBadge v-for="(skill, index) in skillItems"
                         :key="index"
-                        :skill-icon="skill.icon" :skill-name="skill.name" @click="openModal(skill)"
+                        :skill="skill" :modal-callback="toggleModal"
             />
 
             <SkillModal
-                v-if="selectedSkill"
-                :open="isSkillModalOpen"
+                v-if="activeModal === 'skill' && selectedSkill"
+                :open="true"
                 :skill="selectedSkill"
-                @update:open="isSkillModalOpen = $event"
+                @update:open="() => toggleModal('skill', null)"
             />
           </article>
         </div>

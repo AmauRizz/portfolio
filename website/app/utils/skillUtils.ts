@@ -1,4 +1,4 @@
-import { skillItems } from '@/data/skills';
+import { skillItems } from '~/contents/skills';
 import type { Skill } from '@/types/skill';
 
 export function getSkillByName(name: string): Skill {

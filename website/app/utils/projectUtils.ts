@@ -1,5 +1,5 @@
 import type { Project } from "~/types/project";
-import { projectItems } from "~/data/projects";
+import { projectItems } from "~/contents/projects";
 
 export function getProjectsByIsFeatured(featured: boolean): Project[] {
     const projects = projectItems.filter(p => p.isFeatured === featured);

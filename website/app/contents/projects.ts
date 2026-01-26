@@ -7,13 +7,13 @@ export const projectItems: Project[] = [
 
         name: "Mobilo",
 
-        shortDescription: "",
-        longDescription: "",
+        shortDescription: "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
+        longDescription: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s",
 
         gallery: [
 
         ],
-        image: "",
+        image: "/images/pdp.jpeg",
         category: ProjectCategories.WEBSITE,
         stack: [
             getSkillByName("Nuxt.js"),
@@ -30,13 +30,13 @@ export const projectItems: Project[] = [
 
         name: "RefuelMap",
 
-        shortDescription: "",
-        longDescription: "",
+        shortDescription: "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
+        longDescription: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s",
 
         gallery: [
 
         ],
-        image: "",
+        image: "/images/pdp.jpeg",
         category: ProjectCategories.WEBSITE,
         stack: [
             getSkillByName("Next.js"),
@@ -53,13 +53,13 @@ export const projectItems: Project[] = [
 
         name: "Planifest",
 
-        shortDescription: "",
-        longDescription: "",
+        shortDescription: "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
+        longDescription: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s",
 
         gallery: [
 
         ],
-        image: "",
+        image: "/images/pdp.jpeg",
         category: ProjectCategories.APPLICATION,
         stack: [
             getSkillByName("Symfony"),
@@ -75,13 +75,13 @@ export const projectItems: Project[] = [
 
         name: "KyDiGames",
 
-        shortDescription: "",
-        longDescription: "",
+        shortDescription: "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
+        longDescription: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s",
 
         gallery: [
 
         ],
-        image: "",
+        image: "/images/pdp.jpeg",
         category: ProjectCategories.GAME,
         stack: [
             getSkillByName("Fabric")
@@ -94,13 +94,13 @@ export const projectItems: Project[] = [
 
         name: "LRU-Bot",
 
-        shortDescription: "",
-        longDescription: "",
+        shortDescription: "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
+        longDescription: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s",
 
         gallery: [
 
         ],
-        image: "",
+        image: "/images/pdp.jpeg",
         category: ProjectCategories.SERVICE,
         stack: [
             getSkillByName("Node.js"),
@@ -114,13 +114,13 @@ export const projectItems: Project[] = [
 
         name: "ParkingLR",
 
-        shortDescription: "",
-        longDescription: "",
+        shortDescription: "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
+        longDescription: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s",
 
         gallery: [
 
         ],
-        image: "",
+        image: "/images/pdp.jpeg",
         category: ProjectCategories.APPLICATION,
         stack: [
             getSkillByName("JavaFX"),
@@ -134,13 +134,13 @@ export const projectItems: Project[] = [
 
         name: "Omni-Chat",
 
-        shortDescription: "",
-        longDescription: "",
+        shortDescription: "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
+        longDescription: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s",
 
         gallery: [
 
         ],
-        image: "",
+        image: "/images/pdp.jpeg",
         category: ProjectCategories.WEBSITE,
         stack: [
             getSkillByName("Express.js"),

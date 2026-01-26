@@ -18,8 +18,8 @@ export interface Project {
 }
 
 export enum ProjectCategories {
-    WEBSITE,
-    APPLICATION,
-    GAME,
-    SERVICE
+    WEBSITE = "Site web",
+    APPLICATION = "Application",
+    GAME = "Jeu",
+    SERVICE = "Service"
 }
