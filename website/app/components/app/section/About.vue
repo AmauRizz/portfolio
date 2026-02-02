@@ -20,19 +20,19 @@ const age = computed(() => {
 <template>
   <section id="about" class="flex flex-col gap-16 mb-32 scroll-mt-28">
     <div class="flex flex-col text-center gap-2">
-      <h2 class="font-bold text-5xl">Plus <span class="text-[#00FF7F]">À propos</span></h2>
-      <p class="text-[#8DA0BA] text-lg">Passionné par le développement depuis plus de 5 ans.</p>
+      <h2 class="font-bold text-5xl">Plus <span class="text-brand-primary">À propos</span></h2>
+      <p class="text-custom-secondary text-lg">Passionné par le développement depuis plus de 5 ans.</p>
     </div>
 
     <div class="flex flex-col gap-8 sm:grid sm:grid-cols-2 sm:gap-12">
       <div>
         <article
             class="flex flex-col gap-8 border-2 border-slate-800 rounded-xl px-6 py-6
-              bg-linear-to-br from-[#111727] to-[#0A0F1C]"
+              bg-gradient-custom"
         >
           <div class="flex flex-col gap-4">
             <h3 class="font-bold text-xl">Qui suis-je ?</h3>
-            <div class="flex flex-col gap-2 text-[#8DA0BA]">
+            <div class="flex flex-col gap-2 text-custom-secondary">
               <p>
                 Je m'appelle <strong>Amaury Mulcey</strong> et je suis étudiant en informatique ainsi que développeur freelance de <strong>{{ age }} ans</strong>.
                 Je suis passionné par l'informatique, notamment par la création de projets variés, qu’il s’agisse de sites vitrines, d’applications plus complexes ou même de jeux.
@@ -46,7 +46,7 @@ const age = computed(() => {
           </div>
 
           <div class="flex flex-col gap-4">
-            <div class="flex flex-col gap-2 text-[#8DA0BA]">
+            <div class="flex flex-col gap-2 text-custom-secondary">
               <SchoolCard name="La Rochelle Université"
                           icon="https://www.univ-larochelle.fr/wp-content/uploads/png/logo-universite-de-la-rochelle-2X.png"
                           description="Licence d'informatique"
@@ -66,11 +66,11 @@ const age = computed(() => {
             <NuxtLink
                 to="/cv.pdf"
                 target="_blank"
-                class="gap-2 text-[#00FF7F] font-bold inline-flex items-center justify-center px-10 py-3
-                      border-2 border-[#00FF7F] rounded-xl
+                class="gap-2 text-brand-primary font-bold inline-flex items-center justify-center px-10 py-3
+                      border-2 border-brand-primary rounded-xl
                       transition-all duration-300 ease-in-out
-                      hover:scale-105 hover:bg-[#00FF7F] hover:text-[#171717]
-                      focus-visible::scale-105 focus-visible:bg-[#00FF7F] focus-visible:text-[#171717]
+                      hover:scale-105 hover:bg-brand-primary hover:text-custom-button
+                      focus-visible::scale-105 focus-visible:bg-brand-primary focus-visible:text-custom-button
                       active:scale-95"
             >
               <span>Visualiser mon CV</span>

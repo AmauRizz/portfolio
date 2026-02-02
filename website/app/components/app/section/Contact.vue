@@ -82,15 +82,15 @@ onMounted(async () => {
 <template>
   <section id="contact" class="flex flex-col gap-16 mb-32 scroll-mt-28">
     <div class="flex flex-col text-center gap-2">
-      <h2 class="font-bold text-5xl">Me <span class="text-[#00FF7F]">Contacter</span></h2>
-      <p class="text-[#8DA0BA] text-lg">Une question, un projet ? N'hésitez pas à me contacter</p>
+      <h2 class="font-bold text-5xl">Me <span class="text-brand-primary">Contacter</span></h2>
+      <p class="text-custom-secondary text-lg">Une question, un projet ? N'hésitez pas à me contacter</p>
     </div>
 
     <div class="flex flex-col gap-16 sm:grid sm:grid-cols-2">
       <div class="flex flex-col items-center sm:items-start gap-8">
         <article class="flex flex-col text-center sm:text-left gap-1">
           <h3 class="font-bold text-xl">Parlons de votre projet !</h3>
-          <p class="text-[#8DA0BA]">
+          <p class="text-custom-secondary">
             Je suis toujours enthousiaste à l'idée de découvrir de nouveaux projets. Que vous ayez une
             idée précise ou que vous souhaitiez simplement discuter des possibilités, contactez-moi !
           </p>
@@ -98,14 +98,14 @@ onMounted(async () => {
 
         <div class="flex flex-col gap-4 sm:gap-0">
           <article class="flex flex-col sm:flex-row items-center gap-3 px-2 py-2">
-            <div class="flex justify-center items-center bg-linear-to-br from-[#111727] to-[#0A0F1C] rounded-xl px-3 py-3">
-              <Icon name="ic:outline-email" size="2em" class="text-[#00FF7F]" />
+            <div class="flex justify-center items-center bg-gradient-custom rounded-xl px-3 py-3">
+              <Icon name="ic:outline-email" size="2em" class="text-brand-primary" />
             </div>
             <div class="text-center sm:text-left">
-              <h4 class="text-[#8DA0BA]">Email</h4>
+              <h4 class="text-custom-secondary">Email</h4>
               <NuxtLink
                   to="mailto:contact@amaurymulcey.fr"
-                  class="font-bold underline transition-all duration-200 ease-out hover:text-[#00FF7F] focus-visible:text-[#00FF7F]"
+                  class="font-bold underline transition-all duration-200 ease-out hover-text-brand-primary focus-visible-text-brand-primary"
               >
                 contact@amaurymulcey.fr
               </NuxtLink>
@@ -113,11 +113,11 @@ onMounted(async () => {
           </article>
 
           <article class="flex flex-col sm:flex-row items-center gap-3 px-2 py-2">
-            <div class="flex justify-center items-center bg-linear-to-br from-[#111727] to-[#0A0F1C] rounded-xl px-3 py-3">
-              <Icon name="mdi:map-marker-outline" size="2em" class="text-[#00FF7F]" />
+            <div class="flex justify-center items-center bg-gradient-custom rounded-xl px-3 py-3">
+              <Icon name="mdi:map-marker-outline" size="2em" class="text-brand-primary" />
             </div>
             <div class="text-center sm:text-left">
-              <h4 class="text-[#8DA0BA]">Localisation</h4>
+              <h4 class="text-custom-secondary">Localisation</h4>
               <p class="font-bold">La Rochelle - Télétravail</p>
             </div>
           </article>
@@ -129,32 +129,32 @@ onMounted(async () => {
           <div class="flex gap-4">
             <NuxtLink
                 to="https://github.com/AmauRizz"
-                class="group flex justify-center items-center bg-linear-to-br from-[#111727] to-[#0A0F1C] rounded-xl px-1 py-1"
+                class="group flex justify-center items-center bg-gradient-custom rounded-xl px-1 py-1"
             >
-              <Icon name="mdi:github" size="2em" class="text-[#8DA0BA] transition-all duration-200 ease-out group-hover:text-[#ffffff]" />
+              <Icon name="mdi:github" size="2em" class="text-custom-secondary transition-all duration-200 ease-out group-hover:text-[#ffffff]" />
             </NuxtLink>
 
             <NuxtLink
                 to="https://www.linkedin.com/in/amaury-mulcey-pro/"
-                class="group flex justify-center items-center bg-linear-to-br from-[#111727] to-[#0A0F1C] rounded-xl px-1 py-1"
+                class="group flex justify-center items-center bg-gradient-custom rounded-xl px-1 py-1"
             >
-              <Icon name="mdi:linkedin" size="2em" class="text-[#8DA0BA] transition-all duration-200 ease-out group-hover:text-[#0e76a8]" />
+              <Icon name="mdi:linkedin" size="2em" class="text-custom-secondary transition-all duration-200 ease-out group-hover:text-[#0e76a8]" />
             </NuxtLink>
 
             <NuxtLink
                 to="https://buymeacoffee.com/amaurizz"
-                class="group flex justify-center items-center bg-linear-to-br from-[#111727] to-[#0A0F1C] rounded-xl px-1 py-1"
+                class="group flex justify-center items-center bg-gradient-custom rounded-xl px-1 py-1"
             >
-              <Icon name="simple-icons:buymeacoffee" size="2em" class="text-[#8DA0BA] transition-all duration-200 ease-out group-hover:text-[#FFFF00]" />
+              <Icon name="simple-icons:buymeacoffee" size="2em" class="text-custom-secondary transition-all duration-200 ease-out group-hover:text-brand-accent" />
             </NuxtLink>
           </div>
         </article>
       </div>
 
       <div
-          class="bg-linear-to-br from-[#111727] to-[#0A0F1C] border-2 border-slate-800 rounded-xl px-6 py-6
+          class="bg-gradient-custom border-2 border-slate-800 rounded-xl px-6 py-6
            transition-all duration-200 ease-out
-           hover:border-[#00FF7F] hover:shadow-[0_0_28px_rgba(0,255,127,0.15)] focus-visible:border-[#00FF7F] focus-visible:shadow-[0_0_28px_rgba(0,255,127,0.15)]"
+           hover:border-brand-primary hover:shadow-[0_0_28px_var(--brand-primary)] focus-visible:border-brand-primary focus-visible:shadow-[0_0_28px_var(--brand-primary)]"
       >
         <h3 class="font-bold text-xl mb-6">Envoyez-moi un message</h3>
 
@@ -166,7 +166,7 @@ onMounted(async () => {
                 <Input
                     v-bind="componentField"
                     placeholder="Votre nom"
-                    class="bg-[#070A13] border-slate-800 text-slate-100"
+                    class="bg-dark-primary border-slate-800 text-slate-100"
                 />
               </FormControl>
               <FormMessage class="text-destructive" />
@@ -181,7 +181,7 @@ onMounted(async () => {
                     v-bind="componentField"
                     type="email"
                     placeholder="vous@exemple.com"
-                    class="bg-[#070A13] border-slate-800 text-slate-100"
+                    class="bg-dark-primary border-slate-800 text-slate-100"
                 />
               </FormControl>
               <FormMessage class="text-destructive" />
@@ -196,10 +196,10 @@ onMounted(async () => {
                 v-bind="componentField"
                 placeholder="Décrivez votre question ou un besoin, le délai, le budget, etc"
                 rows="6"
-                class="bg-[#070A13] border-slate-800 text-slate-100 resize-none"
+                class="bg-dark-primary border-slate-800 text-slate-100 resize-none"
             />
               </FormControl>
-              <FormDescription class="text-[#8DA0BA]">
+              <FormDescription class="text-custom-secondary">
                 10 caractères minimum.
               </FormDescription>
               <FormMessage class="text-destructive" />
@@ -213,9 +213,9 @@ onMounted(async () => {
             <Button
                 type="submit"
                 :disabled="isFormDisabled || isFormLoading"
-                class="w-full text-[#171717] font-bold inline-flex items-center justify-center
+                class="w-full text-custom-button font-bold inline-flex items-center justify-center
                        px-10 py-3 rounded-xl cursor-pointer
-                       bg-linear-to-r from-[#00FF7F] to-[#00CC99]
+                       bg-gradient-brand
                        transition-all duration-300 ease-in-out
                        hover:scale-105 focus-visible:scle-105 active:scale-95"
             >
@@ -226,8 +226,8 @@ onMounted(async () => {
           </div>
         </form>
 
-        <p class="text-xs text-[#8DA0BA] mt-4">
-          En envoyant ce message, vous acceptez nos <NuxtLink to="/privacy" class="underline transition-all duration-200 ease-out hover:text-[#00FF7F] focus-visible:text-[#00FF7F]">politique de confidentialité</NuxtLink>.
+        <p class="text-xs text-custom-secondary mt-4">
+          En envoyant ce message, vous acceptez nos <NuxtLink to="/privacy" class="underline transition-all duration-200 ease-out hover-text-brand-primary focus-visible-text-brand-primary">politique de confidentialité</NuxtLink>.
         </p>
       </div>
     </div>

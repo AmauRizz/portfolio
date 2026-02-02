@@ -45,29 +45,29 @@ onMounted(() => {
 <template>
   <article v-if="service.type === ServiceType.PRIMARY"
            class="flex flex-col gap-8 border-2 border-slate-800 rounded-xl px-6 py-6
-                  bg-linear-to-br from-[#111727] to-[#0A0F1C]
+                  bg-gradient-custom
                   transition-all duration-200 ease-out hover:scale-102"
   >
     <div class="flex flex-col-reverse gap-4 sm:flex-row sm:gap-0 sm:justify-between">
       <div class="flex items-start gap-2">
-        <div class="bg-[#050816] border-2 border-slate-800 inline-flex items-center justify-center p-1 rounded-lg">
-          <Icon :name="service.icon" class="text-5xl text-[#00FF7F]" />
+        <div class="bg-dark-primary border-2 border-slate-800 inline-flex items-center justify-center p-1 rounded-lg">
+          <Icon :name="service.icon" class="text-5xl text-brand-primary" />
         </div>
         <div>
           <h3 class="text-2xl font-bold">{{ service.label }}</h3>
-          <p class="text-[#8DA0BA]">{{ service.description }}</p>
+          <p class="text-custom-secondary">{{ service.description }}</p>
         </div>
       </div>
 
       <div>
-        <div class="bg-[#00FF7F] text-[#000000] inline-flex items-center gap-1 rounded-full px-2">
+        <div class="bg-brand-primary text-black inline-flex items-center gap-1 rounded-full px-2">
           <Icon name="material-symbols:star-rounded"/>
           <p>Populaire</p>
         </div>
       </div>
     </div>
 
-    <Separator orientation="horizontal" class="hidden sm:flex bg-[#8DA0BA]" />
+    <Separator orientation="horizontal" class="hidden sm:flex bg-custom-secondary" />
 
     <div class="flex flex-col gap-6">
       <div class="hidden sm:flex relative group">
@@ -82,7 +82,7 @@ onMounted(() => {
                 :key="index"
                 class="basis-full md:basis-1/2"
             >
-              <div class="flex flex-col gap-3 rounded-xl border-2 border-slate-800 bg-[#050816]  p-4">
+              <div class="flex flex-col gap-3 rounded-xl border-2 border-slate-800 bg-dark-primary  p-4">
                 <p class="font-bold">{{ project.label }}</p>
                 <NuxtImg
                     :src="'/images/' + project.image"
@@ -92,7 +92,7 @@ onMounted(() => {
                 <NuxtLink
                     :to="'https://' + project.url"
                     target="_blank"
-                    class="inline-flex items-center gap-1 text-sm underline-offset-4 transition-all duration-200 ease-out hover:underline hover:text-[#00FF7F]"
+                    class="inline-flex items-center gap-1 text-sm underline-offset-4 transition-all duration-200 ease-out hover:underline hover:text-brand-primary"
                 >
                   <span>{{ project.url }}</span>
                   <Icon name="mdi:external-link" />
@@ -108,13 +108,13 @@ onMounted(() => {
                 class="static cursor-pointer h-9 w-9 rounded-full
                bg-black/40 backdrop-blur
                border border-slate-700
-               hover:bg-[#00FF7F] hover:text-black"
+               hover:bg-brand-primary hover:text-black"
             />
             <CarouselNext
                 class="static cursor-pointer h-9 w-9 rounded-full
                bg-black/40 backdrop-blur
                border border-slate-700
-               hover:bg-[#00FF7F] hover:text-black"
+               hover:bg-brand-primary hover:text-black"
             />
           </div>
 
@@ -126,7 +126,7 @@ onMounted(() => {
                 :data-active="selectedIndex === i - 1"
                 class="cursor-pointer h-1.5 w-6 rounded-full
                        bg-slate-700 transition-all duration-300
-                       data-[active=true]:bg-[#00FF7F]
+                       data-[active=true]:bg-brand-primary
                        data-[active=true]:w-10"
             />
           </div>
@@ -138,23 +138,23 @@ onMounted(() => {
         <li
             v-for="(feature, index) in service.features"
             :key="index"
-            class="text-[#8DA0BA] inline-flex items-center gap-1 text-sm"
+            class="text-custom-secondary inline-flex items-center gap-1 text-sm"
         >
-          <Icon name="icon-park-outline:dot" class="text-[#00FF7F]"></Icon>
+          <Icon name="icon-park-outline:dot" class="text-brand-primary"></Icon>
           <span>{{ feature.label }}</span>
         </li>
       </ul>
     </div>
 
-    <Separator orientation="horizontal" class="bg-[#8DA0BA]" />
+    <Separator orientation="horizontal" class="bg-custom-secondary" />
 
     <div class="flex justify-between items-center">
-      <h3 class="text-xl font-bold text-[#00FF7F]">{{ service.priceText }}</h3>
+      <h3 class="text-xl font-bold text-brand-primary">{{ service.priceText }}</h3>
 
       <NuxtLink
-          to="#contact"
-          class="inline-flex items-center justify-center px-10 py-3 font-bold text-[#171717]
-                 bg-linear-to-r from-[#00FF7F] to-[#00CC99] rounded-xl
+          to="/#contact"
+          class="inline-flex items-center justify-center px-10 py-3 font-bold text-custom-button
+                 bg-gradient-brand rounded-xl
                  transition-all duration-300 ease-in-out
                  hover:scale-105 focus-visible:scale-105 active:scale-95"
       >

@@ -9,56 +9,65 @@ defineProps<{
 <template>
   <article
       class="group relative flex overflow-hidden
-           border-2 border-slate-800 rounded-2xl
-           bg-linear-to-br from-[#111727] to-[#0A0F1C]"
+         border-2 border-slate-800 rounded-2xl
+         bg-gradient-custom
+         transition-all duration-700
+         hover:shadow-[0_0_80px_var(--brand-primary)] hover:shadow-2xl
+         hover:-translate-y-2"
+      :style="{ animationDelay: `${(parseInt($attrs['data-index']) || 0) * 0.1}s` }"
   >
-    <div class="relative w-2/5 aspect-16/10 overflow-hidden">
+    <div class="relative w-1/2 overflow-hidden">
       <NuxtImg
           :src="project.image"
           alt="Project preview"
-          class="w-full h-full object-cover
-               transition-transform duration-700
-               group-hover:scale-105"
+          class="w-full h-full object-cover absolute inset-0
+               transition-transform duration-1000
+               group-hover:scale-115"
       />
 
       <div
           class="absolute inset-0 bg-gradient-to-r
-               from-[#0A0F1C]/90 via-[#0A0F1C]/40 to-transparent"
+               from-[var(--bg-gradient-end)]/95 via-[var(--bg-gradient-end)]/50 to-transparent"
       />
 
       <div
           v-if="project.isFeatured"
-          class="absolute top-3 left-3 bg-[#00FF7F] text-[#000000] inline-flex items-center gap-1 rounded-full px-2 py-1 shadow-lg"
+          class="absolute top-4 left-4 z-10
+               bg-gradient-to-r from-brand-primary to-brand-accent text-black
+               inline-flex items-center gap-1
+               rounded-full px-4 py-2
+               text-xs font-bold shadow-lg
+               animate-pulse"
       >
-        <Icon name="solar:cup-star-bold" class="text-sm"/>
-        <p class="text-xs font-semibold m-0">En vedette</p>
+        <Icon name="solar:cup-star-bold" />
+        En vedette
       </div>
 
-      <div class="absolute bottom-0 left-0 p-6 z-10">
-        <div>
-          <span class="text-xs uppercase tracking-widest text-[#00FF7F]">
-            {{ project.category }}
-          </span>
-          <h3 class="text-2xl font-bold mt-1">
-            {{ project.name }}
-          </h3>
-          <p class="text-sm text-[#8DA0BA] mt-2 max-w-sm line-clamp-2">
-            {{ project.shortDescription }}
-          </p>
-        </div>
+      <div class="absolute bottom-0 left-0 p-6 z-10 max-w-md">
+        <span class="text-xs uppercase tracking-widest text-brand-primary">
+          {{ project.category }}
+        </span>
+
+        <h3 class="text-3xl font-extrabold tracking-tight mt-1 group-hover:text-brand-primary transition-colors duration-300">
+          {{ project.name }}
+        </h3>
+
+        <p class="text-sm text-custom-secondary mt-2 line-clamp-2">
+          {{ project.shortDescription }}
+        </p>
       </div>
     </div>
 
     <div
-        class="relative w-3/5
-             bg-[#0A0F1C]/95 border-l-6 rounded-l-2xl border-[#00FF7F]"
+        class="relative w-1/2
+             bg-[var(--bg-gradient-end)]/95
+             border-l-6 border-brand-primary
+             transition-all duration-700
+             group-hover:-translate-x-4 group-hover:bg-[var(--bg-gradient-end)]"
     >
-      <div
-          class="h-full p-8 pl-10
-               flex flex-col justify-between"
-      >
-        <div class="space-y-5">
-          <div class="flex flex-wrap gap-2 max-w-xl">
+      <div class="p-10 flex flex-col justify-between gap-6 min-h-[350px]">
+        <div class="space-y-6">
+          <div class="flex flex-wrap gap-2 max-w-lg">
             <SkillBadge
                 v-for="(skill, index) in project.stack"
                 :key="index"
@@ -66,39 +75,41 @@ defineProps<{
             />
           </div>
 
-          <p class="text-sm text-[#8DA0BA] leading-relaxed max-w-xl">
+          <p class="text-sm text-custom-secondary leading-relaxed max-w-lg">
             {{ project.longDescription }}
           </p>
         </div>
 
-        <div class="flex items-center justify-between pt-6">
-          <div class="flex gap-3">
-            <NuxtLink
-                :to="project.projectLink"
-                target="_blank"
-                class="inline-flex items-center gap-2
-                     border-2 border-slate-800 bg-[#050816]
-                     rounded-xl px-3 py-2
-                     text-[#00FF7F] font-semibold
-                     transition hover:border-[#00FF7F]"
-            >
-              <Icon name="streamline-plump:web" />
-              Live
-            </NuxtLink>
+        <div class="flex gap-4">
+          <NuxtLink
+              :to="project.projectLink"
+              target="_blank"
+              class="inline-flex items-center gap-2
+                   border-2 border-slate-800 bg-dark-primary
+                   rounded-xl px-6 py-3
+                   text-brand-primary font-bold
+                   transition-all duration-300
+                   hover:border-brand-primary hover:bg-brand-primary hover:text-black
+                   hover:scale-105 hover:shadow-lg hover:shadow-brand-primary/25"
+          >
+            <Icon name="streamline-plump:web" />
+            Live Demo
+          </NuxtLink>
 
-            <NuxtLink
-                :to="project.githubLink"
-                target="_blank"
-                class="inline-flex items-center gap-2
-                     border-2 border-slate-800 bg-[#050816]
-                     rounded-xl px-3 py-2
-                     text-[#00FF7F] font-semibold
-                     transition hover:border-[#00FF7F]"
-            >
-              <Icon name="mdi:github" />
-              GitHub
-            </NuxtLink>
-          </div>
+          <NuxtLink
+              :to="project.githubLink"
+              target="_blank"
+              class="inline-flex items-center gap-2
+                   border-2 border-slate-800 bg-dark-primary
+                   rounded-xl px-6 py-3
+                   text-brand-primary font-bold
+                   transition-all duration-300
+                   hover:border-brand-accent hover:bg-brand-accent hover:text-black
+                   hover:scale-105 hover:shadow-lg hover:shadow-brand-accent/25"
+          >
+            <Icon name="mdi:github" />
+            Code Source
+          </NuxtLink>
         </div>
       </div>
     </div>
