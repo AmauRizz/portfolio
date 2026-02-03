@@ -50,8 +50,8 @@ const createStars = (canvas: HTMLCanvasElement) => {
 
 const createShootingStar = (canvas: HTMLCanvasElement) => {
   const startX = Math.random() * canvas.width;
-  const startY = Math.random() * canvas.height * 0.5; // Partie supérieure de l'écran
-  const angle = Math.PI / 4 + Math.random() * Math.PI / 6; // Angle entre 45° et 75°
+  const startY = Math.random() * canvas.height * 0.5;
+  const angle = Math.PI / 4 + Math.random() * Math.PI / 6;
 
   shootingStars.value.push({
     x: startX,
