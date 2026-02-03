@@ -12,9 +12,8 @@ defineProps<{
          border-2 border-slate-800 rounded-2xl
          bg-gradient-custom
          transition-all duration-700
-         hover:shadow-[0_0_80px_var(--brand-primary)] hover:shadow-2xl
          hover:-translate-y-2"
-      :style="{ animationDelay: `${(parseInt($attrs['data-index']) || 0) * 0.1}s` }"
+      :style="{ animationDelay: `${(parseInt(<string>$attrs['data-index']) || 0) * 0.1}s` }"
   >
     <div class="relative w-1/2 overflow-hidden">
       <NuxtImg
@@ -26,18 +25,17 @@ defineProps<{
       />
 
       <div
-          class="absolute inset-0 bg-gradient-to-r
-               from-[var(--bg-gradient-end)]/95 via-[var(--bg-gradient-end)]/50 to-transparent"
+          class="absolute inset-0 bg-linear-to-r
+               from-(--bg-gradient-end)/95 via-(--bg-gradient-end)/50 to-transparent"
       />
 
       <div
           v-if="project.isFeatured"
           class="absolute top-4 left-4 z-10
-               bg-gradient-to-r from-brand-primary to-brand-accent text-black
+               bg-brand-primary text-black
                inline-flex items-center gap-1
                rounded-full px-4 py-2
-               text-xs font-bold shadow-lg
-               animate-pulse"
+               text-xs font-bold shadow-lg"
       >
         <Icon name="solar:cup-star-bold" />
         En vedette
@@ -60,10 +58,10 @@ defineProps<{
 
     <div
         class="relative w-1/2
-             bg-[var(--bg-gradient-end)]/95
+             bg-(--bg-gradient-end)/95
              border-l-6 border-brand-primary
              transition-all duration-700
-             group-hover:-translate-x-4 group-hover:bg-[var(--bg-gradient-end)]"
+             group-hover:-translate-x-4 group-hover:bg-(--bg-gradient-end)"
     >
       <div class="p-10 flex flex-col justify-between gap-6 min-h-[350px]">
         <div class="space-y-6">
@@ -89,10 +87,10 @@ defineProps<{
                    rounded-xl px-6 py-3
                    text-brand-primary font-bold
                    transition-all duration-300
-                   hover:border-brand-primary hover:bg-brand-primary hover:text-black
+                   hover:border-brand-primary hover:bg-brand-primary
                    hover:scale-105 hover:shadow-lg hover:shadow-brand-primary/25"
           >
-            <Icon name="streamline-plump:web" />
+            <Icon name="streamline-plump:web" class="text-2xl" />
             Live Demo
           </NuxtLink>
 
@@ -104,10 +102,10 @@ defineProps<{
                    rounded-xl px-6 py-3
                    text-brand-primary font-bold
                    transition-all duration-300
-                   hover:border-brand-accent hover:bg-brand-accent hover:text-black
+                   hover:border-brand-accent hover:bg-brand-accent
                    hover:scale-105 hover:shadow-lg hover:shadow-brand-accent/25"
           >
-            <Icon name="mdi:github" />
+            <Icon name="mdi:github" class="text-2xl" />
             Code Source
           </NuxtLink>
         </div>

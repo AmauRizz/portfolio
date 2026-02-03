@@ -46,7 +46,7 @@ const age = computed(() => {
           </div>
 
           <div class="flex flex-col gap-4">
-            <div class="flex flex-col gap-2 text-custom-secondary">
+            <div class="flex flex-col gap-3 text-custom-secondary">
               <SchoolCard name="La Rochelle Université"
                           icon="https://www.univ-larochelle.fr/wp-content/uploads/png/logo-universite-de-la-rochelle-2X.png"
                           description="Licence d'informatique"

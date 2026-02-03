@@ -52,7 +52,7 @@ html {
 
 :root {
     --radius: 0.625rem;
-    /* Couleurs personnalisées du site */
+
     --brand-primary: #00FF7F;
     --brand-secondary: #00CC99;
     --brand-accent: #FFFF00;
@@ -61,12 +61,11 @@ html {
     --bg-dark-primary: #050816;
     --bg-gradient-start: #111727;
     --bg-gradient-end: #0A0F1C;
-    /* Couleurs supplémentaires identifiées */
     --bg-form-input: #070A13;
     --social-github: #ffffff;
     --social-linkedin: #0e76a8;
+
     --shadow-brand: rgba(0, 255, 127, 0.15);
-    /* Couleurs système existantes */
     --background: oklch(1 0 0);
     --foreground: oklch(0.145 0 0);
     --card: oklch(1 0 0);
@@ -101,21 +100,6 @@ html {
 }
 
 .dark {
-    /* Couleurs personnalisées du site - mode sombre */
-    --brand-primary: #00FF7F;
-    --brand-secondary: #00CC99;
-    --brand-accent: #FFFF00;
-    --text-secondary: #8DA0BA;
-    --text-button: #171717;
-    --bg-dark-primary: #050816;
-    --bg-gradient-start: #111727;
-    --bg-gradient-end: #0A0F1C;
-    /* Couleurs supplémentaires identifiées - mode sombre */
-    --bg-form-input: #070A13;
-    --social-github: #ffffff;
-    --social-linkedin: #0e76a8;
-    --shadow-brand: rgba(0, 255, 127, 0.15);
-    /* Couleurs système existantes - mode sombre */
     --background: oklch(0.145 0 0);
     --foreground: oklch(0.985 0 0);
     --card: oklch(0.205 0 0);
@@ -158,7 +142,6 @@ html {
     }
 }
 
-/* Classes utilitaires pour les couleurs personnalisées */
 @layer utilities {
   .text-brand-primary {
     color: var(--brand-primary);
@@ -195,10 +178,10 @@ html {
   .bg-dark-primary {
     background-color: var(--bg-dark-primary);
   }
-  
+
   .bg-gradient-custom {
-    background: linear-gradient(to bottom right, var(--bg-gradient-start), var(--bg-gradient-end));
-  }
+       background: linear-gradient(to bottom right, var(--bg-gradient-start), var(--bg-gradient-end));
+   }
   
   .border-brand-primary {
     border-color: var(--brand-primary);

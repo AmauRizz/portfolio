@@ -194,30 +194,6 @@ export const skillItems: Skill[] = [
         link: "https://www.docker.com/"
     },
     {
-        icon: "devicon:vscode",
-        name: "VS Code",
-        description: "Éditeur de code léger et extensible pour développer efficacement.",
-        usage: "Édition de code, débogage et intégration avec extensions.",
-        skills: [
-            "Extensions et plugins",
-            "Debugging",
-            "Intégration Git"
-        ],
-        link: "https://code.visualstudio.com/"
-    },
-    {
-        icon: "devicon:jetbrains",
-        name: "JetBrains",
-        description: "Suite d’IDE puissants pour différents langages et technologies.",
-        usage: "Développement avancé avec assistance intelligente et outils intégrés.",
-        skills: [
-            "IntelliJ IDEA",
-            "WebStorm",
-            "Refactoring et débogage"
-        ],
-        link: "https://www.jetbrains.com/"
-    },
-    {
         icon: "material-icon-theme:figma",
         name: "Figma",
         description: "Outil de design UI/UX collaboratif pour créer des maquettes et prototypes.",

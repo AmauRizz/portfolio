@@ -20,7 +20,7 @@ const closeMenu = () => {
 
 <template>
   <header
-      class="sticky top-4 z-50 mx-auto w-[95%] max-w-6xl rounded-2xl border-2 border-slate-800 bg-dark-primary/40 backdrop-blur shadow-lg"
+      class="sticky top-4 z-50 mx-auto w-[95%] max-w-6xl rounded-2xl border-2 border-slate-800 bg-dark-primary backdrop-blur shadow-lg"
   >
     <nav class="flex items-center justify-between px-4 py-3 lg:px-6">
       <NuxtLink to="/#home"

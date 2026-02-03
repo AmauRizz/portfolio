@@ -129,6 +129,7 @@ onMounted(async () => {
           <div class="flex gap-4">
             <NuxtLink
                 to="https://github.com/AmauRizz"
+                target="_blank"
                 class="group flex justify-center items-center bg-gradient-custom rounded-xl px-1 py-1"
             >
               <Icon name="mdi:github" size="2em" class="text-custom-secondary transition-all duration-200 ease-out group-hover:text-[#ffffff]" />
@@ -136,6 +137,7 @@ onMounted(async () => {
 
             <NuxtLink
                 to="https://www.linkedin.com/in/amaury-mulcey-pro/"
+                target="_blank"
                 class="group flex justify-center items-center bg-gradient-custom rounded-xl px-1 py-1"
             >
               <Icon name="mdi:linkedin" size="2em" class="text-custom-secondary transition-all duration-200 ease-out group-hover:text-[#0e76a8]" />
@@ -143,9 +145,10 @@ onMounted(async () => {
 
             <NuxtLink
                 to="https://buymeacoffee.com/amaurizz"
+                target="_blank"
                 class="group flex justify-center items-center bg-gradient-custom rounded-xl px-1 py-1"
             >
-              <Icon name="simple-icons:buymeacoffee" size="2em" class="text-custom-secondary transition-all duration-200 ease-out group-hover:text-brand-accent" />
+              <Icon name="simple-icons:buymeacoffee" size="2em" class="text-custom-secondary transition-all duration-200 ease-out group-hover:text-[#FFFF00FF]" />
             </NuxtLink>
           </div>
         </article>

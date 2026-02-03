@@ -15,12 +15,12 @@
               }"
           />
         </div>
-        <div class="absolute -bottom-0 -right-0 w-8 h-8 bg-primary rounded-full flex items-center justify-center">
+        <div class="absolute bottom-0 right-0 w-8 h-8 bg-primary rounded-full flex items-center justify-center">
           <NuxtLink
-              href="https://tinder.com/@AmauRizz"
+              href="https://buymeacoffee.com/amaurizz"
               target="_blank"
-              class="text-white font-bold inline-flex items-center justify-center px-3 py-3
-                bg-pink-500 rounded-full
+              class="text-black font-bold inline-flex items-center justify-center px-3 py-3
+                bg-brand-accent rounded-full
                 transition-all duration-300 ease-in-out
                 hover:scale-105
                 focus-visible:scale-105
@@ -28,7 +28,7 @@
               title="Retrouvez-moi sur Tinder"
           >
               <span class="inline-flex items-center gap-2">
-                <Icon name="simple-icons:tinder" class="text-xl -rotate-z-10" />
+                <Icon name="simple-icons:buymeacoffee" class="text-xl -rotate-z-10" />
               </span>
           </NuxtLink>
         </div>
@@ -54,25 +54,6 @@
                  hover:scale-105 focus-visible:scale-105 active:scale-95"
           >
             <span>Mes Services</span>
-          </NuxtLink>
-
-          <NuxtLink
-              href="https://buymeacoffee.com/amaurizz"
-              target="_blank"
-              class="gap-2 text-brand-accent font-bold inline-flex items-center justify-center px-10 py-3
-                border-2 border-brand-accent rounded-xl
-                transition-all duration-300 ease-in-out
-                hover:scale-105 hover:bg-brand-accent hover:text-custom-button
-                focus-visible:scale-105 focus-visible:bg-brand-accent focus-visible:text-custom-button
-                active:scale-95"
-          >
-              <span class="inline-flex items-center">
-                <Icon name="simple-icons:buymeacoffee" />
-              </span>
-            <span>Me Soutenir</span>
-            <span class="inline-flex items-center">
-                <Icon name="mdi:external-link" />
-            </span>
           </NuxtLink>
         </div>
       </div>

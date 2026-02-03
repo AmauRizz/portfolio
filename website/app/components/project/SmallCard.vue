@@ -12,9 +12,8 @@ defineProps<{
          border-2 border-slate-800 rounded-xl
          bg-gradient-custom
          transition-all duration-500
-         hover:shadow-[0_0_40px_var(--brand-primary)] hover:shadow-xl
          hover:-translate-y-1"
-      :style="{ animationDelay: `${(parseInt($attrs['data-index']) || 0) * 0.1}s` }"
+      :style="{ animationDelay: `${(parseInt(<string>$attrs['data-index']) || 0) * 0.1}s` }"
   >
     <div class="relative aspect-16/10 overflow-hidden rounded-lg">
       <NuxtImg
@@ -25,8 +24,8 @@ defineProps<{
              group-hover:scale-110"
       />
 
-      <div class="absolute inset-0 bg-gradient-to-r
-                from-[var(--bg-gradient-end)]/95 via-[var(--bg-gradient-end)]/50 to-transparent
+      <div class="absolute inset-0 bg-linear-to-r
+                from-(--bg-gradient-end)/95 via-(--bg-gradient-end)/50 to-transparent
                 transition-opacity duration-300 group-hover:opacity-90"
       />
 
@@ -52,7 +51,7 @@ defineProps<{
 
     <div
         class="absolute inset-y-0 right-0 w-3/5
-           bg-[var(--bg-gradient-end)]/95 border-l-6 rounded-l-2xl border-brand-primary
+           bg-(--bg-gradient-end)/95 border-l-6 rounded-l-2xl border-brand-primary
            transform translate-x-[calc(100%-3rem)]
            group-hover:translate-x-0
            transition-all duration-500 ease-out
@@ -87,36 +86,29 @@ defineProps<{
 
               <div>
                 <div class="flex flex-row gap-2">
-                  <div class="inline-flex items-center gap-2
-                       border-2 border-slate-800 bg-dark-primary rounded-xl
-                       px-2 py-2
-                       transition-all duration-200 ease-out
-                       hover:border-brand-primary hover:bg-brand-primary hover:text-black">
-                    <NuxtLink
-                        :to="project.projectLink"
-                        target="_blank"
-                        class="inline-flex items-center gap-2
-                      text-brand-primary font-bold text-lg hover:text-black transition-colors duration-200"
-                    >
-                      <Icon name="streamline-plump:web" />
-                    </NuxtLink>
-                  </div>
-
-                  <div class="inline-flex items-center gap-2
-                        border-2 border-slate-800 bg-dark-primary rounded-xl
-                        px-2 py-2
-                        transition-all duration-200 ease-out
-                        hover:border-brand-accent hover:bg-brand-accent hover:text-black"
+                  <NuxtLink
+                      :to="project.projectLink"
+                      target="_blank"
+                      class="inline-flex items-center gap-2
+                             border-2 border-slate-800 bg-dark-primary rounded-xl
+                             px-2 py-2 text-brand-primary font-bold text-lg
+                             transition-all duration-300
+                             hover:scale-105"
                   >
-                    <NuxtLink
-                        :to="project.githubLink"
-                        target="_blank"
-                        class="inline-flex items-center gap-2
-                        text-brand-primary font-bold text-lg hover:text-black transition-colors duration-200"
-                    >
-                      <Icon name="mdi:github" />
-                    </NuxtLink>
-                  </div>
+                    <Icon name="streamline-plump:web" class="text-xl" />
+                  </NuxtLink>
+
+                  <NuxtLink
+                      :to="project.githubLink"
+                      target="_blank"
+                      class="inline-flex items-center gap-2
+                             border-2 border-slate-800 bg-dark-primary rounded-xl
+                             px-2 py-2 text-brand-primary font-bold text-lg
+                             transition-all duration-300
+                             hover:scale-110"
+                  >
+                    <Icon name="mdi:github" class="text-xl" />
+                  </NuxtLink>
                 </div>
               </div>
             </div>

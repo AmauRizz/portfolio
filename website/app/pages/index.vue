@@ -1,7 +1,4 @@
 <script setup lang="ts">
-import 'vue-sonner/style.css';
-import { Toaster } from '@/components/ui/sonner';
-
 useHead({
   title: 'Amaury Mulcey • Développeur Freelance Web & Étudiant',
   meta: [
@@ -24,30 +21,15 @@ useHead({
     { rel: 'canonical', href: 'https://www.amaurymulcey.fr' }
   ]
 })
-
-const {
-  activeModal,
-  selectedSkill,
-  toggleModal
-} = useModal()
 </script>
 
 
 <template>
-  <main class="bg-[#070A13] text-[#F3F7FB] pt-20 mx-auto max-w-6xl px-4 md:px-6 lg:px-8">
+  <main class="text-[#F3F7FB] pt-20 mx-auto max-w-6xl px-4 md:px-6 lg:px-8">
     <AppSectionHero />
     <AppSectionProjects />
     <AppSectionAbout />
     <AppSectionServices />
     <AppSectionContact />
-
-    <SkillModal
-        v-if="activeModal === 'skill' && selectedSkill"
-        :open="true"
-        :skill="selectedSkill"
-        @update:open="() => toggleModal('skill', null)"
-    />
-
-    <Toaster closeButton />
   </main>
 </template>
