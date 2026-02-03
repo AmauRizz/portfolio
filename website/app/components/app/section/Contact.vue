@@ -157,7 +157,7 @@ onMounted(async () => {
       <div
           class="bg-gradient-custom border-2 border-slate-800 rounded-xl px-6 py-6
            transition-all duration-200 ease-out
-           hover:border-brand-primary hover:shadow-[0_0_28px_var(--brand-primary)] focus-visible:border-brand-primary focus-visible:shadow-[0_0_28px_var(--brand-primary)]"
+           hover:border-brand-primary hover:scale-102 focus-visible:border-brand-primary focus-visible:scale-102"
       >
         <h3 class="font-bold text-xl mb-6">Envoyez-moi un message</h3>
 

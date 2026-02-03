@@ -10,9 +10,21 @@ interface Star {
   speedY: number;
 }
 
+interface ShootingStar {
+  x: number;
+  y: number;
+  length: number;
+  speed: number;
+  angle: number;
+  opacity: number;
+  life: number;
+}
+
 const canvasRef = ref<HTMLCanvasElement | null>(null);
 const stars = ref<Star[]>([]);
+const shootingStars = ref<ShootingStar[]>([]);
 let animationFrameId: number | null = null;
+let lastShootingStarTime = 0;
 
 const resizeCanvas = (canvas: HTMLCanvasElement) => {
   canvas.width = window.innerWidth;
@@ -36,7 +48,25 @@ const createStars = (canvas: HTMLCanvasElement) => {
   }
 };
 
+const createShootingStar = (canvas: HTMLCanvasElement) => {
+  const startX = Math.random() * canvas.width;
+  const startY = Math.random() * canvas.height * 0.5; // Partie supérieure de l'écran
+  const angle = Math.PI / 4 + Math.random() * Math.PI / 6; // Angle entre 45° et 75°
+
+  shootingStars.value.push({
+    x: startX,
+    y: startY,
+    length: 50 + Math.random() * 80,
+    speed: 8 + Math.random() * 6,
+    angle: angle,
+    opacity: 1,
+    life: 1,
+  });
+};
+
 const animate = (ctx: CanvasRenderingContext2D, canvas: HTMLCanvasElement) => {
+  const currentTime = Date.now();
+
   ctx.fillStyle = '#070A13';
   ctx.fillRect(0, 0, canvas.width, canvas.height);
 
@@ -55,6 +85,44 @@ const animate = (ctx: CanvasRenderingContext2D, canvas: HTMLCanvasElement) => {
     ctx.arc(star.x, star.y, star.size, 0, Math.PI * 2);
     ctx.fillStyle = `rgba(255, 255, 255, ${star.opacity * twinkle})`;
     ctx.fill();
+  });
+
+  if (currentTime - lastShootingStarTime > 2000 && Math.random() < 0.02) {
+    createShootingStar(canvas);
+    lastShootingStarTime = currentTime;
+  }
+
+  shootingStars.value = shootingStars.value.filter((star) => {
+    star.x += Math.cos(star.angle) * star.speed;
+    star.y += Math.sin(star.angle) * star.speed;
+    star.life -= 0.01;
+    star.opacity = star.life;
+
+    if (star.life <= 0) return false;
+
+    const gradient = ctx.createLinearGradient(
+        star.x,
+        star.y,
+        star.x - Math.cos(star.angle) * star.length,
+        star.y - Math.sin(star.angle) * star.length
+    );
+
+    gradient.addColorStop(0, `rgba(255, 255, 255, ${star.opacity})`);
+    gradient.addColorStop(0.5, `rgba(200, 220, 255, ${star.opacity * 0.6})`);
+    gradient.addColorStop(1, 'rgba(255, 255, 255, 0)');
+
+    ctx.beginPath();
+    ctx.strokeStyle = gradient;
+    ctx.lineWidth = 2;
+    ctx.lineCap = 'round';
+    ctx.moveTo(star.x, star.y);
+    ctx.lineTo(
+        star.x - Math.cos(star.angle) * star.length,
+        star.y - Math.sin(star.angle) * star.length
+    );
+    ctx.stroke();
+
+    return true;
   });
 
   animationFrameId = requestAnimationFrame(() => animate(ctx, canvas));
