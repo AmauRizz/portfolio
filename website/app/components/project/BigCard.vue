@@ -3,6 +3,7 @@ import type { Project } from "~/types/project"
 
 defineProps<{
   project: Project
+  showBadge: boolean
 }>()
 </script>
 
@@ -30,7 +31,7 @@ defineProps<{
       />
 
       <div
-          v-if="project.isFeatured"
+          v-if="showBadge && project.isFeatured"
           class="absolute top-4 left-4 z-10
                bg-brand-primary text-black
                inline-flex items-center gap-1

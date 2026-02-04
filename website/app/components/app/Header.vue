@@ -3,7 +3,6 @@ const links = [
     { label: 'Projets', href: '/#projects' },
     { label: 'À propos', href: '/#about' },
     { label: 'Services', href: '/#services' },
-    { label: 'FAQ', href: '/#faq' },
     { label: 'Contact', href: '/#contact' },
 ]
 

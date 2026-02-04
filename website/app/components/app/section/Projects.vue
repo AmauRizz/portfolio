@@ -10,9 +10,9 @@
 
     <div class="flex flex-col gap-12">
       <ProjectBigCard
-          v-for="(project, index) in getProjectsByIsFeatured(true)"
+          v-for="(project, index) in getProjectsByIsFeatured(true).slice(0,1)"
           :key="index"
-          :project="project"
+          :project="project" :show-badge="false"
       />
 
       <div class="grid grid-cols-2 gap-12">

@@ -49,7 +49,7 @@ export const projectItems: Project[] = [
         projectLink: "https://refuelmap.amaurymulcey.fr/"
     },
     {
-        isFeatured: false,
+        isFeatured: true,
 
         name: "Planifest",
 
