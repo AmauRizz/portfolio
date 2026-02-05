@@ -92,6 +92,7 @@ defineProps<{
               <div>
                 <div class="flex flex-row gap-2">
                   <NuxtLink
+                      v-if="project.projectLink"
                       :to="project.projectLink"
                       target="_blank"
                       class="inline-flex items-center gap-2

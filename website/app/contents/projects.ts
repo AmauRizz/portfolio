@@ -5,62 +5,16 @@ export const projectItems: Project[] = [
     {
         isFeatured: true,
 
-        name: "Mobilo",
-
-        shortDescription: "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
-        longDescription: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s",
-
-        gallery: [
-
-        ],
-        image: "/assets/images/pdp.jpeg",
-        category: ProjectCategories.WEBSITE,
-        stack: [
-            getSkillByName("Nuxt.js"),
-            getSkillByName("Nest.js"),
-            getSkillByName("Tailwindcss"),
-            getSkillByName("PostgreSQL")
-        ],
-
-        githubLink: "https://github.com/AmauRizz/mobilo",
-        projectLink: "https://mobilo.amaurymulcey.fr/"
-    },
-    {
-        isFeatured: false,
-
-        name: "RefuelMap",
-
-        shortDescription: "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
-        longDescription: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s",
-
-        gallery: [
-
-        ],
-        image: "/assets/images/pdp.jpeg",
-        category: ProjectCategories.WEBSITE,
-        stack: [
-            getSkillByName("Next.js"),
-            getSkillByName("Express.js"),
-            getSkillByName("Tailwindcss"),
-            getSkillByName("MySql")
-        ],
-
-        githubLink: "https://github.com/AmauRizz/refuelmap",
-        projectLink: "https://refuelmap.amaurymulcey.fr/"
-    },
-    {
-        isFeatured: true,
-
         name: "Planifest",
 
-        shortDescription: "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
+        shortDescription: "Site internet ",
         longDescription: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s",
 
         gallery: [
 
         ],
         image: "/assets/images/pdp.jpeg",
-        category: ProjectCategories.APPLICATION,
+        category: ProjectCategories.WEBSITE,
         stack: [
             getSkillByName("Symfony"),
             getSkillByName("Vue.js"),
@@ -75,7 +29,7 @@ export const projectItems: Project[] = [
 
         name: "KyDiGames",
 
-        shortDescription: "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
+        shortDescription: "Mod minecraft pour les serveurs en manque de fun",
         longDescription: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s",
 
         gallery: [
@@ -127,7 +81,6 @@ export const projectItems: Project[] = [
         ],
 
         githubLink: "https://github.com/KyozuFR/ParkingLR",
-        projectLink: "https://parkinglr.amaurymulcey.fr/"
     },
     {
         isFeatured: false,

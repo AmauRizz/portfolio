@@ -95,7 +95,7 @@ const hasActiveFilters = computed(() => {
       </div>
     </section>
 
-    <section class="mb-8 space-y-6">
+    <section class="mb-8 space-y-6 sticky top-20 z-10 p-4 rounded-lg">
       <div class="flex flex-col md:flex-row gap-4">
         <div class="flex-1 relative">
           <Icon
@@ -111,7 +111,7 @@ const hasActiveFilters = computed(() => {
           <button
               v-if="searchQuery"
               @click="searchQuery = ''"
-              class="absolute right-4 top-1/2 -translate-y-1/2 text-[#8DA0BA] hover:text-[#F3F7FB] transition-colors"
+              class="cursor-pointer absolute right-4 top-1/2 -translate-y-1/2 text-[#8DA0BA] hover:text-[#F3F7FB] transition-colors"
           >
             <Icon name="tabler:x" class="text-xl" />
           </button>
@@ -121,7 +121,7 @@ const hasActiveFilters = computed(() => {
           <button
               @click="layoutMode = 'list'"
               :class="[
-              'px-4 py-3 rounded-lg border transition-all duration-200',
+              'cursor-pointer px-4 py-3 rounded-lg border transition-all duration-200',
               layoutMode === 'list'
                 ? 'bg-brand-primary border-brand-primary text-[#0A1628]'
                 : 'bg-[#1A2332] border-[#2A3647] text-[#8DA0BA] hover:border-brand-primary'

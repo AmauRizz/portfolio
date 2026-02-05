@@ -87,7 +87,7 @@ const animate = (ctx: CanvasRenderingContext2D, canvas: HTMLCanvasElement) => {
     ctx.fill();
   });
 
-  if (currentTime - lastShootingStarTime > 2000 && Math.random() < 0.02) {
+  if (currentTime - lastShootingStarTime > 6000 && Math.random() < 0.02) {
     createShootingStar(canvas);
     lastShootingStarTime = currentTime;
   }

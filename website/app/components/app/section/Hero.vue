@@ -58,6 +58,16 @@
           >
             <span>Mes Services</span>
           </NuxtLink>
+
+          <NuxtLink
+              to="/#contact"
+              class="inline-flex items-center justify-center px-10 py-3 font-bold
+                   text-brand-primary border-2 border-[#00FF7F] rounded-xl
+                     transition-all duration-300 ease-in-out
+                     hover:bg-[#00FF7FFF] hover:text-[#171717FF] active:scale-95"
+                    >
+            <span>Me Contacter</span>
+          </NuxtLink>
         </div>
       </div>
     </div>
