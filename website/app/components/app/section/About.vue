@@ -64,7 +64,7 @@ const age = computed(() => {
 
           <div class="text-center">
             <NuxtLink
-                to="/cv.pdf"
+                to="/assets/cv.pdf"
                 target="_blank"
                 class="gap-2 text-brand-primary font-bold inline-flex items-center justify-center px-10 py-3
                       border-2 border-brand-primary rounded-xl
@@ -75,8 +75,8 @@ const age = computed(() => {
             >
               <span>Visualiser mon CV</span>
               <span class="inline-flex items-center">
-                  <Icon name="mdi:external-link" />
-                </span>
+                <Icon name="mdi:external-link" />
+              </span>
             </NuxtLink>
           </div>
         </article>

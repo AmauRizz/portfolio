@@ -34,8 +34,26 @@ const exitDisplay = computed(() => {
 <template>
   <div class="rounded-xl border-2 border-slate-800 bg-[#050816]  p-4 text-center sm:text-left transition-all duration-200 ease-out hover:scale-102">
     <div class="flex flex-col items-center sm:items-start sm:flex-row gap-4">
-      <NuxtImg :src="icon" class="w-12 h-12 object-cover rounded-full" />
+      <NuxtImg
+          :src="icon"
+          width="48" height="48"
+          sizes="48px"
+          format="webp"
+          densities="1x 2x"
+          loading="lazy"
+          class="w-12 h-12 object-cover rounded-full"
+      />
 
+      <!--
+      <NuxtImg
+          :src="icon"
+          width="48" height="48"
+          sizes="48px"
+          format="webp"
+          densities="1x 2x"
+          class="w-12 h-12 object-contain rounded-full"
+      />
+      -->
       <div class="mb-2">
         <h4 class="font-bold text-gray-100 text-lg">{{ name }}</h4>
         <p class="text-sm text-gray-400">

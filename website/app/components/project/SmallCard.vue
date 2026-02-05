@@ -18,7 +18,12 @@ defineProps<{
     <div class="relative aspect-16/10 overflow-hidden rounded-lg">
       <NuxtImg
           :src="project.image"
-          alt="Project preview"
+          alt=""
+          width="516" height="323"
+          sizes="100vw md:50vw lg:33vw"
+          format="webp"
+          densities="1x 2x"
+          loading="lazy"
           class="w-full h-full object-cover
              transition-transform duration-700
              group-hover:scale-110"

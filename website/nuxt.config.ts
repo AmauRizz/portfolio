@@ -31,11 +31,6 @@ export default defineNuxtConfig({
         ],
     },
 
-    image: {
-        quality: 80,
-        format: ['avif', 'webp'],
-    },
-
     fonts: {
         families: [
             {

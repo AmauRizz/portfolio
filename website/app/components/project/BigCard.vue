@@ -19,7 +19,12 @@ defineProps<{
     <div class="relative w-1/2 overflow-hidden">
       <NuxtImg
           :src="project.image"
-          alt="Project preview"
+          alt=""
+          width="542" height="350"
+          sizes="100vw md:50vw lg:33vw"
+          format="webp"
+          densities="1x 2x"
+          loading="lazy"
           class="w-full h-full object-cover absolute inset-0
                transition-transform duration-1000
                group-hover:scale-115"

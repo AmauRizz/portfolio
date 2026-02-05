@@ -84,11 +84,17 @@ onMounted(() => {
             >
               <div class="flex flex-col gap-3 rounded-xl border-2 border-slate-800 bg-dark-primary  p-4">
                 <p class="font-bold">{{ project.label }}</p>
-                <NuxtImg
-                    :src="'/images/' + project.image"
-                    class="rounded-lg border border-slate-800"
-                />
 
+                <NuxtImg
+                    :src="project.image"
+                    alt=""
+                    width="310" height="145"
+                    sizes="100vw md:50vw lg:33vw"
+                    format="webp"
+                    densities="1x 2x"
+                    loading="lazy"
+                    class="rounded-lg border border-slate-800 w-6xl h-auto"
+                />
                 <NuxtLink
                     :to="'https://' + project.url"
                     target="_blank"
