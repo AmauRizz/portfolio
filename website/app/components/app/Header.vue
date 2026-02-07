@@ -1,6 +1,16 @@
 <script setup lang="ts">
+import {
+  NavigationMenu,
+  NavigationMenuContent,
+  NavigationMenuIndicator,
+  NavigationMenuItem,
+  NavigationMenuLink,
+  NavigationMenuList,
+  NavigationMenuTrigger,
+  NavigationMenuViewport,
+} from '@/components/ui/navigation-menu'
+
 const links = [
-    { label: 'Projets', href: '/#projects' },
     { label: 'À propos', href: '/#about' },
     { label: 'Services', href: '/#services' },
     { label: 'Contact', href: '/#contact' },
@@ -30,16 +40,61 @@ const closeMenu = () => {
         <span class="text-brand-primary">www.</span>AmauryMulcey<span class="text-brand-primary">.fr/</span>
       </NuxtLink>
 
-      <div class="hidden items-center gap-8 text-sm font-medium lg:flex">
-        <NuxtLink
-            v-for="link in links"
-            :key="link.href"
-            :to="link.href"
-            class="text-slate-300 transition-all duration-200 ease-out hover-text-brand-primary focus-visible-text-brand-primary"
-        >
-          {{ link.label }}
-        </NuxtLink>
-      </div>
+      <NavigationMenu class="hidden lg:block">
+        <NavigationMenuList class="flex gap-8">
+          <NavigationMenuItem>
+            <NavigationMenuTrigger
+                class="text-slate-300 transition-all duration-200 ease-out hover:text-brand-primary focus-visible:text-brand-primary"
+            >
+              Projets
+            </NavigationMenuTrigger>
+
+            <NavigationMenuContent
+                class="rounded-xl border border-slate-800 bg-dark-primary p-3 shadow-lg"
+            >
+              <ul class="flex w-[220px] flex-col gap-1">
+
+                <li>
+                  <NavigationMenuLink as-child>
+                    <NuxtLink
+                        to="/#projects"
+                        class="block rounded-lg px-3 py-2 text-sm text-slate-200 hover:bg-slate-900 hover:text-brand-primary"
+                    >
+                      Tous les projets
+                    </NuxtLink>
+                  </NavigationMenuLink>
+                </li>
+
+                <li>
+                  <NavigationMenuLink as-child>
+                    <NuxtLink
+                        to="/projects"
+                        class="block rounded-lg px-3 py-2 text-sm text-slate-200 hover:bg-slate-900 hover:text-brand-primary"
+                    >
+                      Page projets
+                    </NuxtLink>
+                  </NavigationMenuLink>
+                </li>
+
+              </ul>
+            </NavigationMenuContent>
+          </NavigationMenuItem>
+
+          <NavigationMenuItem
+              v-for="link in links"
+              :key="link.href"
+          >
+            <NavigationMenuLink as-child>
+              <NuxtLink
+                  :to="link.href"
+                  class="text-slate-300 transition-all duration-200 ease-out hover:text-brand-primary focus-visible:text-brand-primary"
+              >
+                {{ link.label }}
+              </NuxtLink>
+            </NavigationMenuLink>
+          </NavigationMenuItem>
+        </NavigationMenuList>
+      </NavigationMenu>
 
       <button
           type="button"

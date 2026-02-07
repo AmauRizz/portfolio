@@ -65,7 +65,7 @@ const hasActiveFilters = computed(() => {
       <div class="flex flex-col lg:flex-row justify-between items-start lg:items-center gap-6 mb-8">
         <div class="space-y-4">
           <NuxtLink
-              to="/"
+              to="/#projects"
               class="inline-flex items-center gap-1 underline-offset-4 transition-all duration-200 ease-out hover:underline hover:text-[#00FF7F]"
           >
             <Icon name="tabler:arrow-left" />
@@ -95,7 +95,7 @@ const hasActiveFilters = computed(() => {
       </div>
     </section>
 
-    <section class="mb-8 space-y-6 sticky top-20 z-10 p-4 rounded-lg">
+    <section class="mb-8 space-y-6 p-4 rounded-lg">
       <div class="flex flex-col md:flex-row gap-4">
         <div class="flex-1 relative">
           <Icon
@@ -106,7 +106,7 @@ const hasActiveFilters = computed(() => {
               v-model="searchQuery"
               type="text"
               placeholder="Rechercher par nom, framework ou catégorie..."
-              class="w-full pl-12 pr-4 py-3 bg-[#1A2332] border border-[#2A3647] rounded-lg text-[#F3F7FB] placeholder-[#8DA0BA] focus:outline-none focus:border-brand-primary transition-colors"
+              class="w-full pl-12 pr-4 py-3 bg-[#1A2332] border-2 border-[#2A3647] rounded-lg text-[#F3F7FB] placeholder-[#8DA0BA] focus:outline-none focus:border-brand-primary transition-colors"
           />
           <button
               v-if="searchQuery"
@@ -121,7 +121,7 @@ const hasActiveFilters = computed(() => {
           <button
               @click="layoutMode = 'list'"
               :class="[
-              'cursor-pointer px-4 py-3 rounded-lg border transition-all duration-200',
+              'cursor-pointer px-4 py-3 rounded-lg border-2 transition-all duration-200',
               layoutMode === 'list'
                 ? 'bg-brand-primary border-brand-primary text-[#0A1628]'
                 : 'bg-[#1A2332] border-[#2A3647] text-[#8DA0BA] hover:border-brand-primary'
@@ -132,7 +132,7 @@ const hasActiveFilters = computed(() => {
           <button
               @click="layoutMode = 'grid'"
               :class="[
-              'px-4 py-3 rounded-lg border transition-all duration-200',
+              'cursor-pointer px-4 py-3 rounded-lg border-2 transition-all duration-200',
               layoutMode === 'grid'
                 ? 'bg-brand-primary border-brand-primary text-[#0A1628]'
                 : 'bg-[#1A2332] border-[#2A3647] text-[#8DA0BA] hover:border-brand-primary'
@@ -142,75 +142,16 @@ const hasActiveFilters = computed(() => {
           </button>
         </div>
       </div>
+    </section>
 
-      <div class="space-y-3">
-        <div class="flex items-center justify-between">
-          <h3 class="text-sm font-semibold text-[#8DA0BA] uppercase tracking-wider">Type de projet</h3>
-          <button
-              v-if="hasActiveFilters"
-              @click="resetFilters"
-              class="text-sm text-brand-primary hover:underline flex items-center gap-1"
-          >
-            <Icon name="tabler:refresh" class="text-base" />
-            Réinitialiser
-          </button>
-        </div>
-        <div class="flex flex-wrap gap-2">
-          <button
-              @click="selectedCategory = 'all'"
-              :class="[
-              'px-4 py-2 rounded-lg border transition-all duration-200 text-sm font-medium',
-              selectedCategory === 'all'
-                ? 'bg-brand-primary border-brand-primary text-[#0A1628]'
-                : 'bg-[#1A2332] border-[#2A3647] text-[#F3F7FB] hover:border-brand-primary'
-            ]"
-          >
-            Tous
-          </button>
-          <button
-              v-for="category in Object.values(ProjectCategories)"
-              :key="category"
-              @click="selectedCategory = category"
-              :class="[
-              'px-4 py-2 rounded-lg border transition-all duration-200 text-sm font-medium',
-              selectedCategory === category
-                ? 'bg-brand-primary border-brand-primary text-[#0A1628]'
-                : 'bg-[#1A2332] border-[#2A3647] text-[#F3F7FB] hover:border-brand-primary'
-            ]"
-          >
-            {{ category }}
-          </button>
-        </div>
-      </div>
-
-      <div class="space-y-3">
-        <h3 class="text-sm font-semibold text-[#8DA0BA] uppercase tracking-wider">Frameworks & Technologies</h3>
-        <div class="flex flex-wrap gap-2">
-          <button
-              v-for="framework in allFrameworks"
-              :key="framework"
-              @click="toggleFramework(framework)"
-              :class="[
-              'px-3 py-1.5 rounded-lg border transition-all duration-200 text-sm',
-              selectedFrameworks.includes(framework)
-                ? 'bg-brand-primary border-brand-primary text-[#0A1628]'
-                : 'bg-[#1A2332] border-[#2A3647] text-[#F3F7FB] hover:border-brand-primary'
-            ]"
-          >
-            {{ framework }}
-          </button>
-        </div>
-      </div>
-
+    <section class="mb-16 space-y-6">
       <div class="flex items-center gap-2 text-sm text-[#8DA0BA]">
         <Icon name="tabler:filter" />
         <span>
           {{ filteredProjects.length }} projet{{ filteredProjects.length > 1 ? 's' : '' }} trouvé{{ filteredProjects.length > 1 ? 's' : '' }}
         </span>
       </div>
-    </section>
 
-    <section class="mb-16">
       <div v-if="filteredProjects.length > 0">
         <div v-if="layoutMode === 'list'" class="grid grid-cols-1 gap-6">
           <ProjectBigCard
@@ -239,7 +180,7 @@ const hasActiveFilters = computed(() => {
         </p>
         <button
             @click="resetFilters"
-            class="inline-flex items-center gap-2 px-6 py-3 bg-brand-primary text-[#0A1628] rounded-lg font-medium hover:bg-[#00CC66] transition-colors"
+            class="cursor-pointer inline-flex items-center gap-2 px-6 py-3 bg-brand-primary text-[#0A1628] rounded-lg font-medium hover:bg-[#00CC66] transition-colors"
         >
           <Icon name="tabler:refresh" />
           Réinitialiser les filtres

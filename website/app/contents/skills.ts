@@ -134,40 +134,17 @@ export const skillItems: Skill[] = [
         link: "https://openjfx.io/"
     },
     {
-        icon: "devicon:postgresql",
-        name: "PostgreSQL",
-        description: "Système de gestion de base de données relationnelle puissant et fiable.",
-        usage: "Bases de données relationnelles avec transactions et requêtes complexes.",
-        skills: [
-            "SQL avancé",
-            "Indexation",
-            "Optimisation des performances"
-        ],
-        link: "https://www.postgresql.org/"
-    },
-    {
         icon: "devicon:mysql",
-        name: "MySQL",
-        description: "Base de données relationnelle populaire et performante pour les applications web.",
-        usage: "Applications web nécessitant une base de données relationnelle stable.",
+        name: "SQL",
+        description: "Langage standard de gestion et d’interrogation de bases de données relationnelles, utilisé pour créer, manipuler et administrer des données structurées.",
+        usage: "Conception de bases de données, requêtes, gestion des données, reporting et intégration dans des applications web, desktop ou mobiles.",
         skills: [
-            "SQL standard",
-            "Joins et relations",
-            "Optimisation des requêtes"
+            "Requêtes SQL",
+            "Modélisation de bases de données",
+            "Jointures et sous-requêtes",
+            "Indexation et optimisation des performances"
         ],
-        link: "https://www.mysql.com/"
-    },
-    {
-        icon: "devicon:sqlite",
-        name: "SQLite",
-        description: "Système de gestion de base de données relationnelle léger et embarqué, idéal pour les applications locales ou mobiles.",
-        usage: "Stockage local de données, bases légères pour applications desktop, mobiles ou prototypes.",
-        skills: [
-            "SQL standard",
-            "Bases embarquées",
-            "Optimisation pour petites bases"
-        ],
-        link: "https://sqlite.org/"
+        link: "https://www.w3schools.com/sql/"
     },
     {
         icon: "material-icon-theme:git",
