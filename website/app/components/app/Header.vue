@@ -60,7 +60,7 @@ const closeMenu = () => {
                         to="/#projects"
                         class="block rounded-lg px-3 py-2 text-sm text-slate-200 hover:bg-slate-900 hover:text-brand-primary"
                     >
-                      Tous les projets
+                      Projets
                     </NuxtLink>
                   </NavigationMenuLink>
                 </li>
@@ -71,7 +71,7 @@ const closeMenu = () => {
                         to="/projects"
                         class="block rounded-lg px-3 py-2 text-sm text-slate-200 hover:bg-slate-900 hover:text-brand-primary"
                     >
-                      Page projets
+                      Tous mes projets
                     </NuxtLink>
                   </NavigationMenuLink>
                 </li>
@@ -124,18 +124,46 @@ const closeMenu = () => {
         class="absolute left-0 right-0 top-full mt-2 px-4 py-4 flex flex-col gap-4 lg:hidden rounded-2xl border border-slate-800/80 bg-dark-primary shadow-lg overflow-hidden"
     >
       <nav class="space-y-1">
+        <div class="space-y-1">
+
+    <span
+        class="block rounded-xl px-3 py-2 text-sm font-medium text-slate-400"
+    >
+      Projets
+    </span>
+
+          <NuxtLink
+              to="/#projects"
+              class="block rounded-xl px-6 py-2 text-sm font-medium text-slate-100
+      hover:bg-slate-900 hover:text-brand-primary"
+              @click="closeMenu"
+          >
+            Tous les projets
+          </NuxtLink>
+
+          <NuxtLink
+              to="/projects"
+              class="block rounded-xl px-6 py-2 text-sm font-medium text-slate-100
+      hover:bg-slate-900 hover:text-brand-primary"
+              @click="closeMenu"
+          >
+            Page projets
+          </NuxtLink>
+
+        </div>
+
         <NuxtLink
             v-for="link in links"
             :key="link.href"
             :to="link.href"
             class="block rounded-xl px-3 py-2 text-sm font-medium text-slate-100
-            transition-all duration-200 ease-out
-            hover:bg-slate-900 hover-text-brand-primary focus-visible:bg-slate-900 focus-visible-text-brand-primary"
+    hover:bg-slate-900 hover:text-brand-primary"
             @click="closeMenu"
         >
           {{ link.label }}
         </NuxtLink>
       </nav>
+
 
       <NuxtLink
           to="/#contact"

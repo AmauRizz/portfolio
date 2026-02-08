@@ -18,7 +18,7 @@ export const projectItems: Project[] = [
         stack: [
             getSkillByName("Symfony"),
             getSkillByName("Vue.js"),
-            getSkillByName("MySql"),
+            getSkillByName("Sql"),
         ],
 
         githubLink: "https://github.com/AmauRizz/planifest",
@@ -58,7 +58,7 @@ export const projectItems: Project[] = [
         category: ProjectCategories.SERVICE,
         stack: [
             getSkillByName("Node.js"),
-            getSkillByName("Sqlite"),
+            getSkillByName("Sql"),
         ],
 
         githubLink: "https://github.com/KyozuFR/LRU-Bot"
@@ -98,7 +98,7 @@ export const projectItems: Project[] = [
         stack: [
             getSkillByName("Express.js"),
             getSkillByName("Nest.js"),
-            getSkillByName("PostgreSQL"),
+            getSkillByName("Sql"),
         ],
 
         githubLink: "https://github.com/KyozuFR/Omni-Chat"
