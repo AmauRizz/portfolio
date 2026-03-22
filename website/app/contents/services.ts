@@ -27,7 +27,7 @@ export const primaryServicesItems: Service[] = [
         projects: [
             {
                 label: "Reprosport17",
-                image: "reprosport17.png",
+                image: "/assets/images/reprosport17.png",
                 url: "reprosport17.fr"
             }
         ],

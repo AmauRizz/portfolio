@@ -52,6 +52,20 @@ html {
 
 :root {
     --radius: 0.625rem;
+
+    --brand-primary: #00FF7F;
+    --brand-secondary: #00CC99;
+    --brand-accent: #FFFF00;
+    --text-secondary: #8DA0BA;
+    --text-button: #171717;
+    --bg-dark-primary: #050816;
+    --bg-gradient-start: #111727;
+    --bg-gradient-end: #0A0F1C;
+    --bg-form-input: #070A13;
+    --social-github: #ffffff;
+    --social-linkedin: #0e76a8;
+
+    --shadow-brand: rgba(0, 255, 127, 0.15);
     --background: oklch(1 0 0);
     --foreground: oklch(0.145 0 0);
     --card: oklch(1 0 0);
@@ -126,4 +140,74 @@ html {
   body {
     @apply bg-background text-foreground;
     }
+}
+
+@layer utilities {
+  .text-brand-primary {
+    color: var(--brand-primary);
+  }
+  
+  .text-brand-secondary {
+    color: var(--brand-secondary);
+  }
+  
+  .text-brand-accent {
+    color: var(--brand-accent);
+  }
+  
+  .text-custom-secondary {
+    color: var(--text-secondary);
+  }
+  
+  .text-custom-button {
+    color: var(--text-button);
+  }
+  
+  .bg-brand-primary {
+    background-color: var(--brand-primary);
+  }
+  
+  .bg-brand-secondary {
+    background-color: var(--brand-secondary);
+  }
+  
+  .bg-brand-accent {
+    background-color: var(--brand-accent);
+  }
+  
+  .bg-dark-primary {
+    background-color: var(--bg-dark-primary);
+  }
+
+  .bg-gradient-custom {
+       background: linear-gradient(to bottom right, var(--bg-gradient-start), var(--bg-gradient-end));
+   }
+  
+  .border-brand-primary {
+    border-color: var(--brand-primary);
+  }
+  
+  .border-brand-accent {
+    border-color: var(--brand-accent);
+  }
+  
+  .bg-gradient-brand {
+    background: linear-gradient(to right, var(--brand-primary), var(--brand-secondary));
+  }
+  
+  .shadow-brand {
+    box-shadow: 0 0 12px var(--brand-primary);
+  }
+  
+  .hover-bg-brand-primary:hover {
+    background-color: var(--brand-primary);
+  }
+  
+  .hover-text-brand-primary:hover {
+    color: var(--brand-primary);
+  }
+  
+  .hover-border-brand-primary:hover {
+    border-color: var(--brand-primary);
+  }
 }

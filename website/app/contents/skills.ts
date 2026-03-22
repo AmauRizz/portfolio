@@ -110,28 +110,41 @@ export const skillItems: Skill[] = [
         link: "https://nestjs.com/"
     },
     {
-        icon: "devicon:postgresql",
-        name: "PostgreSQL",
-        description: "Système de gestion de base de données relationnelle puissant et fiable.",
-        usage: "Bases de données relationnelles avec transactions et requêtes complexes.",
+        icon: "material-icon-theme:minecraft-fabric",
+        name: "Fabric",
+        description: "Framework modding léger pour Minecraft, permettant de créer et gérer des mods personnalisés.",
+        usage: "Développement de mods Minecraft avec intégration facile et compatibilité étendue.",
         skills: [
-            "SQL avancé",
-            "Indexation",
-            "Optimisation des performances"
+            "Création de mods",
+            "API Fabric",
+            "Gestion des versions Minecraft"
         ],
-        link: "https://www.postgresql.org/"
+        link: "https://fabricmc.net/"
+    },
+    {
+        icon: "devicon:java",
+        name: "JavaFX",
+        description: "Framework Java pour créer des interfaces graphiques riches et interactives sur desktop.",
+        usage: "Développement d'applications desktop avec interfaces graphiques avancées et animations.",
+        skills: [
+            "Création d'interfaces GUI",
+            "Gestion des événements",
+            "Layouts et composants JavaFX"
+        ],
+        link: "https://openjfx.io/"
     },
     {
         icon: "devicon:mysql",
-        name: "MySQL",
-        description: "Base de données relationnelle populaire et performante pour les applications web.",
-        usage: "Applications web nécessitant une base de données relationnelle stable.",
+        name: "SQL",
+        description: "Langage standard de gestion et d’interrogation de bases de données relationnelles, utilisé pour créer, manipuler et administrer des données structurées.",
+        usage: "Conception de bases de données, requêtes, gestion des données, reporting et intégration dans des applications web, desktop ou mobiles.",
         skills: [
-            "SQL standard",
-            "Joins et relations",
-            "Optimisation des requêtes"
+            "Requêtes SQL",
+            "Modélisation de bases de données",
+            "Jointures et sous-requêtes",
+            "Indexation et optimisation des performances"
         ],
-        link: "https://www.mysql.com/"
+        link: "https://www.w3schools.com/sql/"
     },
     {
         icon: "material-icon-theme:git",
@@ -156,30 +169,6 @@ export const skillItems: Skill[] = [
             "Images et conteneurs"
         ],
         link: "https://www.docker.com/"
-    },
-    {
-        icon: "devicon:vscode",
-        name: "VS Code",
-        description: "Éditeur de code léger et extensible pour développer efficacement.",
-        usage: "Édition de code, débogage et intégration avec extensions.",
-        skills: [
-            "Extensions et plugins",
-            "Debugging",
-            "Intégration Git"
-        ],
-        link: "https://code.visualstudio.com/"
-    },
-    {
-        icon: "devicon:jetbrains",
-        name: "JetBrains",
-        description: "Suite d’IDE puissants pour différents langages et technologies.",
-        usage: "Développement avancé avec assistance intelligente et outils intégrés.",
-        skills: [
-            "IntelliJ IDEA",
-            "WebStorm",
-            "Refactoring et débogage"
-        ],
-        link: "https://www.jetbrains.com/"
     },
     {
         icon: "material-icon-theme:figma",

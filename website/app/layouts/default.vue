@@ -1,16 +1,31 @@
 <script setup lang="ts">
 import 'vue-sonner/style.css';
-import { Toaster } from '@/components/ui/sonner';
+import {Toaster} from "~/components/ui/sonner";
 
-import AppHeader from "@/components/AppHeader.vue";
-import AppFooter from "@/components/AppFooter.vue";
+const {
+  activeModal,
+  selectedSkill,
+  toggleModal
+} = useModal()
 </script>
 
 <template>
-    <Toaster closeButton />
-    <div class="min-h-screen bg-[#070A13] scroll-smooth">
-        <AppHeader />
-        <slot />
-        <AppFooter />
+  <AppStarfieldBackground />
+
+  <div class="min-h-screen bg-transparent scroll-smooth flex flex-col justify-between relative z-0">
+    <div>
+      <AppHeader />
+      <NuxtPage />
     </div>
+    <AppFooter />
+  </div>
+
+  <SkillModal
+      v-if="activeModal === 'skill' && selectedSkill"
+      :open="true"
+      :skill="selectedSkill"
+      @update:open="() => toggleModal('skill', null)"
+  />
+
+  <Toaster closeButton />
 </template>
