@@ -13,7 +13,7 @@ export const projectItems: Project[] = [
         gallery: [
 
         ],
-        image: "/assets/images/pdp.jpeg",
+        image: "/assets/images/placeholder.png",
         category: ProjectCategories.WEBSITE,
         stack: [
             getSkillByName("Symfony"),
@@ -35,7 +35,7 @@ export const projectItems: Project[] = [
         gallery: [
 
         ],
-        image: "/assets/images/pdp.jpeg",
+        image: "/assets/images/placeholder.png",
         category: ProjectCategories.GAME,
         stack: [
             getSkillByName("Fabric")
@@ -54,7 +54,7 @@ export const projectItems: Project[] = [
         gallery: [
 
         ],
-        image: "/assets/images/pdp.jpeg",
+        image: "/assets/images/placeholder.png",
         category: ProjectCategories.SERVICE,
         stack: [
             getSkillByName("Node.js"),
@@ -74,7 +74,7 @@ export const projectItems: Project[] = [
         gallery: [
 
         ],
-        image: "/assets/images/pdp.jpeg",
+        image: "/assets/images/placeholder.png",
         category: ProjectCategories.APPLICATION,
         stack: [
             getSkillByName("JavaFX"),
@@ -93,7 +93,7 @@ export const projectItems: Project[] = [
         gallery: [
 
         ],
-        image: "/assets/images/pdp.jpeg",
+        image: "/assets/images/placeholder.png",
         category: ProjectCategories.WEBSITE,
         stack: [
             getSkillByName("Express.js"),

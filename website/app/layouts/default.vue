@@ -15,7 +15,7 @@ const {
   <div class="min-h-screen bg-transparent scroll-smooth flex flex-col justify-between relative z-0">
     <div>
       <AppHeader />
-      <slot />
+      <NuxtPage />
     </div>
     <AppFooter />
   </div>
