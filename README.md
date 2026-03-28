@@ -3,7 +3,7 @@
 Welcome to my portfolio!  
 I am **Amaury Mulcey**, a student and freelance **Web Developer**, passionate about building modern websites.
 
-## 🌐 Overview
+## Overview
 
 Check out the portfolio online here: [https://www.amaurymulcey.fr](https://www.amaurymulcey.fr)  
 
@@ -16,7 +16,7 @@ The site includes:
 - A **Contact form**  
 - **Automatic translation**: text is in English by default and can be switched to French via the navbar  
 
-## ⚡ Technologies Used
+## Technologies Used
 
 **Frontend**  
 - Nuxt.js  
@@ -34,7 +34,7 @@ The site includes:
 - PHPStorm  
 - NPM  
 
-## 🛠 Features
+## Features
 
 **Frontend Portfolio**  
 - Fully responsive design  
@@ -48,7 +48,7 @@ The site includes:
 - User confirmation messages  
 - Rate limiting by IP  
 
-## 🚀 Installation & Development
+## Installation & Development
 
 ### Installation
 
@@ -70,7 +70,7 @@ npm run dev
 
 The project will be available at [http://localhost:3000/](http://localhost:3000/)
 
-## 🖥 Deployment
+## Deployment
 
 ### Production build
 
@@ -88,13 +88,13 @@ node .output/server/index.mjs
 
 Deploy using any reverse proxy (e.g., Nginx, Caddy) to forward requests to the local server.
 
-## 📫 Contact
+## Contact
 - Portfolio: [Freelance web developer](https://www.amaurymulcey.fr/)
 - Email: amaury.mulcey.pro@gmail.com
 - GitHub: [AmauRizz](https://github.com/AmauRizz)
 - LinkedIn: [Amaury Mulcey](https://www.linkedin.com/in/amaurymulcey/)
 
-## 📝 License
+## License
 This project is licensed under the ```Apache 2.0``` License. See LICENSE for details.
 
 
