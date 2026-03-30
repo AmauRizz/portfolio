@@ -1,0 +1,9 @@
+services:
+  portfolio:
+    build: ./website
+    networks:
+      - web
+
+networks:
+  web:
+    external: true
