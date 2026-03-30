@@ -2,8 +2,8 @@ services:
   portfolio:
     build: ./website
     networks:
-      - web
+      - portfolio
 
 networks:
-  web:
+  portfolio:
     external: true
