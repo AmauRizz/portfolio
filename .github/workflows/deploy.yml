@@ -9,6 +9,8 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
     steps:
+      - name: Get runner IP
+        run: curl ifconfig.me
       - name: Setup SSH
         run: |
           mkdir -p ~/.ssh
