@@ -9,8 +9,6 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
     steps:
-      - name: Get runner IP
-        run: curl ifconfig.me
       - name: Setup SSH
         run: |
           mkdir -p ~/.ssh
@@ -23,4 +21,4 @@ jobs:
 
       - name: Deploy
         run: |
-          ssh -p "${{ secrets.VPS_PORT }}" -i ~/.ssh/github_actions_key "${{ secrets.VPS_USER }}"@"${{ secrets.VPS_HOST }}" "cd /srv/docker/web/portfolio && git pull && docker compose down && docker compose up -d --build"
+          ssh -p "${{ secrets.VPS_PORT }}" -i ~/.ssh/github_actions_key "${{ secrets.VPS_USER }}"@"${{ secrets.VPS_HOST }} cd /srv/docker/web/portfolio && git pull && docker compose up -d --build portfolio"

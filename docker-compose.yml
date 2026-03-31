@@ -4,6 +4,18 @@ services:
     networks:
       - portfolio
 
+  portfolio-dev:
+    build:
+      context: ./website
+      target: dev
+    volumes:
+      - ./website:/app
+      - /app/node_modules
+    ports:
+      - "3000:3000"
+    networks:
+      - portfolio
+
 networks:
   portfolio:
     external: true
