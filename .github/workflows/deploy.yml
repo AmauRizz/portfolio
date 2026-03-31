@@ -21,4 +21,4 @@ jobs:
 
       - name: Deploy
         run: |
-          ssh -p "${{ secrets.VPS_PORT }}" -i ~/.ssh/github_actions_key "${{ secrets.VPS_USER }}"@"${{ secrets.VPS_HOST }} cd /srv/docker/web/portfolio && git pull && docker compose up -d --build portfolio"
+          ssh -p "${{ secrets.VPS_PORT }}" -i ~/.ssh/github_actions_key "${{ secrets.VPS_USER }}"@"${{ secrets.VPS_HOST }}" "cd /srv/docker/web/portfolio && git pull && docker compose up -d --build portfolio"
