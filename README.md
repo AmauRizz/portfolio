@@ -7,15 +7,6 @@ I am **Amaury Mulcey**, a student and freelance **Web Developer**, passionate ab
 
 Check out the portfolio online here: [https://www.amaurymulcey.fr](https://www.amaurymulcey.fr)  
 
-The site includes:  
-- A **personal introduction**  
-- A **Projects portfolio**  
-- An **About Me** section  
-- A **Services** section  
-- A **Question & Answer** section  
-- A **Contact form**  
-- **Automatic translation**: text is in English by default and can be switched to French via the navbar  
-
 ## Technologies Used
 
 **Frontend**  
