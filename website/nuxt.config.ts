@@ -9,11 +9,11 @@ export default defineNuxtConfig({
     },
 
     runtimeConfig: {
-        targetEmail: process.env.NUXT_TARGET_EMAIL,
-        emailPass: process.env.NUXT_EMAIL_PASS,
+        targetEmail: '',
+        emailPass: '',
 
         public: {
-            isMaintenance: process.env.NUXT_PUBLIC_IS_MAINTENANCE,
+            isMaintenance: '',
         }
     },
 

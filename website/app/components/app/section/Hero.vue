@@ -28,7 +28,7 @@
                 hover:scale-105
                 focus-visible:scale-105
                 active:scale-95"
-              title="Retrouvez-moi sur Tinder"
+              title="Retrouvez-moi sur buy me a coffee"
           >
               <span class="inline-flex items-center gap-2">
                 <Icon name="simple-icons:buymeacoffee" class="text-xl -rotate-z-10" />
