@@ -1,17 +1,19 @@
 services:
-  portfolio:
-    build: ./website
+  production:
+    build:
+      context: ./website
+      target: production
     env_file:
-      - .env
+      - ./website/.env
     networks:
       - portfolio
 
-  portfolio-dev:
+  development:
     build:
       context: ./website
-      target: dev
+      target: development
     env_file:
-      - .env
+      - ./website/.env
     volumes:
       - ./website:/app
       - /app/node_modules
