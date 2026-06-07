@@ -1,9 +1,6 @@
-<script setup>
-const config = useRuntimeConfig()
-const layout = config.public.isMaintenance ? 'maintenance' : 'default'
-</script>
-
 <template>
+  <div>
     <NuxtRouteAnnouncer />
-    <NuxtLayout :name="layout" />
+    <NuxtWelcome />
+  </div>
 </template>
