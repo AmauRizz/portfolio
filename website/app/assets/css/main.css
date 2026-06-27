@@ -4,8 +4,20 @@
     --font-heading: "Space Grotesk", sans-serif;
     --font-sub: "JetBrains Mono", monospace;
     --font-sans: "Instrument Sans", sans-serif;
+
+    --color-bg: #080d0c;
+    --color-bg-2: #0c1413;
+
+    --color-surface: #e9efe909;
+    --color-surface-2: #e9efe90f;
+
+    --color-ink: #e9efe9;
+    --color-ink-soft: #e9efe9a3;
+    --color-ink-faint: #e9efe975;
+
+    --color-rule: #e9efe91f;
+
+    --color-forest: #6cbf97ff;
+    --color-ocean: #62aedbff;
+    --color-amber: #e0c262ff;
 }
-
-/**
-
-**/
