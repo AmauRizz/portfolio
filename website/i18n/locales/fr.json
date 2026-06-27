@@ -1,0 +1,10 @@
+{
+  "nav": {
+    "hero": "Accueil",
+    "trajectory": "Parcours",
+    "playground": "Playground",
+    "projects": "Projets",
+    "about": "À propos",
+    "contact": "Contact"
+  }
+}

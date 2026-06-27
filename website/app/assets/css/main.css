@@ -1,3 +1,11 @@
 @import "tailwindcss";
 
-@theme {}
+@theme {
+    --font-heading: "Space Grotesk", sans-serif;
+    --font-sub: "JetBrains Mono", monospace;
+    --font-sans: "Instrument Sans", sans-serif;
+}
+
+/**
+
+**/
