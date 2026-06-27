@@ -3,7 +3,7 @@
 </script>
 
 <template>
-
+  <HomeHero/>
 </template>
 
 <style scoped>
